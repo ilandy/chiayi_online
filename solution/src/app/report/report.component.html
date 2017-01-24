@@ -1,3 +1,91 @@
-<p>
-  report works!
-</p>
+<section class="topic">
+    <div class="topic-outer">
+        <div class="topic-inner">
+          <div class="clear-fix">
+            <div class="topic-layout-left">
+              <h1 class="">
+                線上陳情系統
+              </h1>
+              <button class="btn btn-topic">我要陳情</button>
+            </div>
+            <div class="topic-layout-right">
+              <p class="block-sprade bs-brown topic-info-top">
+                歡迎大家為嘉義市的發展共同努力<br>
+                把您所看到的問題，上傳給我們！<br>
+              </p>
+              <p class="topic-info-center">
+                  您可以經由網路留言的方式來表達您的寶貴
+                  建議，也可以經由電洽或傳真方式傳達至本府企劃處。
+              </p>
+              <small class="topic-info-bottom">
+                電話：05-2251999<br>
+                傳真：05-2285949
+              </small>
+            </div>
+          </div>
+          <div class="topic-deco">CHIAYI . GOV . TW</div>
+        </div>
+    </div>
+</section>
+<section class="hot">
+  <div class="hot-contain clear-fix">
+    <div class="hot-layout-left">
+      <h2 class="block-sprade bs-green font-bolder">陳情須知</h2>
+      <p class="font-bolder mt-0">人民陳情案件，有下列情形之一者，承辦單位得依行政程序法第一百七十三條及本府分層負責權限規定，簽准不予處理：</p>
+      <ul class="hot-list">
+        <li>無具體內容、未具姓名、住址、電子郵件地址者。</li>
+        <li>同一事由經予適當處理並已明確答覆兩次後，而仍一再陳情者。</li>
+        <li>非主管陳情內容之機關，接獲陳情人以同一事由分向各機關陳情者。</li>
+        <li>提醒大家，請勿為私人恩怨報案、或報假案。</li>
+      </ul>
+      <h2 class="block-sprade bs-green font-bolder">緊急事件</h2>
+      <p class="font-bolder mt-0">犯罪事件請撥打 <mark class="mark font-lg">110</mark> 火警及救難事件 <mark class="mark font-lg">119</mark></p>
+      <div class="hot-deco"><i class="fa fa-chevron-right"></i></div>
+    </div>
+    <div class="hot-layout-right">
+      
+      <ul class="hot-item">
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
+        </li>
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-2.png" alt=""> <span>違規小廣告</span></a>
+        </li>
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-3.png" alt=""> <span>號誌故障</span></a>
+        </li>
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-4.png" alt=""> <span>路燈不亮</span></a>
+        </li>
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-5.png" alt=""> <span>溝蓋破損</span></a>
+        </li>
+        <li>
+          <a href=""><img src="../assets/images/icons/icon-6.png" alt=""> <span>道路凹陷坑洞</span></a>
+        </li>
+      </ul>
+      <div class="hot-shadow"></div>
+    </div>
+    
+
+  </div>
+</section>
+<section class="more">
+  <div class="more-contain">
+    <h2 class="more-title">更多申報項目</h2>
+    <ul class="more-items">
+      <li class="more-item" *ngFor="let item of items;let i = index">
+        <a href="javascript:void(0)">
+          <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+        </a>
+        <ul class="more-subitems">
+          <li *ngFor="let item of items;let i = index">
+            <a href="javascript:void(0)" >
+              <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
