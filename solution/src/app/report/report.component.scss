@@ -250,10 +250,15 @@
     }
     .more-items {
         margin-bottom: 80px;
+        margin-right: 20px;
+        width: 300px;
+        float: left;
+        &:last-child {
+            margin-right: 0;
+        }
     }
     .more-item {
         display: inline-block;
-        margin-right: 30px;
         margin-bottom: 20px;
         width: 300px;
         color: white;
@@ -270,12 +275,35 @@
             color: inherit;
             line-height: 50px;
             background: #19A6A3;
-            &:hover,&.active {
+            box-shadow: 0 3px 10px -8px $dk-green;
+            transition: background .5s, box-shadow .5s;
+            &.active {
                 background: #1FC9C5;
+                box-shadow: 0 8px 10px -5px $dk-green;
             }
         }
+        
         .more-subitems {
-            
+            display: none;
+            width: 100%;
+            background: $md-green;
+            padding-top: 10px;
+            color: white;
+            a {
+                display: inline-block;
+                width: 100%;
+                padding: 0 20px;
+                color: inherit;
+                &:hover {
+                    color: #ffe600;
+                }
+            }
+            li {
+                padding-bottom: 10px;
+            }
+        }
+        .active .more-subitems {
+            display: block;
         }
     }
 }

@@ -73,19 +73,51 @@
 <section class="more">
   <div class="more-contain">
     <h2 class="more-title">更多申報項目</h2>
-    <ul class="more-items">
-      <li class="more-item" *ngFor="let item of items;let i = index">
-        <a href="javascript:void(0)">
-          <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
-        </a>
-        <ul class="more-subitems">
-          <li *ngFor="let item of items;let i = index">
-            <a href="javascript:void(0)" >
+    <div class="clear-fix">
+      <ul class="more-items">
+        
+          <li class="more-item" template="ngFor let item of items; let i = index;" *ngIf="i%3==0">
+            <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
               <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
             </a>
+            <ul class="more-subitems">
+              <li *ngFor="let item of items">
+                <a href="javascript:void(0)" >
+                  <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+                </a>
+              </li>
+            </ul>
           </li>
-        </ul>
-      </li>
-    </ul>
+      </ul>
+
+      <ul class="more-items">
+        <li class="more-item" *ngFor="let item of items;let i = index" >
+          <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
+            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+          </a>
+          <ul class="more-subitems">
+            <li *ngFor="let item of items;let i = index">
+              <a href="javascript:void(0)" >
+                <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="more-items">
+        <li class="more-item" *ngFor="let item of items;let i = index ;" >
+          <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
+            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+          </a>
+          <ul class="more-subitems">
+            <li *ngFor="let item of items;let i = index">
+              <a href="javascript:void(0)" >
+                <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
