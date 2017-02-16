@@ -1,4 +1,4 @@
-<section class="topic">
+<!--<section class="topic">
     <div class="topic-outer">
         <div class="topic-inner">
           <div class="clear-fix">
@@ -75,8 +75,8 @@
     <h2 class="more-title">更多申報項目</h2>
     <div class="clear-fix">
       <ul class="more-items">
-        
-          <li class="more-item" template="ngFor let item of items; let i = index;" *ngIf="i%3==0">
+        <div *ngFor="let item of items; let i = index;">
+          <li class="more-item" *ngIf="i%3==0">
             <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
               <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
             </a>
@@ -88,10 +88,12 @@
               </li>
             </ul>
           </li>
+          </div>
       </ul>
 
       <ul class="more-items">
-        <li class="more-item" *ngFor="let item of items;let i = index" >
+        <div *ngFor="let item of items; let i = index;">
+        <li class="more-item" *ngIf="i%3==1">
           <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
             <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
           </a>
@@ -103,9 +105,11 @@
             </li>
           </ul>
         </li>
+        </div>
       </ul>
       <ul class="more-items">
-        <li class="more-item" *ngFor="let item of items;let i = index ;" >
+        <div *ngFor="let item of items; let i = index;">
+        <li class="more-item" *ngIf="i%3==2" >
           <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
             <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
           </a>
@@ -117,7 +121,8 @@
             </li>
           </ul>
         </li>
+        </div>
       </ul>
     </div>
   </div>
-</section>
+</section>-->
