@@ -7,5 +7,7 @@ import { ActivatedRoute }     from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
+  mb = false;
    
 }

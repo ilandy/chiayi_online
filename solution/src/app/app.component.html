@@ -1,10 +1,12 @@
-<div class="wrap">
+<div class="wrap" [ngClass]="{'active':mb}">
     <header class="header clear-fix">
             <h1 class="header-brand">
-                <a href="/" class="header-logo" alt="嘉義市政府 Logo" title="嘉義市政府線上即時服務系統"></a>
+                <a href="/" class="header-logo" alt="嘉義市政府 Logo" title="嘉義市政府線上即時服務系統">
+                    
+                </a>
             </h1>
             <div class="header-menu">
-                <div class="menu-button hidden-lg" [ngClass]="{'active':mb==true}" (click)="!mb" >
+                <div class="menu-button hidden-lg" [ngClass]="{'active':mb}" (click)="mb=!mb" >
                     
                 </div>
                 <ul class="menu">
