@@ -1,0 +1,42 @@
+.btn {
+    border: none;
+    border: medium none;
+    border-spacing: 0;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    font-weight: normal;    
+    background: none repeat scroll 0 0 transparent;
+    &:focus {
+        outline: none;
+    }
+    &.btn-topic {
+        position: relative;
+        width: 100%;
+        padding: 15px 0;
+        font-size: 1.75em;
+        letter-spacing: 2px;
+        background: $dk-green;
+        color: $white;
+        @include pc {
+            padding: 18px 0;
+        }
+        @include pad {
+            padding: 18px 0;            
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-width: 55px 0 0 50px;
+            border-color: transparent transparent transparent $lt-green;
+            border-style: solid;
+        }
+    }
+}
