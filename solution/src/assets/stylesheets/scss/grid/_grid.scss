@@ -1,5 +1,6 @@
 //先針對media queries的width設為變數
-
+$pcb-media:1200px;
+$pcbs-media:1199px;
 $pc-media:960px;
 $pcs-media:959px;
 $pad-media:760px;
@@ -11,6 +12,19 @@ $phones-media:479px;
 並且使用我上面設立的變數來調動media queries的width*/
 
 //電腦
+@mixin big-pc() {
+    @media all and (min-width: $pcb-media) { 
+        @content;
+    }
+}
+
+@mixin smaller-device() {
+    @media all and (max-width: $pcbs-media) { 
+        @content;
+    }
+}
+
+
 @mixin pc() {
     @media all and (min-width: $pc-media) {
             @content;
