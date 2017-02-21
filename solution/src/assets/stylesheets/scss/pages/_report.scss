@@ -4,12 +4,15 @@
 
 .topic-outer {
     position: relative;
-    // width: 970px;
     width: 95%;
     padding: 10px;
-    // margin: -30px auto 66px auto;
     margin: -30px auto 50px auto;
     background-image: linear-gradient(-45deg, #00C8C8 0%, #009797 100%);
+    @include pad {
+        width: 970px;
+        margin: -30px auto 66px auto;
+    }
+    
     &:after {
         content: "";
         position: absolute;

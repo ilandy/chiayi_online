@@ -18,11 +18,12 @@ $phones-media:479px;
     }
 }
 
-@mixin smaller-device() {
+@mixin pcb-back() {
     @media all and (max-width: $pcbs-media) { 
         @content;
     }
 }
+
 
 
 @mixin pc() {

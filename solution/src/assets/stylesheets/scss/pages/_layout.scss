@@ -201,7 +201,7 @@ $img-path: "/assets/images/share/";
         font-weight: 300;
         cursor: pointer;
         
-        @include smaller-device() {
+        @include pcb-back() {
             margin: 30px 0;
             text-align: center;
             letter-spacing: .4em;
@@ -218,7 +218,7 @@ $img-path: "/assets/images/share/";
                 opacity: .4;
             }
         }
-        @include big-pc() {
+        @inclu∏ big-pc() {
             display: inline-block;
             margin: 0 19px;
             letter-spacing: .2em;
