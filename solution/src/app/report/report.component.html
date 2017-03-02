@@ -1,16 +1,16 @@
 <section class="topic">
     <div class="topic-outer">
         <div class="topic-inner">
-          <div class="clear-fix">
+          <div class="clear-fix topic-layout">
             <div class="topic-layout-left">
               <h1 class="">
                 線上陳情系統
               </h1>
-              <button class="btn btn-topic">我要陳情</button>
+              <button class="btn btn-topic hidden-xs">我要陳情</button>
             </div>
             <div class="topic-layout-right">
               <p class="block-sprade bs-brown topic-info-top">
-                歡迎大家為嘉義市的發展共同努力<br>
+                歡迎大家為嘉義市的發展共同努力<span class="line-break"></span>
                 把您所看到的問題，上傳給我們！<br>
               </p>
               <p class="topic-info-center">
@@ -21,6 +21,9 @@
                 電話：05-2251999<br>
                 傳真：05-2285949
               </small>
+              <br>
+              <br>
+              <button class="btn btn-topic hidden-lg hidden-md hidden-sm"><span>我要陳情</span></button>
             </div>
           </div>
           <div class="topic-deco">CHIAYI . GOV . TW</div>
@@ -71,59 +74,27 @@
 
   </div>
 </section>
+-->
 <section class="more">
   <div class="more-contain">
     <h2 class="more-title">更多申報項目</h2>
     <div class="clear-fix">
-      <ul class="more-items">
-        <div *ngFor="let item of items; let i = index;">
-          <li class="more-item" *ngIf="i%3==0">
-            <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
-              <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+      <ul class="more-list" *ngFor="let list of [0,1,2]">
+        <template ngFor let-item [ngForOf]="caseTypes" let-i="index">
+          <li class="more-item" *ngIf="i%3 == list">
+            <a href="javascript:void(0)" (click)="item.active=!item.active" [ngClass]="{active:item.active}">
+              <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
             </a>
             <ul class="more-subitems">
               <li *ngFor="let item of items">
                 <a href="javascript:void(0)" >
-                  <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
+                  <i class="fa fa-angle-double-right"></i> <span>{{item.SubitemName}}</span>
                 </a>
               </li>
             </ul>
           </li>
-          </div>
-      </ul>
-
-      <ul class="more-items">
-        <div *ngFor="let item of items; let i = index;">
-        <li class="more-item" *ngIf="i%3==1">
-          <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
-            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
-          </a>
-          <ul class="more-subitems">
-            <li *ngFor="let item of items;let i = index">
-              <a href="javascript:void(0)" >
-                <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        </div>
-      </ul>
-      <ul class="more-items">
-        <div *ngFor="let item of items; let i = index;">
-        <li class="more-item" *ngIf="i%3==2" >
-          <a href="javascript:void(0)" (click)="active = true" [ngClass]="{'active':active == true}">
-            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
-          </a>
-          <ul class="more-subitems">
-            <li *ngFor="let item of items;let i = index">
-              <a href="javascript:void(0)" >
-                <i class="fa fa-angle-double-right"></i> <span>舊招牌拆除</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-        </div>
+          </template>
       </ul>
     </div>
   </div>
-</section>-->
+</section>

@@ -21,7 +21,7 @@ $img-path: "/assets/images/share/";
         @include small-pad {
             left: -50vw;
          }
-        @include big-pc() {
+        @include big-pc {
         left: 0;
         }
     }
@@ -33,7 +33,7 @@ $img-path: "/assets/images/share/";
     height: 4em;
     z-index: index($layout-index,".header");
     
-    @include pc {
+     @include pc {
         height: 9.5em;
      }
      @include pad {
@@ -42,6 +42,7 @@ $img-path: "/assets/images/share/";
      @include small-pad {
         height: 5.5em;
      }
+     
     .header-brand {
         float: left;
         width: 55%;
@@ -64,6 +65,12 @@ $img-path: "/assets/images/share/";
         background: url($img-path+"header-logo.png") no-repeat;
         background-size: auto 95%;
         background-position-y: bottom;
+        @include big-pc {
+            background-size: auto 90%;
+            background-position-x: right;
+            background-position-y: 25px;
+            
+        }
         &:focus {
             outline: none;
         }
@@ -113,7 +120,7 @@ $img-path: "/assets/images/share/";
             @include pad {
                 border-width: 4em 50vw 0 0;
             }
-             @include small-pad {
+            @include small-pad {
                 border-width: 2.5em 45vw 0 0;
             }
         }
@@ -185,7 +192,7 @@ $img-path: "/assets/images/share/";
     @include small-pad {
         width: 50%;
     }
-    @include big-pc() {
+    @include big-pc {
         position: absolute;
         width: 90%;
         margin: 60px 10% 0;
@@ -193,6 +200,7 @@ $img-path: "/assets/images/share/";
         z-index: 2;
         
     }
+    
     li {
         position: relative;
         display: block;
@@ -218,7 +226,7 @@ $img-path: "/assets/images/share/";
                 opacity: .4;
             }
         }
-        @inclu∏ big-pc() {
+        @include big-pc {
             display: inline-block;
             margin: 0 19px;
             letter-spacing: .2em;
