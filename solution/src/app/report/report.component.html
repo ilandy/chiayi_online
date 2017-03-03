@@ -30,25 +30,25 @@
         </div>
     </div>
 </section>
-<!--
+
 <section class="hot">
   <div class="hot-contain clear-fix">
     <div class="hot-layout-left">
       <h2 class="block-sprade bs-green font-bolder">陳情須知</h2>
       <p class="font-bolder mt-0">人民陳情案件，有下列情形之一者，承辦單位得依行政程序法第一百七十三條及本府分層負責權限規定，簽准不予處理：</p>
-      <ul class="hot-list">
+      <ul class="hot-rule">
         <li>無具體內容、未具姓名、住址、電子郵件地址者。</li>
         <li>同一事由經予適當處理並已明確答覆兩次後，而仍一再陳情者。</li>
         <li>非主管陳情內容之機關，接獲陳情人以同一事由分向各機關陳情者。</li>
         <li>提醒大家，請勿為私人恩怨報案、或報假案。</li>
       </ul>
       <h2 class="block-sprade bs-green font-bolder">緊急事件</h2>
-      <p class="font-bolder mt-0">犯罪事件請撥打 <mark class="mark font-lg">110</mark> 火警及救難事件 <mark class="mark font-lg">119</mark></p>
+      <p class="font-bolder mt-0">犯罪事件請撥打 <mark class="mark font-lg">110</mark> <span class="line-break-small-device"></span>火警及救難事件 <mark class="mark font-lg">119</mark></p>
       <div class="hot-deco"><i class="fa fa-chevron-right"></i></div>
     </div>
     <div class="hot-layout-right">
       
-      <ul class="hot-item">
+      <ul class="hot-list">
         <li>
           <a href=""><img src="../assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
         </li>
@@ -70,31 +70,43 @@
       </ul>
       <div class="hot-shadow"></div>
     </div>
-    
-
   </div>
 </section>
--->
+
 <section class="more">
   <div class="more-contain">
     <h2 class="more-title">更多申報項目</h2>
     <div class="clear-fix">
-      <ul class="more-list" *ngFor="let list of [0,1,2]">
+      <ul class="more-list hidden-xs hidden-sm" *ngFor="let list of [0,1,2]" >
         <template ngFor let-item [ngForOf]="caseTypes" let-i="index">
           <li class="more-item" *ngIf="i%3 == list">
             <a href="javascript:void(0)" (click)="item.active=!item.active" [ngClass]="{active:item.active}">
               <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
             </a>
-            <ul class="more-subitems">
-              <li *ngFor="let item of items">
+            <ul class="more-subitems active" [ngClass]="{active:item.active}">
+              <li *ngFor="let subItems of item.Subitems">
                 <a href="javascript:void(0)" >
-                  <i class="fa fa-angle-double-right"></i> <span>{{item.SubitemName}}</span>
+                  <i class="fa fa-angle-right"></i>&nbsp;&nbsp;<span>{{subItems.SubitemName}}</span>
                 </a>
               </li>
             </ul>
           </li>
-          </template>
+        </template>
       </ul>
     </div>
+    <ul class="more-list visible-xs visible-sm">
+        <li class="more-item" *ngFor="let item of caseTypes; let i = index">
+          <a href="javascript:void(0)" (click)="item.active=!item.active" [ngClass]="{active:item.active}">
+            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
+          </a>
+          <ul class="more-subitems active" [ngClass]="{active:item.active}">
+            <li *ngFor="let subItems of item.Subitems">
+              <a href="javascript:void(0)" >
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;<span>{{subItems.SubitemName}}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+    </ul>
   </div>
 </section>

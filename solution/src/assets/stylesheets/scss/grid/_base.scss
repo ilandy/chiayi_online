@@ -107,3 +107,16 @@ a, a:hover, a:focus {
 .mt-0 {
     margin-top: 0;
 }
+.line-break {
+    display: block;
+    @include phone{
+        display: inline;
+    }
+}
+.line-break-small-device {
+    display: inline;
+    @include phone{
+        display: block;
+        padding-top: 1em;
+    }
+}

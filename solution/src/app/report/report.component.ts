@@ -14,8 +14,12 @@ export class ReportComponent implements OnInit {
   error: any;
   selectedCaseType: CaseType;
   selectedSubCaseType: SubCaseType;
+  screenSize: number;
 
-  constructor(private titleService: Title, private reportService: ReportService) { }
+  constructor(private titleService: Title, private reportService: ReportService) {
+
+    // console.log(this.screenSize)
+   }
   
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
@@ -25,10 +29,13 @@ export class ReportComponent implements OnInit {
       .getTypes()
       .subscribe(types => this.caseTypes = types);
   }
-
+  getScreenSize (){
+    this.screenSize = screen.availWidth;
+  }
   ngOnInit() {
     this.setTitle('案件陳情 - 嘉義市政府線上陳情服務平台');
     this.getTypes();
+    this.getScreenSize();
   }
 
 }
