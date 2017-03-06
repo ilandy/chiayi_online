@@ -6,7 +6,7 @@ import { CaseType }       from '../share/case';
 
 @Injectable()
 export class ReportService {
-  private readonly baseApiUrl = '/assets/data/';
+  private readonly baseApiUrl = './assets/data/';
   private reportTypesUrl = this.baseApiUrl + 'data-caseItems.json';
 //   private validationCodeUrl = this.baseApiUrl + 'ValidationCode/';//'../../assets/vd.json';
 
