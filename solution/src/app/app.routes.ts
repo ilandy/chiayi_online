@@ -1,16 +1,13 @@
-import { ModuleWithProviders }          from '@angular/core';
-import { Routes, RouterModule }         from '@angular/router';
+import { NgModule }                     from '@angular/core';
+import { RouterModule, Routes }         from '@angular/router';
+
 import { ReportComponent }              from './report/report.component';
 import { QueryComponent }               from './query/query.component';
 import { FaqComponent }                 from './faq/faq.component';
 import { TermComponent }                from './term/term.component';
 import { ProccessComponent }            from './proccess/proccess.component';
-const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/report',
-    pathMatch: 'full'
-  },
+
+export const appRoutes: Routes = [
   {
     path: 'report',
     component: ReportComponent
@@ -41,8 +38,12 @@ const appRoutes: Routes = [
   }
 ];
 
-export const appRoutingProviders: any[] = [
-
-];
-
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class AppRoutingModule {}

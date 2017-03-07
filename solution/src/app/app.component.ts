@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute }     from '@angular/router';
+import { Component, Input }   from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  
-  mb = false;
-   
+
+  public constructor() {
+  }
+
+  ngOnInit() {
+    
+  }
 }

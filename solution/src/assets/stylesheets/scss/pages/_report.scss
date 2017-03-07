@@ -5,11 +5,8 @@
 //* ==== section topic ==== *//
 
 .topic-outer {
-    position: relative;
+    
     width: 95%;
-    padding: 10px;
-    margin: -30px auto 50px auto;
-    background-image: linear-gradient(-45deg, #00C8C8 0%, #009797 100%);
     @include pc {
         width: 970px;
         margin: -60px auto 66px auto;
@@ -17,52 +14,18 @@
     @include pad {
         margin-top: -50px;
      }
-    &:after {
-        content: "";
-        position: absolute;
-        right: -10px;
-        bottom: -20px;
-        width: 0;
-        height: 0;
-        border-width: 0 0 240px 290px;
-        border-color: transparent transparent rgba(223,236,217,.7) transparent;
-        border-style: solid;
-        z-index: -1;
-        @include pc {
-            right: -15px;
-            bottom: -20px;
-        }
-    }
 }
 
 .topic-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
     padding: 3em 1.3em 2.5em 1.3em; 
-    background: $bgC;
     @include pc {
         padding: 7.5em 3em 3em;
     }
     @include pad {
-        padding-top: 6em 3em 3em;
-    }
-    &:after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 0;
-        height: 0;
-        border-width: 0 0 190px 225px;
-        border-color: transparent transparent rgba(223,236,217,.7) transparent;
-        border-style: solid;
-        @include phone { 
-            border-width: 0 0 196px 74vw;
-         }
+        padding: 6em 3em 3em;
     }
 }
-.topic-deco {
+.topic-words-deco {
         position: absolute;
         width: 350px;
         bottom: -1.25em;
@@ -87,8 +50,6 @@
     
 }
 .topic-layout-left {
-   
-        
         @include pc {
             width: 376px;
             float: left;
@@ -97,40 +58,6 @@
             width: 40%;
             float: left;
         }
-        h1 {
-            position: relative;
-            margin: 0 0 35px 0;
-            font-weight: 400;
-            font-size: 2.25em;
-            line-height: 2em;
-            letter-spacing: .1em;
-            text-align: justify;
-            color: $dk-green;
-            @include pc {
-                font-size: 3.5em;
-            }
-            @include pad {
-                font-size: 2.5em;
-            }
-
-            &:before,
-            &:after {
-                content: "";
-                position: absolute;
-                right: .12em;
-                background: $dk-green;
-                height: 4px;
-            }
-            &:before {
-                width: 95%;
-                top: 0;
-            }
-            &:after {
-                width: 40%;
-                bottom: 0;
-            }
-        }
-
 }
 .topic-layout-right {
     position: relative;

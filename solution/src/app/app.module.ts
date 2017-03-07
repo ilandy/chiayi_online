@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { routing } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 import { ReportComponent } from './report/report.component';
 import { QueryComponent } from './query/query.component';
 import { FaqComponent } from './faq/faq.component';
@@ -25,9 +25,11 @@ import { ProccessComponent } from './proccess/proccess.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    Title,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
