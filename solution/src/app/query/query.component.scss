@@ -19,23 +19,30 @@
         @include pad {
             
             width: 40%;
-            float: left;
             text-align: center;
         }
     }
     .query-form {
-        height: 530px;
+        padding: .85em;
         @include pc {
             width: 55%;
             margin-left: 5%;
             float: right;
         }
-        @include pad {
-            width: 55%;
-            margin-left: 5%;
-            float: right;
+         @include phone {
+             padding: .5em;
+          }
+        
+        & > div {
+            height: auto;
+            padding: 3em 3.25em;
+            @include phone {
+                padding: 1em 1.25em; 
+            }
+
         }
-        div {
+        .btn-green {
+            z-index: 2;
         }
     }
 }

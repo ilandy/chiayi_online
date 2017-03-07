@@ -67,22 +67,25 @@ a, a:hover, a:focus {
     font-size: 1em;
 }
 .font-title {
-    font-size: 300%
+    font-size: 3em
 }
 .font-lg {
-    font-size: 150%
+    font-size: 1.5em
 }
 .font-sm {
-    font-size: 87.5%;
+    font-size: .875em;
 }
 .font-xs {
-    font-size: 75%;
+    font-size: .75em;
 }
 .font-bolder {
     font-weight: 500;
 }
-.font-dkgreen {
+.font-color-dkgreen {
     color: #005151;
+}
+.font-color-brown {
+    color: #858581;
 }
 
 

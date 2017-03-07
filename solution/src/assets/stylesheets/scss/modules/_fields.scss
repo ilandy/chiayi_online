@@ -1,0 +1,35 @@
+/* ==== 欄位狀態顏色 ==== */
+
+$field-normal: rgba(133,133,129,.08);
+$field-active: rgba(0,151,151,1);
+
+.field {
+    width: 100%;
+    padding-bottom: 15px;
+    & > .field-name {
+        padding-bottom: 10px;
+        color: $brown;
+        font-weight: 300;
+    }
+    & > .field-entery {
+        width: 100%;
+        padding-bottom: .625em;
+        border: none;
+        border-bottom: 3px solid $field-normal;
+        font-size: 1.75em;
+        background: transparent;
+        transition: border-color .5s;
+        &:hover,
+        &:focus {
+            outline: none;
+            border-color: $field-active;
+        }
+    }
+} 
+.field-message {
+    min-height: 1em;
+    line-height: 1.8em;
+    padding-bottom: 1em;
+    color: $orange;
+    
+}
