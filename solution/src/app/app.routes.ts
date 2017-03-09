@@ -5,7 +5,7 @@ import { ReportComponent }              from './report/report.component';
 import { QueryComponent }               from './query/query.component';
 import { FaqComponent }                 from './faq/faq.component';
 import { TermComponent }                from './term/term.component';
-import { ProccessComponent }            from './proccess/proccess.component';
+import { ProcessComponent }            from './process/process.component';
 
 export const appRoutes: Routes = [
   {
@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'process',
-    component: ProccessComponent
+    component: ProcessComponent
   },
   {
     path: 'faq',

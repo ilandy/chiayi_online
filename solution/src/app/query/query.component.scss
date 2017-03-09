@@ -11,13 +11,11 @@
     h1 {
         margin-bottom: 2em;
         @include pc {
-            
             width: 40%;
             float: left;
             text-align: center;
         }
         @include pad {
-            
             width: 40%;
             text-align: center;
         }
@@ -39,7 +37,6 @@
             @include phone {
                 padding: 1em 1.25em; 
             }
-
         }
         .btn-green {
             z-index: 2;

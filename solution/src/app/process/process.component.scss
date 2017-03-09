@@ -1,0 +1,33 @@
+@import "../../assets/stylesheets/scss/grid/_grid.scss";
+.proccess {
+    padding: 4em 0;
+    width: 90%;
+    margin: auto;
+    @include pc {
+        padding: 6em 0;
+        width: 960px;
+    }
+    .proccess-content {
+        padding: .85em;
+        
+        & > div {
+            height: auto;
+            padding: 3em 3.25em;
+            @include phone {
+                padding: 1em 1.25em; 
+            }
+        }
+    }
+    .proccess-img {
+        float: left;
+        width: 35%;
+        @include phone {
+            float: none;
+        }
+
+    }
+    .proccess-info {
+        width: 65%;
+        float: right;
+    }
+}
