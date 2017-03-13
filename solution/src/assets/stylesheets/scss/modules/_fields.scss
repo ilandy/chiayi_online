@@ -6,12 +6,12 @@ $field-active: rgba(0,151,151,1);
 .field {
     width: 100%;
     padding-bottom: 15px;
-    & > .field-name {
+    .field-name {
         padding-bottom: 10px;
-        color: $brown;
-        font-weight: 300;
+        color: $dk-green;
+        font-weight: 500;
     }
-    & > .field-entery {
+    .field-entery {
         width: 100%;
         padding-bottom: .625em;
         border: none;
@@ -19,12 +19,29 @@ $field-active: rgba(0,151,151,1);
         font-size: 1.75em;
         background: transparent;
         transition: border-color .5s;
+        transition-timing-function: ease-in;
         &:hover,
         &:focus {
             outline: none;
             border-color: $field-active;
         }
     }
+    .field-select {
+        position: relative;
+        cursor: pointer;
+        &:before {
+            content: '\f078';
+            font-family: FontAwesome;
+            position: absolute;
+            right: 1em;
+            top: 25%;
+            color: $dk-green;
+            font-size: .875em;
+            z-index: 1;
+        }
+        
+    }
+
 } 
 .field-message {
     min-height: 1em;
@@ -32,4 +49,42 @@ $field-active: rgba(0,151,151,1);
     padding-bottom: 1em;
     color: $orange;
     
+}
+.select {
+    max-height: 0px;
+    opacity: 0;
+    transition: max-height .5s, opacity .5s;
+    transition-timing-function: ease-in;
+    overflow: hidden;
+    &.active {
+        opacity: 1;
+        max-height: 100vh;
+    }
+    .select-options {
+        width: 100%;
+        background: $dk-green;
+        overflow: hidden;
+        & > li {
+            display: inline-block;
+            width: calc(100%/4);
+            font-size: 1.25em;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            color: $white;
+            box-shadow: 1px 1px 2px -1px rgba(0, 151, 151, .3);
+            transition: background .1s, font-size .1s;
+            cursor: pointer;
+            transition-timing-function: ease-in, ease-in;
+            
+            &:hover,
+            &:focus,
+            &.active {
+                background: $white;
+                color: $dk-brown;
+                box-shadow: 1px 10px 100px -6px $dk-brown;
+                font-size: 1.4em;
+            }
+        }
+    }
 }

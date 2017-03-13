@@ -295,10 +295,6 @@ $img-path: "../../assets/images/share/";
     
 }
 
-
-.content {
-    // height: 300px;
-}
 /* footer */
 .footer {
     position: relative;
@@ -428,7 +424,27 @@ $img-path: "../../assets/images/share/";
 
 }
 
+/* ==== 共用的 container size ==== */
 
-
-
+.main-wrap {
+    padding: 4em 0;
+    width: 90%;
+    margin: 0 auto;
+    @include pc {
+        padding-top: 6em;
+        width: 960px;
+    }
+    .main-content {
+        padding: .85em .85em 0;
+        margin-bottom: 0;
+        
+        & > div {
+            height: auto;
+            padding: 3em 3.25em 10em;
+            @include phone {
+                padding: 1em 1.25em; 
+            }
+        }
+    }
+}
 

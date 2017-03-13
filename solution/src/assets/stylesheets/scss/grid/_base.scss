@@ -135,20 +135,6 @@ a, a:hover, a:focus {
         width: 100%;
         height: 100%;
         background: $bgC;
-        &:after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            width: 0;
-            height: 0;
-            border-width: 0 0 196px 231px;
-            border-color: transparent transparent rgba(223,236,217,.7) transparent;
-            border-style: solid;
-            @include phone { 
-                border-width: 0 0 196px 74vw;
-            }
-        }
     }
     &.line-triangle-deco{
         &:after {
@@ -168,6 +154,20 @@ a, a:hover, a:focus {
             }
             @include phone {
                 border-width: 0 0 240px 88vw;
+            }
+        }
+        & > div:after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-width: 0 0 196px 231px;
+            border-color: transparent transparent rgba(223,236,217,.7) transparent;
+            border-style: solid;
+            @include phone { 
+                border-width: 0 0 196px 74vw;
             }
         }
     }
