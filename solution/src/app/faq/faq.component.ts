@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FaqService } from './faq.service';
 import { Category } from './faq';
@@ -12,17 +11,19 @@ import { Category } from './faq';
 })
 export class FaqComponent implements OnInit {
 
-  constructor(private titleService: Title, private faqService: FaqService, private route: ActivatedRoute) { }
+  constructor(private titleService: Title, private faqService: FaqService) { }
   categories: Category[] = [];
   error: any;
   selectValue:string = '全部';
   selectSwitch:boolean = false;
+  
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
   
-  getSelectItem () {
-    this.selectSwitch = true;
+  getSelectItem (tag: HTMLElement) {
+    this.selectSwitch = false;
+    this.selectValue = tag.innerHTML 
   }
 
   getCategories() {

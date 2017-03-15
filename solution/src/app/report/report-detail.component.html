@@ -1,0 +1,162 @@
+<section class="rpdetail main-wrap">
+  <div class="main-content line-box">
+    <div class="rpdetail-header">
+      <header class="line-box-title deco-triangle">
+        <h1>陳情案件</h1>
+        <p>Petition Cases</p>
+        
+      </header>
+
+      <div class="rpdetail-for">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="field">
+              <label class="field-name">主項目</label>
+              <input class="field-entery" type="text" value="公園綠地行道樹維護" readonly >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="field">
+              <label class="field-name">子項目</label>
+              <input class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="rpdetail-fieldset">
+        <form #reportForm="ngForm">
+          <div class="row form-group">
+            <div class="col-md-2">
+              <h4>身份</h4>
+            </div>
+            <div class="col-md-9">
+              <ul class="id-list">
+                <li><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label for="id1">一般市民</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
+                <li><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
+              </ul>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <h4>陳情區域</h4>
+            </div>
+            <div class="col-md-9">
+              <ul class="id-list">
+                <li><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label for="dist1">東區</label></li>
+                <li><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
+              </ul>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label for="addr"><h4>地點</h4></label>
+            </div>
+            <div class="col-md-9">
+              <input ngModel name="addr" type="text" id="addr" required placeholder="請輸入地址">
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label for="name"><h4>姓名</h4></label>
+            </div>
+            <div class="col-md-9">
+              <input ngModel name="name" type="text" id="name" required placeholder="請輸入您的大名">
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <h4>電話聯絡</h4>
+            </div>
+            <div class="col-md-9">
+              <ul class="id-list">
+                <li><input [(ngModel)]="contact" [value]="0"  type="radio" name="phoneContact" id="pC1" checked> <label for="pC1">可以用電話聯繫我</label></li>
+                <li><input [(ngModel)]="contact" [value]="1"  type="radio" name="phoneContact" id="pC2"> <label for="pC2">不要用電話聯繫我</label></li>
+              </ul>
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label for="phone"><h4>電話</h4></label>
+            </div>
+            <div class="col-md-9">
+              <input ngModel type="text" name="phoen" id="phone" [required]="true" placeholder="請輸入電話號碼">
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label for="email"><h4>E-Mail</h4></label>
+            </div>
+            <div class="col-md-9">
+              <input ngModel type="text" name="email" id="email" required placeholder="請輸入聯繫用的 Email">
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+          
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label for="comment"><h4>陳情內容</h4></label>
+            </div>
+            <div class="col-md-9">
+              <input ngModel type="text" name="comment" id="comment" required placeholder="請輸陳情內容">
+            </div>
+            <div class="col-md-1">
+              <i class="fa fa-check-circle"></i>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <div class="col-md-2">
+              <h4>附加檔案</h4>
+            </div>
+            <div class="col-md-9">
+              <input ngModel name="filies" type="file">
+            </div>
+            <div class="col-md-1">
+              
+            </div>
+          </div>
+
+        </form>
+        <pre>
+          {{ role.type | json }}
+          {{ dist.type | json }}
+          {{ reportForm.value | json }}
+        </pre>
+      </div>
+
+
+    </div>
+  </div>
+</section>

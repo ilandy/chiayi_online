@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { CaseType, SubCaseType } from '../share/case';
+import { CaseType, SubCaseType } from '../shared/case';
 import { ReportService } from './report.service';
 
 @Component({
@@ -24,18 +24,25 @@ export class ReportComponent implements OnInit {
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
+  
   getTypes() {
     this.reportService
       .getTypes()
       .subscribe(types => this.caseTypes = types);
   }
-  getScreenSize (){
-    this.screenSize = screen.availWidth;
+
+  onSelected(id: string, subId: string){
+     this.reportService
+        .getType(id)
+        .subscribe(type => {
+          this.selectedCaseType = type;
+          this.selectedSubCaseType = type.Subitems.filter(item => item.Subitem == subId)[0];
+        });
   }
+
   ngOnInit() {
-    this.setTitle('案件陳情 - 嘉義市政府線上陳情服務平台');
+    this.setTitle('首頁 - 嘉義市政府線上陳情服務平台');
     this.getTypes();
-    this.getScreenSize();
   }
 
 }

@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { ReportComponent } from './report/report.component';
+import { ReportDetailComponent } from './report/report-detail.component';
 import { QueryComponent } from './query/query.component';
 import { FaqComponent } from './faq/faq.component';
 import { TermComponent } from './term/term.component';
@@ -19,7 +20,8 @@ import { ProcessComponent } from './process/process.component';
     QueryComponent,
     FaqComponent,
     TermComponent,
-    ProcessComponent
+    ProcessComponent,
+    ReportDetailComponent
   ],
   imports: [
     BrowserModule,

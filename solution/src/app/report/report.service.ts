@@ -1,8 +1,8 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
-import '../share/rxjs-operators';
-import { CaseType }       from '../share/case';
+import '../shared/rxjs-operators';
+import { CaseType }       from '../shared/case';
 
 @Injectable()
 export class ReportService {

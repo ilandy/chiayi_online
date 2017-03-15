@@ -2,15 +2,20 @@ import { NgModule }                     from '@angular/core';
 import { RouterModule, Routes }         from '@angular/router';
 
 import { ReportComponent }              from './report/report.component';
+import { ReportDetailComponent }        from './report/report-detail.component';
 import { QueryComponent }               from './query/query.component';
 import { FaqComponent }                 from './faq/faq.component';
 import { TermComponent }                from './term/term.component';
-import { ProcessComponent }            from './process/process.component';
+import { ProcessComponent }             from './process/process.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'report',
+    path: 'index',
     component: ReportComponent
+  },
+  {
+    path: 'report/:id/:subId',
+    component: ReportDetailComponent
   },
   {
     path: 'query',

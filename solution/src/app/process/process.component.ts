@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-process',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProcessComponent implements OnInit {
 
-  constructor() { }
+  constructor( private titleService: Title ) { }
+
+  public setTitle(newTitle: string) {
+    this.titleService.setTitle(newTitle);
+  }
 
   ngOnInit() {
+    this.setTitle('服務流程 - 嘉義市政府線上陳情服務平台')
   }
 
 }

@@ -1,7 +1,7 @@
 import { Injectable }             from '@angular/core';
 import { Http, Response }         from '@angular/http';
 import { Observable }             from 'rxjs/Observable';
-import '../share/rxjs-operators';
+import '../shared/rxjs-operators';
 import { Category, Faq, Reply }   from './faq';
 
 @Injectable()

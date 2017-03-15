@@ -24,7 +24,7 @@
           </div>
           <div class="col-md-12 select" [ngClass]="{'active':selectSwitch}">
             <ul class="select-options">
-              <li *ngFor="let item of categories" [ngClass]="{'active': selectValue === item.kind_name }" data-value="{{item.kind}}" (click)="getSelectItem()">{{item.kind_name}}</li>
+              <li *ngFor="let item of categories" [ngClass]="{'active': selectValue === item.kind_name }" data-value="{{item.kind}}" (click)="getSelectItem($event.target)">{{item.kind_name}}</li>
             </ul>
           </div>
         </div>
