@@ -4,7 +4,7 @@
       <header class="line-box-title deco-triangle">
         <h1>陳情案件</h1>
         <p>Petition Cases</p>
-        
+
       </header>
 
       <div class="rpdetail-for">
@@ -21,24 +21,24 @@
               <input class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
             </div>
           </div>
-          
+
         </div>
       </div>
-      <div class="rpdetail-fieldset">
+      <div class="rpdetail-fieldset pt-20">
         <form #reportForm="ngForm">
           <div class="row form-group">
             <div class="col-md-2">
-              <h4>身份</h4>
+              <h4 class="my-0">身份</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list">
-                <li><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label for="id1">一般市民</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
-                <li><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
+              <ul class="id-list row">
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label class="checked" for="id1">一般市民</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
+                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
               </ul>
             </div>
             <div class="col-md-1">
@@ -48,12 +48,12 @@
 
           <div class="row form-group">
             <div class="col-md-2">
-              <h4>陳情區域</h4>
+              <h4 class="valid">陳情區域</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list">
-                <li><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label for="dist1">東區</label></li>
-                <li><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
+              <ul class="id-list row pt-20">
+                <li class="col-md-3"><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label class="checked" for="dist1">東區</label></li>
+                <li class="col-md-3"><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
               </ul>
             </div>
             <div class="col-md-1">
@@ -63,7 +63,7 @@
 
           <div class="row form-group">
             <div class="col-md-2">
-              <label for="addr"><h4>地點</h4></label>
+              <label for="addr"><h4 class="invalid">地點</h4></label>
             </div>
             <div class="col-md-9">
               <input ngModel name="addr" type="text" id="addr" required placeholder="請輸入地址">
@@ -90,9 +90,9 @@
               <h4>電話聯絡</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list">
-                <li><input [(ngModel)]="contact" [value]="0"  type="radio" name="phoneContact" id="pC1" checked> <label for="pC1">可以用電話聯繫我</label></li>
-                <li><input [(ngModel)]="contact" [value]="1"  type="radio" name="phoneContact" id="pC2"> <label for="pC2">不要用電話聯繫我</label></li>
+              <ul class="id-list pt-20">
+                <li class="col-md-5"><input [(ngModel)]="contact" [value]="0"  type="radio" name="phoneContact" id="pC1" checked> <label class="checked" for="pC1">可以用電話聯繫我</label></li>
+                <li class="col-md-5"><input [(ngModel)]="contact" [value]="1"  type="radio" name="phoneContact" id="pC2"> <label for="pC2">不要用電話聯繫我</label></li>
               </ul>
             </div>
             <div class="col-md-1">
@@ -123,7 +123,7 @@
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
-          
+
           <div class="row form-group">
             <div class="col-md-2">
               <label for="comment"><h4>陳情內容</h4></label>
@@ -141,10 +141,11 @@
               <h4>附加檔案</h4>
             </div>
             <div class="col-md-9">
-              <input ngModel name="filies" type="file">
+              <div class="file-upload fa">檔案上傳</div>
+              <input class="hidden" ngModel name="filies" type="file">
             </div>
             <div class="col-md-1">
-              
+
             </div>
           </div>
 

@@ -3,10 +3,10 @@ body {
     font-size: 16px;
     font-family: "Lucida Grande","Helvetica", "Roboto","PingFang TC","Heiti TC","微軟正黑體";
     background: #005151;
-    
+
 }
 * {
-   font-weight: 300; 
+   font-weight: 300;
 }
 ul, ol {
     list-style: none;
@@ -19,14 +19,14 @@ a, a:hover, a:focus {
 /* ======= unit - clear ======= */
 
 .clear-fix:before,
-.clear-fix:after { 
+.clear-fix:after {
     content:"";
     display:table;
 }
 .clear-fix:after {
     clear:both;
 }
-.clear-fix {     
+.clear-fix {
     zoom:1;
 }
 /* ======= unit - decoration ======= */
@@ -110,6 +110,13 @@ a, a:hover, a:focus {
 .mt-0 {
     margin-top: 0;
 }
+.my-0 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.mt-20 {
+    margin-top: 20px;
+}
 .line-break {
     display: block;
     @include phone{
@@ -166,14 +173,14 @@ a, a:hover, a:focus {
             border-width: 0 0 196px 231px;
             border-color: transparent transparent rgba(223,236,217,.7) transparent;
             border-style: solid;
-            @include phone { 
+            @include phone {
                 border-width: 0 0 196px 74vw;
             }
         }
     }
-    .line-box-title {        
+    .line-box-title {
         h1 {
-            margin-bottom: 0;            
+            margin-bottom: 0;
             font-size: 3em;
             font-weight: bolder;
             color: $dk-green;

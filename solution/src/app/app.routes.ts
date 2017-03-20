@@ -4,7 +4,11 @@ import { RouterModule, Routes }         from '@angular/router';
 import { ReportComponent }              from './report/report.component';
 import { ReportDetailComponent }        from './report/report-detail.component';
 import { QueryComponent }               from './query/query.component';
+import { QueryDetailComponent }        from './query/query-detail.component';
+
 import { FaqComponent }                 from './faq/faq.component';
+import { FaqDetailComponent }           from './faq/faq-detail.component';
+
 import { TermComponent }                from './term/term.component';
 import { ProcessComponent }             from './process/process.component';
 
@@ -22,6 +26,10 @@ export const appRoutes: Routes = [
     component: QueryComponent
   },
   {
+    path: 'query/:id',
+    component: QueryDetailComponent
+  },
+  {
     path: 'process',
     component: ProcessComponent
   },
@@ -32,6 +40,10 @@ export const appRoutes: Routes = [
   {
     path: 'faq/:page',
     component: FaqComponent
+  },
+  {
+    path: 'faqDetail/:id',
+    component: FaqDetailComponent
   },
   {
     path: 'term/:lable',

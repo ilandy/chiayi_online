@@ -10,8 +10,11 @@ import { ReportComponent } from './report/report.component';
 import { ReportDetailComponent } from './report/report-detail.component';
 import { QueryComponent } from './query/query.component';
 import { FaqComponent } from './faq/faq.component';
+import { FaqDetailComponent } from './faq/faq-detail.component';
+
 import { TermComponent } from './term/term.component';
 import { ProcessComponent } from './process/process.component';
+import { QueryDetailComponent } from './query/query-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { ProcessComponent } from './process/process.component';
     FaqComponent,
     TermComponent,
     ProcessComponent,
-    ReportDetailComponent
+    ReportDetailComponent,
+    QueryDetailComponent,
+    FaqDetailComponent,
   ],
   imports: [
     BrowserModule,

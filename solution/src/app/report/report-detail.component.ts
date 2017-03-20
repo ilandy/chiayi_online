@@ -17,7 +17,7 @@ export class ReportDetailComponent implements OnInit {
     this.titleService.setTitle(newTitle);
   }
   constructor(private titleService: Title) { }
-  
+
   ngOnInit() {
     this.setTitle('案件陳情 - 嘉義市政府線上陳情服務平台');
   }

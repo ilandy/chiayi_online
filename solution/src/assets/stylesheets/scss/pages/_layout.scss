@@ -6,15 +6,15 @@ $img-path: "./assets/images/share/";
     background: $bgC;
     transition: left .5s;
     z-index: 1;
-    
+
     &.active {
         left: -80vw;
-        
-        @include pc { 
+
+        @include pc {
             position: fixed;
             left: -30vw;
         }
-        @include pad { 
+        @include pad {
             position: fixed;
             left: -40vw;
         }
@@ -32,7 +32,7 @@ $img-path: "./assets/images/share/";
     width: 100%;
     height: 4em;
     z-index: index($layout-index,".header");
-    
+
      @include pc {
         height: 9.5em;
      }
@@ -42,7 +42,7 @@ $img-path: "./assets/images/share/";
      @include small-pad {
         height: 5.5em;
      }
-     
+
     .header-brand {
         float: left;
         width: 55%;
@@ -56,7 +56,7 @@ $img-path: "./assets/images/share/";
         @include pad {
             width: 50%;
         }
-        
+
     }
     .header-logo {
         display: block;
@@ -69,12 +69,12 @@ $img-path: "./assets/images/share/";
             background-size: auto 90%;
             background-position-x: right;
             background-position-y: 25px;
-            
+
         }
         &:focus {
             outline: none;
         }
-    
+
     }
     .header-menu {
         position: relative;
@@ -94,7 +94,7 @@ $img-path: "./assets/images/share/";
             height: 3em;
 
         }
-        
+
         &:after,
         &:before {
             content: "";
@@ -107,7 +107,7 @@ $img-path: "./assets/images/share/";
             @include phone {
                 bottom: -1em;
             }
-            
+
         }
         &:before {
             z-index: -1;
@@ -140,7 +140,7 @@ $img-path: "./assets/images/share/";
             }
         }
     }
-    
+
 }
 /* mob menu btn */
 
@@ -171,7 +171,7 @@ $img-path: "./assets/images/share/";
         font-size: 9px;
     }
     &.active {
-        
+
     }
 }
 
@@ -182,7 +182,7 @@ $img-path: "./assets/images/share/";
     right: 0;
     width: 80%;
     z-index: index($layout-index,"mob-menu");
-    
+
     @include pc {
         width: 30%;
     }
@@ -198,9 +198,9 @@ $img-path: "./assets/images/share/";
         margin: 60px 10% 0;
         text-align: right;
         z-index: 2;
-        
+
     }
-    
+
     li {
         position: relative;
         display: block;
@@ -208,7 +208,7 @@ $img-path: "./assets/images/share/";
         font-size: 1.125em;
         font-weight: 300;
         cursor: pointer;
-        
+
         @include pcb-back() {
             margin: 30px 0;
             text-align: center;
@@ -220,7 +220,7 @@ $img-path: "./assets/images/share/";
                 width: 1px;
                 margin: 0 50% 20px 50%;
                 background: $md-green;
-                
+
             }
             &.active {
                 opacity: .4;
@@ -243,7 +243,7 @@ $img-path: "./assets/images/share/";
                 width: 0;
                 height: 2px;
                 transition: width .5s, left .5s;
-            } 
+            }
             &.active:after,
             &:hover:after {
                 width: 100%;
@@ -264,8 +264,8 @@ $img-path: "./assets/images/share/";
                 background-image: linear-gradient(-179deg, $white 0%, #1FC9C5 100%);
                 transition: opacity .5s, top .5s;
                 transition-timing-function: ease-in;
-                
-            } 
+
+            }
 
             &.active:before,
             &:hover:before {
@@ -278,21 +278,21 @@ $img-path: "./assets/images/share/";
                 transform: scale(1.1) translateY(-5px);
             }
         }
-       
-        
+
+
     }
     a {
         position: relative;
         display: inline-block;
         color: $white;
         text-decoration: none;
-        font-size: 1em; 
+        font-size: 1em;
         transition: transform .3s;
         transition-timing-function: ease;
-        
+
     }
-    
-    
+
+
 }
 
 /* footer */
@@ -319,7 +319,7 @@ $img-path: "./assets/images/share/";
             top: -5em;
         }
         @include pad {
-            top: -4em;            
+            top: -4em;
         }
     }
     &:before {
@@ -419,7 +419,7 @@ $img-path: "./assets/images/share/";
             width: 3px;
             background: #1FC9C5;
         }
-        
+
     }
 
 }
@@ -427,7 +427,7 @@ $img-path: "./assets/images/share/";
 /* ==== 共用的 container size ==== */
 
 .main-wrap {
-    padding: 4em 0;
+    padding: 4em 0 0;
     width: 90%;
     margin: 0 auto;
     @include pc {
@@ -437,12 +437,12 @@ $img-path: "./assets/images/share/";
     .main-content {
         padding: .85em .85em 0;
         margin-bottom: 0;
-        
+
         & > div {
             height: auto;
             padding: 3em 3.25em 10em;
             @include phone {
-                padding: 1em 1.25em; 
+                padding: 1em 1.25em 5em;
             }
         }
     }

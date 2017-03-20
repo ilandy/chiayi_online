@@ -9,9 +9,9 @@
         <div class="row">
           <aside class="col-md-4">
             <ul class="term-nav" [ngStyle]="{'padding-top': getLabelPadding}">
-              <li><a [ngClass]="{'active': offset2 > scrollHeight >= 0}" href="javascript:void(0)" (click)="scrollTo('privacy')">隱私權保護政策</a></li>
-              <li><a [ngClass]="{'active': offset3 > scrollHeight >= offset1}" href="javascript:void(0)" (click)="scrollTo('sucrity')">網站安全政策</a></li>
-              <li><a [ngClass]="{'active': scrollHeight >= offset3}" href="javascript:void(0)" (click)="scrollTo('copy')">著作權聲明</a></li>
+              <li><a routerLink="/term/privacy" (click)="scrollTo('privacy')" [ngClass]="{'active':whichLable==='privacy'}">隱私權保護政策</a></li>
+              <li><a routerLink="/term/sucrity" (click)="scrollTo('sucrity')" [ngClass]="{'active':whichLable==='sucrity'}">網站安全政策</a></li>
+              <li><a routerLink="/term/copy" (click)="scrollTo('copy')" [ngClass]="{'active':whichLable==='copy'}">著作權聲明</a></li>
             </ul>
           </aside>
           <div class="col-md-8">
