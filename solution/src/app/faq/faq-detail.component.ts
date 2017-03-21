@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-faq-detail',
@@ -8,6 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class FaqDetailComponent implements OnInit {
 
   constructor() { }
+
+  @Output() closeDetail = new EventEmitter;
+
+  goBack (){
+    this.closeDetail.emit();
+  }
 
   ngOnInit() {
   }

@@ -11,7 +11,7 @@ $img-path: "./assets/images/share/";
         left: -80vw;
 
         @include pc {
-            position: fixed;
+            position: absolute;
             left: -30vw;
         }
         @include pad {
@@ -178,7 +178,7 @@ $img-path: "./assets/images/share/";
 /* not yet */
 /* menu */
 .menu {
-    position: fixed;
+    position: absolute;
     right: 0;
     width: 80%;
     z-index: index($layout-index,"mob-menu");
@@ -191,6 +191,10 @@ $img-path: "./assets/images/share/";
     }
     @include small-pad {
         width: 50%;
+    }
+    @include phone {
+      overflow-y: auto;
+      height: 90vh;
     }
     @include big-pc {
         position: absolute;

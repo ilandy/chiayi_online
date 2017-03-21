@@ -16,14 +16,15 @@ export class FaqComponent implements OnInit {
   error: any;
   selectValue:string = '全部';
   selectSwitch:boolean = false;
-  
+  showDetail: boolean = false;
+
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
-  
+
   getSelectItem (tag: HTMLElement) {
     this.selectSwitch = false;
-    this.selectValue = tag.innerHTML 
+    this.selectValue = tag.innerHTML
   }
 
   getCategories() {
@@ -33,6 +34,14 @@ export class FaqComponent implements OnInit {
           category => this.categories = category,
           error => this.error = error);
   }
+  getDetail() {
+    this.showDetail = true;
+  }
+
+  closeDetail() {
+    this.showDetail = false;
+  }
+
 
   ngOnInit() {
     this.setTitle('常見問題 FAQ - 嘉義市政府線上陳情服務平台');

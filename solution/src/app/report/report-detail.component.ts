@@ -13,8 +13,14 @@ export class ReportDetailComponent implements OnInit {
   role: any = 1;
   dist: any = 1;
   contact: any = 0;
+  completeMessg: boolean = false;
+
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
+  }
+
+  shoeComplete () {
+    return true;
   }
   constructor(private titleService: Title) { }
 

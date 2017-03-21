@@ -1,5 +1,5 @@
 <section class="rpdetail main-wrap">
-  <div class="main-content line-box">
+  <div class="main-content line-box" *ngIf="completeMessg === false">
     <div class="rpdetail-header">
       <header class="line-box-title deco-triangle">
         <h1>陳情案件</h1>
@@ -31,32 +31,32 @@
               <h4 class="my-0">身份</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list row">
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label class="checked" for="id1">一般市民</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
-                <li class="col-md-3"><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
+              <ul class="form-radio row id-list">
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label class="checked" for="id1">一般市民</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
               </ul>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <h4 class="valid">陳情區域</h4>
+              <h4 class="valid form-common">陳情區域</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list row pt-20">
-                <li class="col-md-3"><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label class="checked" for="dist1">東區</label></li>
-                <li class="col-md-3"><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
+              <ul class="form-radio row pt-20">
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label class="checked" for="dist1">東區</label></li>
+                <li class="col-md-3 col-sm-4"><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
               </ul>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
@@ -68,84 +68,95 @@
             <div class="col-md-9">
               <input ngModel name="addr" type="text" id="addr" required placeholder="請輸入地址">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <label for="name"><h4>姓名</h4></label>
+              <label for="name"><h4 class="form-title">姓名</h4></label>
             </div>
             <div class="col-md-9">
               <input ngModel name="name" type="text" id="name" required placeholder="請輸入您的大名">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <h4>電話聯絡</h4>
+              <h4 class="form-title">電話聯絡</h4>
             </div>
             <div class="col-md-9">
-              <ul class="id-list pt-20">
+              <ul class="form-radio pt-20">
                 <li class="col-md-5"><input [(ngModel)]="contact" [value]="0"  type="radio" name="phoneContact" id="pC1" checked> <label class="checked" for="pC1">可以用電話聯繫我</label></li>
                 <li class="col-md-5"><input [(ngModel)]="contact" [value]="1"  type="radio" name="phoneContact" id="pC2"> <label for="pC2">不要用電話聯繫我</label></li>
               </ul>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <label for="phone"><h4>電話</h4></label>
+              <label for="phone"><h4 class="form-title">電話</h4></label>
             </div>
             <div class="col-md-9">
               <input ngModel type="text" name="phoen" id="phone" [required]="true" placeholder="請輸入電話號碼">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <label for="email"><h4>E-Mail</h4></label>
+              <label for="email"><h4 class="form-title">E-Mail</h4></label>
             </div>
             <div class="col-md-9">
               <input ngModel type="text" name="email" id="email" required placeholder="請輸入聯繫用的 Email">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <label for="comment"><h4>陳情內容</h4></label>
+              <label for="comment"><h4 class="form-title">陳情內容</h4></label>
             </div>
             <div class="col-md-9">
               <input ngModel type="text" name="comment" id="comment" required placeholder="請輸陳情內容">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
               <i class="fa fa-check-circle"></i>
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-2">
-              <h4>附加檔案</h4>
+              <h4 class="form-title">附加檔案</h4>
             </div>
             <div class="col-md-9">
+              <div class="files">
               <div class="file-upload fa">檔案上傳</div>
+              </div>
               <input class="hidden" ngModel name="filies" type="file">
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 hidden-xs">
 
+            </div>
+          </div>
+
+          <div class="row pt-20">
+            <div class="col-md-7 pb-20">
+              <strong class="font-color-brown"><span class="font-bolder font-color-orange">橘色</span>為必填。</strong>
+            </div>
+            <div class="col-md-5 text-right">
+                <button class="btn btn-green" (click)="completeMessg = true">填寫完成</button>
             </div>
           </div>
 
@@ -160,4 +171,20 @@
 
     </div>
   </div>
+  <div class="line-box line-box-tiny mx-auto" *ngIf="completeMessg === true">
+    <div>
+      <header class="line-box-title deco-triangle">
+        <h1>申報完成</h1>
+        <p>Success</p>
+      </header>
+      <article class="info">
+        <p class="info-content">
+          我們已收到您對本府的反映案件，為確認您的信箱未遭冒用，我們即將寄出確認信至您所填寫的：kkk@kkk.com 信箱， 請您於收到該確認信後，點選「確認信件」連結，以便完成您的案件反映流程，我們在收到您的確認後，將由系統自動寄出案件編號至您的信箱並立即進行分案處理。 謝謝您！
+        </p>
+      </article>
+
+        <a type="button" class="btn btn-green" routerLink="/">回到首頁</a>
+    </div>
+  </div>
 </section>
+

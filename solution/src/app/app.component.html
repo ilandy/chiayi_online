@@ -1,8 +1,8 @@
 <ul class="menu">
-    <li><a routerLink="/">我要陳情</a></li>
-    <li><a routerLink="/query">案件查詢</a></li>
-    <li><a routerLink="/process">服務流程</a></li>
-    <li><a routerLink="/faq">常見 FAQ</a></li>
+    <li><a routerLink="/" (click)="getMenuActive()">我要陳情</a></li>
+    <li><a routerLink="/query" (click)="getMenuActive()">案件查詢</a></li>
+    <li><a routerLink="/process" (click)="getMenuActive()">服務流程</a></li>
+    <li><a routerLink="/faq" (click)="getMenuActive()">常見 FAQ</a></li>
 </ul>
 <div class="wrap" [ngClass]="{'active':mb}">
     <header class="header clear-fix">
@@ -12,7 +12,7 @@
             </a>
         </h1>
         <div class="header-menu">
-            <div class="menu-button hidden-lg" [ngClass]="{'active':mb}" (click)="mb=!mb" >
+            <div class="menu-button hidden-lg" [ngClass]="{'active':mb}" (click)="getMenuActive()" >
 
             </div>
         </div>

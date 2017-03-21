@@ -28,7 +28,7 @@
               <small>機密等級</small>
               <p>保密</p>
             </div>
-            <button class="btn btn-green hidden-xs hidden-sm"> 繼續查詢 </button>
+            <button class="btn btn-green hidden-xs hidden-sm" (click)="goBack()"> 繼續查詢 </button>
 
           </div>
           <div class="col-md-6 col-md-offset-1">
@@ -70,7 +70,7 @@
               </div>
             </article>
             <br>
-            <button class="btn btn-green hidden-md hidden-lg"> 繼續查詢 </button>
+            <button type="button" class="btn btn-green hidden-md hidden-lg" (click)="goBack()"> 繼續查詢 </button>
           </div>
         </div>
       </div>

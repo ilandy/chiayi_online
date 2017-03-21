@@ -13,6 +13,7 @@ export class TermComponent implements OnInit {
   scrollPosition : number = window.scrollY;
   fixedList:boolean;
   scrollHeight: number;
+  screenWidth: number = screen.availWidth;
   sub: any;
   whichLable = 'privacy';
   getLabelPadding: string = "0";
@@ -31,10 +32,10 @@ export class TermComponent implements OnInit {
   /* Geting target offset height and scroll to
      when label be clicked.  */
   scrollTo (targetAnchor:string){
-      let offset = document.getElementById(targetAnchor).offsetTop;
-      window.scrollTo(0,offset+400);
-      this.getLabelPadding = offset +"px";
-      this.whichLable = targetAnchor;
+        let offset = document.getElementById(targetAnchor).offsetTop;
+        window.scrollTo(0,offset+400);
+        this.getLabelPadding = offset +"px";
+        this.whichLable = targetAnchor;
   }
 
 
@@ -60,6 +61,9 @@ export class TermComponent implements OnInit {
         this.whichLable = 'privacy';
       break;
 
+    }
+    if (this.screenWidth < 760 ) {
+      this.getLabelPadding = "0";
     }
 
   }

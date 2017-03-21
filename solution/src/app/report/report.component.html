@@ -47,25 +47,25 @@
       <div class="hot-deco"><i class="fa fa-chevron-right"></i></div>
     </div>
     <div class="hot-layout-right">
-      
+
       <ul class="hot-list">
         <li>
-          <a href=""><img src="./assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
         </li>
         <li>
-          <a href=""><img src="./assets/images/icons/icon-2.png" alt=""> <span>違規小廣告</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-2.png" alt=""> <span>違規小廣告</span></a>
         </li>
         <li>
-          <a href=""><img src="./assets/images/icons/icon-3.png" alt=""> <span>號誌故障</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-3.png" alt=""> <span>號誌故障</span></a>
         </li>
         <li>
-          <a href=""><img src="./assets/images/icons/icon-4.png" alt=""> <span>路燈不亮</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-4.png" alt=""> <span>路燈不亮</span></a>
         </li>
         <li>
-          <a href=""><img src="./assets/images/icons/icon-5.png" alt=""> <span>溝蓋破損</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-5.png" alt=""> <span>溝蓋破損</span></a>
         </li>
         <li>
-          <a href=""><img src="./assets/images/icons/icon-6.png" alt=""> <span>道路凹陷坑洞</span></a>
+          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-6.png" alt=""> <span>道路凹陷坑洞</span></a>
         </li>
       </ul>
       <div class="hot-shadow"></div>
@@ -85,7 +85,7 @@
             </a>
             <ul class="more-subitems active" [ngClass]="{active:item.active}">
               <li *ngFor="let subItems of item.Subitems">
-                <a routerLink="./report/1/1" >
+                <a routerLink="/report/1/1" >
                   <i class="fa fa-angle-right"></i>&nbsp;&nbsp;<span>{{subItems.SubitemName}}</span>
                 </a>
               </li>

@@ -4,6 +4,10 @@ $field-normal: rgba(133,133,129,.08);
 $field-active: rgba(0,151,151,1);
 
 .field {
+    font-size: 1em;
+    @include phone (){
+      font-size: .75em;
+    }
     width: 100%;
     padding-bottom: 15px;
     .field-name {
@@ -39,16 +43,16 @@ $field-active: rgba(0,151,151,1);
             font-size: .875em;
             z-index: 1;
         }
-        
+
     }
 
-} 
+}
 .field-message {
     min-height: 1em;
     line-height: 1.8em;
     padding-bottom: 1em;
     color: $orange;
-    
+
 }
 .select {
     max-height: 0px;
@@ -76,7 +80,7 @@ $field-active: rgba(0,151,151,1);
             transition: background .1s, font-size .1s;
             cursor: pointer;
             transition-timing-function: ease-in, ease-in;
-            
+
             &:hover,
             &:focus,
             &.active {

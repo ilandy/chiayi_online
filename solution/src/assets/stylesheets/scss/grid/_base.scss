@@ -87,6 +87,9 @@ a, a:hover, a:focus {
 .font-color-brown {
     color: #858581;
 }
+.font-color-orange {
+    color: #EB7D1F;
+}
 
 
 /* ======= unit - gap ======= */
@@ -109,6 +112,10 @@ a, a:hover, a:focus {
 }
 .mt-0 {
     margin-top: 0;
+}
+.mx-auto {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .my-0 {
     margin-top: 0;
@@ -201,6 +208,28 @@ a, a:hover, a:focus {
             top: 0;
         }
     }
+    &.line-box-tiny {
+        padding: .85em;
+        @include pc {
+            width: 55%;
+            margin-left: 5%;
+            float: right;
+        }
+         @include phone {
+             padding: .5em;
+          }
+
+        & > div {
+            height: auto;
+            padding: 3em 3.25em;
+            @include phone {
+                padding: 1em 1.25em;
+            }
+        }
+        .btn-green {
+            z-index: 2;
+        }
+    }
 
 }
 
@@ -277,15 +306,18 @@ a, a:hover, a:focus {
             display: inline-block;
             position: absolute;
             height: .95em;
-            width: 100%;
-            right: -1em;
-            bottom: -.15em;
+            width: 90%;
+            right: -.5em;
+            top: .65em;
             background: $lt-green;
             opacity: .15;
         }
     }
     .info-content {
         line-height: 1.8em;
+        a {
+          word-break: break-word;
+        }
     }
     ol {
         list-style: decimal;

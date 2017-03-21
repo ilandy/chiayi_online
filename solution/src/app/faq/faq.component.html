@@ -1,4 +1,4 @@
-<section class="faq main-wrap">
+<section class="faq main-wrap" *ngIf="!showDetail">
   <div class="main-content line-box">
     <div class="faq-header">
       <header class="line-box-title deco-triangle">
@@ -33,7 +33,7 @@
         <div class="row faq-item" *ngFor="let i of [1,2,3,4,5,6,7]">
           <div class="col-md-10">
             <small>問題內容</small>
-            <p><a routerLink="/faqDetail/1">如果我希望在住家前面安裝錄影監視系統，請問要如何要向市政府申請？</a></p>
+            <p><a href="javascript:void(0)" (click)="getDetail()">如果我希望在住家前面安裝錄影監視系統，請問要如何要向市政府申請？</a></p>
           </div>
           <div class="col-md-2">
             <small>單位</small>
@@ -42,14 +42,21 @@
         </div>
         <div class="row">
           <ul class="faq-paging">
-            <li><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></li>
+            <li class="hidden-xs"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></li>
             <li>2</li>
             <li class="active">3</li>
             <li>4</li>
-            <li><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></li>
+            <li class="hidden-xs"><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></li>
+          </ul>
+          <ul class="faq-paging hidden-sm hidden-md hidden-lg mt-20">
+            <li ><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></li>
+            <li ><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
+<div *ngIf="showDetail" >
+  <app-faq-detail (closeDetail)="closeDetail()"></app-faq-detail>
+</div>
