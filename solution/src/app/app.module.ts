@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { Title } from '@angular/platform-browser';
 
@@ -26,13 +26,15 @@ import { QueryDetailComponent } from './query/query-detail.component';
     ProcessComponent,
     ReportDetailComponent,
     QueryDetailComponent,
-    FaqDetailComponent,
+    FaqDetailComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
+    // ReactiveFormsModule,
+
   ],
   providers: [
     Title,

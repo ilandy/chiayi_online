@@ -12,6 +12,7 @@ import { FaqDetailComponent }           from './faq/faq-detail.component';
 import { TermComponent }                from './term/term.component';
 import { ProcessComponent }             from './process/process.component';
 
+
 export const appRoutes: Routes = [
   {
     path: 'index',
@@ -49,6 +50,7 @@ export const appRoutes: Routes = [
     path: 'term/:lable',
     component: TermComponent
   },
+
   {
     path: '**',
     component: ReportComponent

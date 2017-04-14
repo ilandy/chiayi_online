@@ -6,169 +6,207 @@
         <p>Petition Cases</p>
 
       </header>
+      <form #myForm="ngForm">
+        <div class="rpdetail-for">
+          <pre>
+{{ myForm.value | json }}
+          </pre>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="field">
+                <label class="field-name">主項目</label>
+                <input class="field-entery" type="text" value="公園綠地行道樹維護" readonly >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <label class="field-name">子項目</label>
+                <input class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
+              </div>
+            </div>
 
-      <div class="rpdetail-for">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="field">
-              <label class="field-name">主項目</label>
-              <input class="field-entery" type="text" value="公園綠地行道樹維護" readonly >
-            </div>
           </div>
-          <div class="col-md-6">
-            <div class="field">
-              <label class="field-name">子項目</label>
-              <input class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
+        </div>
+
+        <div class="rpdetail-fieldset pt-20">
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="my-0">身份</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio row id-list">
+                  <li class="col-md-3 col-sm-4" *ngFor="let role of roles;let i =index">
+                    <input [ngClass]="{'active':myForm.value.role == role.id}" [ngModel]="roleDef" name="role" type="radio" [value]="role.id" id="role{{i}}"> <label for="role{{i}}">{{role.name}}</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
             </div>
-          </div>
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="my-0">年齡區間</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio row id-list">
+                  <li class="col-md-4 col-sm-5" *ngFor="let age of ageRange; let i = index">
+                    <input [ngClass]="{'active':myForm.value.age == age.id}" [ngModel]="ageDef" name="age" type="radio" [value]="age.id" id="age{{i}}"> <label for="age{{i}}">{{age.type}}</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="valid form-common">事件地區</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio row pt-20">
+                  <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
+                  <li class="col-md-3 col-sm-4" *ngFor="let dist of dists">
+                    <input [ngClass]="{'active':myForm.value.dist == dist.code}" [ngModel]="distDef" name="dist" type="radio" [value]="dist.code" type="radio" id="dist{{dist.code}}" >
+                    <label for="dist{{dist.code}}">{{dist.dist}}</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="valid form-common">事件里別</h4>
+              </div>
+              <div class="col-md-9">
+                <div class="field">
+                  <div class="field-select" role="combobox" (click)="selectSwitch = !selectSwitch">
+                    <input class="field-entery" type="text" value="{{selectValue}}" readonly>
+                  </div>
+                </div>
+                <div class="select" [ngClass]="{'active':selectSwitch}">
+                  <ul class="select-options">
+                    <li *ngFor="let item of distEast.zone" [ngClass]="{'active': selectValue === item.name }" data-value="{{item.code}}" (click)="getSelectItem($event.target)">{{item.name}}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="addr"><h4 class="invalid">事件地址</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="addr" required placeholder="請輸入地址">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="name"><h4 class="form-title">姓名</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="name" required placeholder="請輸入您的大名">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="form-title">聯絡方式</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio pt-20">
+                  <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
+                    <input [ngClass]="{'active':myForm.value.contact == contact.id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.name}}</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="email"><h4 class="form-title">E-Mail</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="email" placeholder="請輸入聯繫用的 Email">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="phone"><h4 class="form-title">電話</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="phone" placeholder="請輸入電話號碼">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="comment"><h4 class="form-title">陳情內容</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="comment" placeholder="請輸陳情內容">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="form-title">附加檔案</h4>
+              </div>
+              <div class="col-md-9">
+                <div class="files">
+                <div class="file-upload fa">檔案上傳</div>
+                </div>
+                <!--<input class="hidden" ngModel formControlName="filies" type="file">-->
+              </div>
+              <div class="col-md-1 hidden-xs">
+
+              </div>
+            </div>
+
+            <div class="row pt-20">
+              <div class="col-md-7 pb-20">
+                <strong class="font-color-brown"><span class="font-bolder font-color-orange">橘色</span>為必填。</strong>
+              </div>
+              <div class="col-md-5 text-right">
+                  <button class="btn btn-green" (click)="completeMessg = true">填寫完成</button>
+              </div>
+            </div>
+
+
 
         </div>
-      </div>
-      <div class="rpdetail-fieldset pt-20">
-        <form #reportForm="ngForm">
-          <div class="row form-group">
-            <div class="col-md-2">
-              <h4 class="my-0">身份</h4>
-            </div>
-            <div class="col-md-9">
-              <ul class="form-radio row id-list">
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="1" name="Identity" id="id1"> <label class="checked" for="id1">一般市民</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="2" name="Identity" id="id2"> <label for="id2">議員</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="3" name="Identity" id="id3"> <label for="id3">里幹事</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="4" name="Identity" id="id4"> <label for="id4">里長</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="5" name="Identity" id="id5"> <label for="id5">公務員</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="6" name="Identity" id="id6"> <label for="id6">學生</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="role" type="radio" [value]="7" name="Identity" id="id7"> <label for="id7">其他</label></li>
-              </ul>
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
 
-          <div class="row form-group">
-            <div class="col-md-2">
-              <h4 class="valid form-common">陳情區域</h4>
-            </div>
-            <div class="col-md-9">
-              <ul class="form-radio row pt-20">
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="dist" [value]="1" type="radio" name="district" id="dist1" checked> <label class="checked" for="dist1">東區</label></li>
-                <li class="col-md-3 col-sm-4"><input [(ngModel)]="dist" [value]="2" type="radio" name="district" id="dist2"> <label for="dist2">西區</label></li>
-              </ul>
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <label for="addr"><h4 class="invalid">地點</h4></label>
-            </div>
-            <div class="col-md-9">
-              <input ngModel name="addr" type="text" id="addr" required placeholder="請輸入地址">
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <label for="name"><h4 class="form-title">姓名</h4></label>
-            </div>
-            <div class="col-md-9">
-              <input ngModel name="name" type="text" id="name" required placeholder="請輸入您的大名">
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <h4 class="form-title">電話聯絡</h4>
-            </div>
-            <div class="col-md-9">
-              <ul class="form-radio pt-20">
-                <li class="col-md-5"><input [(ngModel)]="contact" [value]="0"  type="radio" name="phoneContact" id="pC1" checked> <label class="checked" for="pC1">可以用電話聯繫我</label></li>
-                <li class="col-md-5"><input [(ngModel)]="contact" [value]="1"  type="radio" name="phoneContact" id="pC2"> <label for="pC2">不要用電話聯繫我</label></li>
-              </ul>
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <label for="phone"><h4 class="form-title">電話</h4></label>
-            </div>
-            <div class="col-md-9">
-              <input ngModel type="text" name="phoen" id="phone" [required]="true" placeholder="請輸入電話號碼">
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <label for="email"><h4 class="form-title">E-Mail</h4></label>
-            </div>
-            <div class="col-md-9">
-              <input ngModel type="text" name="email" id="email" required placeholder="請輸入聯繫用的 Email">
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <label for="comment"><h4 class="form-title">陳情內容</h4></label>
-            </div>
-            <div class="col-md-9">
-              <input ngModel type="text" name="comment" id="comment" required placeholder="請輸陳情內容">
-            </div>
-            <div class="col-md-1 hidden-xs">
-              <i class="fa fa-check-circle"></i>
-            </div>
-          </div>
-
-          <div class="row form-group">
-            <div class="col-md-2">
-              <h4 class="form-title">附加檔案</h4>
-            </div>
-            <div class="col-md-9">
-              <div class="files">
-              <div class="file-upload fa">檔案上傳</div>
-              </div>
-              <input class="hidden" ngModel name="filies" type="file">
-            </div>
-            <div class="col-md-1 hidden-xs">
-
-            </div>
-          </div>
-
-          <div class="row pt-20">
-            <div class="col-md-7 pb-20">
-              <strong class="font-color-brown"><span class="font-bolder font-color-orange">橘色</span>為必填。</strong>
-            </div>
-            <div class="col-md-5 text-right">
-                <button class="btn btn-green" (click)="completeMessg = true">填寫完成</button>
-            </div>
-          </div>
-
-        </form>
-        <pre>
-          {{ role.type | json }}
-          {{ dist.type | json }}
-          {{ reportForm.value | json }}
-        </pre>
-      </div>
-
-
+      </form>
     </div>
   </div>
   <div class="line-box line-box-tiny mx-auto" *ngIf="completeMessg === true">

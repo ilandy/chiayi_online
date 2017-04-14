@@ -10,7 +10,9 @@ export class ReportService {
   private reportTypesUrl = this.baseApiUrl + 'data-caseItems.json';
 //   private validationCodeUrl = this.baseApiUrl + 'ValidationCode/';//'../../assets/vd.json';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http ) {
+
+   }
 
   getTypes() : Observable<CaseType[]> {
     return this.http.get(this.reportTypesUrl)

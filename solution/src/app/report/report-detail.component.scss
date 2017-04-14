@@ -22,7 +22,7 @@
   input[type='text'] {
     height: 3.5em;
     width: 95%;
-    padding-left: .3em;
+    padding-left: 1.3em;
     font-size: inherit;
     background: transparent;
     border: none;
@@ -30,6 +30,13 @@
     &:focus {
       outline: none;
     }
+  }
+  .field-entery {
+    padding-bottom: 0;
+  }
+  .field-select:before {
+    top: 35%;
+    right: 70%;
   }
   h4,
   .form-title {
@@ -76,6 +83,14 @@
 
   input {
     display: none;
+    &[checked],
+    &.active{
+      & + label:before {
+        background: $dk-green;
+        border: 1px solid $dk-green;
+        box-shadow: 0 0 0 1.5px $bgC inset;
+      }
+    }
   }
   label {
     display: inline-block;
@@ -87,12 +102,6 @@
       border: 1px solid $dk-green;
       border-radius: 50%;
       margin-right: .95em;
-    }
-    &.checked:before {
-      background: $dk-green;
-      border: 1px solid $dk-green;
-      box-shadow: 0 0 0 1.5px $bgC inset,
-
     }
   }
 }

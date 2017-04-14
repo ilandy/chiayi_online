@@ -6,7 +6,7 @@
               <h1 class="big-title">
                 線上陳情系統
               </h1>
-              <button class="btn btn-green hidden-xs">我要陳情</button>
+              <button class="btn btn-green hidden-xs" (click)="scrollTo('more')">我要陳情</button>
             </div>
             <div class="topic-layout-right">
               <p class="block-sprade bs-brown topic-info-top">
@@ -23,7 +23,7 @@
               </small>
               <br>
               <br>
-              <button class="btn btn-green hidden-lg hidden-md hidden-sm"><span>我要陳情</span></button>
+              <button class="btn btn-green hidden-lg hidden-md hidden-sm" (click)="scrollTo('more')"><span>我要陳情</span></button>
             </div>
           </div>
           <div class="topic-words-deco">CHIAYI . GOV . TW</div>
@@ -73,7 +73,7 @@
   </div>
 </section>
 
-<section class="more">
+<section id="more" class="more">
   <div class="more-contain">
     <h2 class="more-title">更多申報項目</h2>
     <div class="clear-fix">

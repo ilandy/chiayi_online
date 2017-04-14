@@ -1,3 +1,4 @@
+import { ScrollAnimate } from './../shared/global.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute }     from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -6,7 +7,8 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-term',
   templateUrl: './term.component.html',
-  styleUrls: ['./term.component.scss']
+  styleUrls: ['./term.component.scss'],
+  providers: [ScrollAnimate]
 })
 export class TermComponent implements OnInit {
 
@@ -19,7 +21,7 @@ export class TermComponent implements OnInit {
   getLabelPadding: string = "0";
 
 
-  constructor(private titleService: Title, private activeRouter: ActivatedRoute) { }
+  constructor(private titleService: Title, private activeRouter: ActivatedRoute, private scrollAnimate: ScrollAnimate) { }
 
   /* Setting new page title */
   public setTitle(newTitle: string) {
@@ -31,13 +33,18 @@ export class TermComponent implements OnInit {
 
   /* Geting target offset height and scroll to
      when label be clicked.  */
-  scrollTo (targetAnchor:string){
-        let offset = document.getElementById(targetAnchor).offsetTop;
-        window.scrollTo(0,offset+400);
-        this.getLabelPadding = offset +"px";
-        this.whichLable = targetAnchor;
-  }
 
+  scrollTo(targetPanel){
+    var target = document.getElementById(targetPanel);
+     if (this.screenWidth >= 760 ) {
+        if (this.whichLable !== targetPanel) {
+          this.scrollAnimate.action(target, 300);
+        }
+        this.getLabelPadding = target.offsetTop + 370 +"px";
+     } else {
+       window.scrollTo(0,target.offsetTop+400);
+     }
+  }
 
  /* The range of page on scroll start to end.  */
   onScroll(event: Document) {
@@ -51,10 +58,10 @@ export class TermComponent implements OnInit {
     }
 
     switch (true) {
-      case (this.scrollHeight > document.getElementById('copy').offsetTop+250):
+      case (this.scrollHeight >= document.getElementById('copy').offsetTop):
         this.whichLable = 'copy';
       break;
-      case (this.scrollHeight > document.getElementById('sucrity').offsetTop+250):
+      case (this.scrollHeight >= document.getElementById('sucrity').offsetTop):
         this.whichLable = 'sucrity';
       break;
       default:

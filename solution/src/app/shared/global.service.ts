@@ -1,0 +1,29 @@
+import { Injectable } from "@angular/core";
+
+@Injectable ()
+
+export class ScrollAnimate {
+  public handler: any;
+  speed: number = 50;
+
+  action (target:HTMLElement, space:number){
+    var scrollNow = document.body,
+        targetPosition = target.offsetTop+space;
+
+
+    console.log(scrollNow.scrollTop, targetPosition);
+
+    if(scrollNow.scrollTop < targetPosition) {
+        scrollNow.scrollTop+= this.speed;
+        this.handler = window.requestAnimationFrame(()=>{
+          this.action(target,space)
+        });
+    } else {
+      scrollNow.scrollTop = targetPosition;
+    }
+  }
+}
+
+export class BaseAPIURL {
+  public readonly baseAPIURL = './assets/data/';
+}
