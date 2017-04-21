@@ -25,5 +25,5 @@ export class ScrollAnimate {
 }
 
 export class BaseAPIURL {
-  public readonly baseAPIURL = './assets/data/';
+  public readonly url = 'http://ndemo.tw-futaba.com.tw/ChiayiWAPI/api/';
 }
