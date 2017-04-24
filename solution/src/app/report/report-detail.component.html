@@ -69,7 +69,7 @@
                 <ul class="form-radio row pt-20">
                   <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
                   <li class="col-md-3 col-sm-4" *ngFor="let dist of dists;let i = index" (click)="getSelectDist(i)">
-                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [(ngModel)]="distDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
+                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="distDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
                     <label for="dist{{dist.DistrictId}}" >{{dist.DistrictName}}</label>
                   </li>
                 </ul>
@@ -93,6 +93,7 @@
                   <ul class="select-options">
                     <li *ngFor="let zone of distSelected.Zones" [ngClass]="{'active': zoneValue === zone.ZoneName }" data-value="{{zone.ZoneCode}}" (click)="getSelectZone($event.target)">{{zone.ZoneName}}</li>
                   </ul>
+                  <input type="hidden" [ngModel]="zoneValue" name="zone">
                 </div>
               </div>
               <div class="col-md-1 hidden-xs">
