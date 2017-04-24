@@ -1,7 +1,7 @@
 export class Dist {
   DistrictId: string;
   DistrictName: string;
-  Zones: Zone[];
+  Zones: Zone[] = [];
 }
 export class Zone {
   Governor: string;

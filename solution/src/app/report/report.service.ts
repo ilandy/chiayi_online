@@ -11,7 +11,7 @@ export class ReportService {
   private reportTypesUrl: string;
 
   constructor(private http: Http, private baseURL: BaseAPIURL ) {
-      this.reportTypesUrl = this.baseURL.url + 'items/';
+      this.reportTypesUrl = '../assets/data/data-zone.json'//this.baseURL.url + 'items/';
    }
 
   getTypes() : Observable<CaseType[]> {

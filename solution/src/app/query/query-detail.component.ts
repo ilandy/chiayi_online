@@ -17,6 +17,7 @@ export class QueryDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
   }
 
 }

@@ -49,6 +49,7 @@ export class ReportComponent implements OnInit {
 
 
   ngOnInit() {
+    document.body.scrollTop = 0;
     this.setTitle('首頁 - 嘉義市政府線上陳情服務平台');
     this.getTypes();
   }

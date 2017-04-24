@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AddressService } from './address.service';
-import { Dist } from './address';
+import { Dist } from './report';
 
 
 @Component({
@@ -14,20 +14,20 @@ export class ReportDetailComponent implements OnInit {
   // formbuilder
 
   // formsetting
-  
-  
+
+
 
   // test
   roleDef: number;
   ageDef: number;
-  distDef: number;
+  distDef: string;
   contactDef: number;
-  
+
 
   //other setting
-  distEast= {};
+  distSelected= {};
   error: any;
-  selectValue:string = '全部';
+  zoneValue:string = '全部';
   selectSwitch:boolean = false;
   dists: Dist[];
   completeMessg: boolean = false;
@@ -35,11 +35,12 @@ export class ReportDetailComponent implements OnInit {
   constructor(private titleService: Title, private addressService: AddressService) {
     this.roleDef = 1;
     this.ageDef = 1;
-    this.distDef = 1;
+    this.distDef= '1002001000';
     this.contactDef = 1;
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
     this.setTitle('案件陳情 - 嘉義市政府線上陳情服務平台');
     this.getDist();
 
@@ -60,10 +61,21 @@ export class ReportDetailComponent implements OnInit {
         .getDist()
         .subscribe(
           dist => {
-            this.dists = dist
-            this.distEast = this.dists[0]
+            this.dists = dist;
+            console.log(this.dists);
+            this.getSelectDist(0);
           },
           error => this.error = error);
+  }
+  getSelectZone(target:HTMLElement){
+    this.selectSwitch = false;
+    this.zoneValue = target.innerHTML;
+  }
+  getSelectDist(DistNo:number){
+    this.selectSwitch = false;
+    this.distDef = this.dists[DistNo]['DistrictId'];
+    this.distSelected = this.dists[DistNo];
+    this.zoneValue = this.dists[DistNo].Zones[0].ZoneName;
   }
 
   roles = [{

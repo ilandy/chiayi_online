@@ -16,6 +16,7 @@ export class FaqDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
   }
 
 }

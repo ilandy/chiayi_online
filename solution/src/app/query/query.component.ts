@@ -31,6 +31,7 @@ export class QueryComponent implements OnInit {
   }
 
   ngOnInit() {
+    document.body.scrollTop = 0;
     this.setTitle('案件查詢 - 嘉義市政府線上陳情服務平台');
   }
 

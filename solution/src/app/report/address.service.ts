@@ -2,7 +2,7 @@ import { Injectable }             from '@angular/core';
 import { Http, Response }         from '@angular/http';
 import { Observable }             from 'rxjs/Observable';
 import '../shared/rxjs-operators';
-import { Dist }   from './address';
+import { Dist }   from './report';
 
 @Injectable()
 export class AddressService {

@@ -1,29 +1,518 @@
-[{
-    "dist": "東區",
-    "code": "01",
-    "zone": [
+[
+  {
+    "DistrictId": "1002001000",
+    "DistrictName": "東區",
+    "Zones": [
       {
-         "code": "01",
-         "name": "加昌里"
+        "Governor": "郭勝喜",
+        "Officer": "翁天壹",
+        "ZoneCode": "1002001001",
+        "ZoneName": "荖藤里"
       },
       {
-         "code": "01",
-         "name": "興昌里"
+        "Governor": "洪献武",
+        "Officer": "吳順發",
+        "ZoneCode": "1002001002",
+        "ZoneName": "後湖里"
+      },
+      {
+        "Governor": "徐國榮",
+        "Officer": "周勝雄",
+        "ZoneCode": "1002001003",
+        "ZoneName": "仁義里"
+      },
+      {
+        "Governor": "黃純美",
+        "Officer": "呂嘉照",
+        "ZoneCode": "1002001004",
+        "ZoneName": "中庄里"
+      },
+      {
+        "Governor": "莊天基",
+        "Officer": "羅光志",
+        "ZoneCode": "1002001005",
+        "ZoneName": "頂庄里"
+      },
+      {
+        "Governor": "楊文俊",
+        "Officer": "歐坤誠",
+        "ZoneCode": "1002001034",
+        "ZoneName": "圳頭里"
+      },
+      {
+        "Governor": "梁仁豪",
+        "Officer": "顧毓庭",
+        "ZoneCode": "1002001035",
+        "ZoneName": "新店里"
+      },
+      {
+        "Governor": "陳奕錡",
+        "Officer": "方耀謙",
+        "ZoneCode": "1002001036",
+        "ZoneName": "後庄里"
+      },
+      {
+        "Governor": "吳俊達",
+        "Officer": "歐坤誠",
+        "ZoneCode": "1002001037",
+        "ZoneName": "王田里"
+      },
+      {
+        "Governor": "葉寬鴻",
+        "Officer": "林緯騰",
+        "ZoneCode": "1002001038",
+        "ZoneName": "東川里"
+      },
+      {
+        "Governor": "施欣成",
+        "Officer": "林義山",
+        "ZoneCode": "1002001039",
+        "ZoneName": "太平里"
+      },
+      {
+        "Governor": "呂純足",
+        "Officer": "林緯騰",
+        "ZoneCode": "1002001041",
+        "ZoneName": "盧厝里"
+      },
+      {
+        "Governor": "謝金榮",
+        "Officer": "謝順慶",
+        "ZoneCode": "1002001042",
+        "ZoneName": "鹿寮里"
+      },
+      {
+        "Governor": "江振章",
+        "Officer": "李品辰",
+        "ZoneCode": "1002001043",
+        "ZoneName": "長竹里"
+      },
+      {
+        "Governor": "凃淑慧",
+        "Officer": "吳致嫻",
+        "ZoneCode": "1002001044",
+        "ZoneName": "短竹里"
+      },
+      {
+        "Governor": "邱奕賓",
+        "Officer": "張崑楠",
+        "ZoneCode": "1002001045",
+        "ZoneName": "新開里"
+      },
+      {
+        "Governor": "黃建順",
+        "Officer": "林坤生",
+        "ZoneCode": "1002001046",
+        "ZoneName": "宣信里"
+      },
+      {
+        "Governor": "盧麗惠",
+        "Officer": "林坤生",
+        "ZoneCode": "1002001047",
+        "ZoneName": "興南里"
+      },
+      {
+        "Governor": "唐瑞振",
+        "Officer": "張崑楠",
+        "ZoneCode": "1002001048",
+        "ZoneName": "豐年里"
+      },
+      {
+        "Governor": "劉丙伍",
+        "Officer": "蕭德源",
+        "ZoneCode": "1002001049",
+        "ZoneName": "芳草里"
+      },
+      {
+        "Governor": "陳文彬",
+        "Officer": "陳昭良",
+        "ZoneCode": "1002001050",
+        "ZoneName": "芳安里"
+      },
+      {
+        "Governor": "蔡振盛",
+        "Officer": "楊俊哲",
+        "ZoneCode": "1002001051",
+        "ZoneName": "頂寮里"
+      },
+      {
+        "Governor": "呂文雄",
+        "Officer": "潘義順",
+        "ZoneCode": "1002001052",
+        "ZoneName": "安寮里"
+      },
+      {
+        "Governor": "郭茂忠",
+        "Officer": "張維誠",
+        "ZoneCode": "1002001053",
+        "ZoneName": "興安里"
+      },
+      {
+        "Governor": "梁炳文",
+        "Officer": "陳智文",
+        "ZoneCode": "1002001054",
+        "ZoneName": "興村里"
+      },
+      {
+        "Governor": "呂文章",
+        "Officer": "陳昭良",
+        "ZoneCode": "1002001055",
+        "ZoneName": "興仁里"
+      },
+      {
+        "Governor": "賴正雄",
+        "Officer": "張進山",
+        "ZoneCode": "1002001056",
+        "ZoneName": "過溝里"
+      },
+      {
+        "Governor": "劉宗源",
+        "Officer": "張世憲",
+        "ZoneCode": "1002001057",
+        "ZoneName": "民族里"
+      },
+      {
+        "Governor": "董林淑治",
+        "Officer": "張世憲",
+        "ZoneCode": "1002001058",
+        "ZoneName": "朝陽里"
+      },
+      {
+        "Governor": "蔡國樑",
+        "Officer": "王明仁",
+        "ZoneCode": "1002001059",
+        "ZoneName": "華南里"
+      },
+      {
+        "Governor": "楊秉榮",
+        "Officer": "張進山",
+        "ZoneCode": "1002001060",
+        "ZoneName": "東興里"
+      },
+      {
+        "Governor": "歐陽明",
+        "Officer": "曹一安",
+        "ZoneCode": "1002001061",
+        "ZoneName": "中山里"
+      },
+      {
+        "Governor": "黃素娥",
+        "Officer": "曹一安",
+        "ZoneCode": "1002001062",
+        "ZoneName": "中央里"
+      },
+      {
+        "Governor": "王廣禮",
+        "Officer": "甘紹仁",
+        "ZoneCode": "1002001063",
+        "ZoneName": "林森里"
+      },
+      {
+        "Governor": "洪義松",
+        "Officer": "蔡明呈",
+        "ZoneCode": "1002001064",
+        "ZoneName": "北門里"
+      },
+      {
+        "Governor": "林砡朱",
+        "Officer": "謝順慶",
+        "ZoneCode": "1002001065",
+        "ZoneName": "蘭潭里"
+      },
+      {
+        "Governor": "張文振",
+        "Officer": "陳淞賀",
+        "ZoneCode": "1002001066",
+        "ZoneName": "文雅里"
+      },
+      {
+        "Governor": "連淑雲",
+        "Officer": "張維誠",
+        "ZoneCode": "1002001067",
+        "ZoneName": "安業里"
+      },
+      {
+        "Governor": "洪有慶",
+        "Officer": "羅光志",
+        "ZoneCode": "1002001068",
+        "ZoneName": "義教里"
       }
     ]
-
   },
- {
-    "dist": "西區",
-    "code": "02",
-    "zone": [
+  {
+    "DistrictId": "1002002000",
+    "DistrictName": "西區",
+    "Zones": [
       {
-         "code": "01",
-         "name": "咖啡里"
+        "Governor": "郭秋明",
+        "Officer": "蔡慶森",
+        "ZoneCode": "1002002001",
+        "ZoneName": "香湖里"
       },
       {
-         "code": "01",
-         "name": "電腦里"
+        "Governor": "李高滿足",
+        "Officer": "曾年輝",
+        "ZoneCode": "1002002002",
+        "ZoneName": "湖邊里"
+      },
+      {
+        "Governor": "黃福林",
+        "Officer": "劉添誌",
+        "ZoneCode": "1002002003",
+        "ZoneName": "北榮里"
+      },
+      {
+        "Governor": "李正興",
+        "Officer": "曾年輝",
+        "ZoneCode": "1002002005",
+        "ZoneName": "重興里"
+      },
+      {
+        "Governor": "蕭宗廷",
+        "Officer": "童威錦",
+        "ZoneCode": "1002002009",
+        "ZoneName": "竹圍里"
+      },
+      {
+        "Governor": "柯靜宜",
+        "Officer": "羅湛博",
+        "ZoneCode": "1002002010",
+        "ZoneName": "新厝里"
+      },
+      {
+        "Governor": "李憲桐",
+        "Officer": "陳靖欽",
+        "ZoneCode": "1002002011",
+        "ZoneName": "保安里"
+      },
+      {
+        "Governor": "謝銘亮",
+        "Officer": "史靖洲",
+        "ZoneCode": "1002002012",
+        "ZoneName": "北湖里"
+      },
+      {
+        "Governor": "洪嘉文",
+        "Officer": "鍾侑臻",
+        "ZoneCode": "1002002013",
+        "ZoneName": "下埤里"
+      },
+      {
+        "Governor": "蕭慶順",
+        "Officer": "史靖洲",
+        "ZoneCode": "1002002014",
+        "ZoneName": "竹村里"
+      },
+      {
+        "Governor": "葉秋蘭",
+        "Officer": "龔益慶",
+        "ZoneCode": "1002002015",
+        "ZoneName": "大溪里"
+      },
+      {
+        "Governor": "蕭建林",
+        "Officer": "莊仲欽",
+        "ZoneCode": "1002002016",
+        "ZoneName": "福全里"
+      },
+      {
+        "Governor": "洪麗雪",
+        "Officer": "龔益慶",
+        "ZoneCode": "1002002017",
+        "ZoneName": "西平里"
+      },
+      {
+        "Governor": "王張錦淑",
+        "Officer": "陳泰安",
+        "ZoneCode": "1002002018",
+        "ZoneName": "磚磘里"
+      },
+      {
+        "Governor": "李茂山",
+        "Officer": "張榕",
+        "ZoneCode": "1002002019",
+        "ZoneName": "港坪里"
+      },
+      {
+        "Governor": "高永諒",
+        "Officer": "林建安",
+        "ZoneCode": "1002002020",
+        "ZoneName": "頭港里"
+      },
+      {
+        "Governor": "許明對",
+        "Officer": "陳龍田",
+        "ZoneCode": "1002002021",
+        "ZoneName": "劉厝里"
+      },
+      {
+        "Governor": "楊文玲",
+        "Officer": "林建安",
+        "ZoneCode": "1002002022",
+        "ZoneName": "新西里"
+      },
+      {
+        "Governor": "蕭友林",
+        "Officer": "曾鴻旭",
+        "ZoneCode": "1002002031",
+        "ZoneName": "書院里"
+      },
+      {
+        "Governor": "蔡坤龍",
+        "Officer": "吳永福",
+        "ZoneCode": "1002002045",
+        "ZoneName": "培元里"
+      },
+      {
+        "Governor": "黃琮榮",
+        "Officer": "洪偉栓",
+        "ZoneCode": "1002002046",
+        "ZoneName": "垂楊里"
+      },
+      {
+        "Governor": "李忠卿",
+        "Officer": "洪志峰",
+        "ZoneCode": "1002002047",
+        "ZoneName": "車店里"
+      },
+      {
+        "Governor": "陳金川",
+        "Officer": "歐宥妡",
+        "ZoneCode": "1002002048",
+        "ZoneName": "福民里"
+      },
+      {
+        "Governor": "黃正一",
+        "Officer": "謝文騰",
+        "ZoneCode": "1002002049",
+        "ZoneName": "湖內里"
+      },
+      {
+        "Governor": "羅鳳住",
+        "Officer": "吳永福",
+        "ZoneCode": "1002002050",
+        "ZoneName": "美源里"
+      },
+      {
+        "Governor": "林峯輝",
+        "Officer": "鍾文寬",
+        "ZoneCode": "1002002051",
+        "ZoneName": "育英里"
+      },
+      {
+        "Governor": "宋燕生",
+        "Officer": "謝寬儒",
+        "ZoneCode": "1002002052",
+        "ZoneName": "致遠里"
+      },
+      {
+        "Governor": "林昇賢",
+        "Officer": "黃羣峯",
+        "ZoneCode": "1002002053",
+        "ZoneName": "光路里"
+      },
+      {
+        "Governor": "陳金虎",
+        "Officer": "王朝舜",
+        "ZoneCode": "1002002054",
+        "ZoneName": "翠岱里"
+      },
+      {
+        "Governor": "蔡正平",
+        "Officer": "謝寬儒",
+        "ZoneCode": "1002002055",
+        "ZoneName": "自強里"
+      },
+      {
+        "Governor": "蔡宗坤",
+        "Officer": "姚品如",
+        "ZoneCode": "1002002056",
+        "ZoneName": "永和里"
+      },
+      {
+        "Governor": "廖淑玲",
+        "Officer": "廖寬基",
+        "ZoneCode": "1002002057",
+        "ZoneName": "新富里"
+      },
+      {
+        "Governor": "陳淑娥",
+        "Officer": "鄭光男",
+        "ZoneCode": "1002002058",
+        "ZoneName": "文化里"
+      },
+      {
+        "Governor": "林芳志",
+        "Officer": "李政鴻",
+        "ZoneCode": "1002002059",
+        "ZoneName": "西榮里"
+      },
+      {
+        "Governor": "孫茂森",
+        "Officer": "鄭光男",
+        "ZoneCode": "1002002060",
+        "ZoneName": "國華里"
+      },
+      {
+        "Governor": "鄭秀玉",
+        "Officer": "姚品如",
+        "ZoneCode": "1002002061",
+        "ZoneName": "番社里"
+      },
+      {
+        "Governor": "劉沛源",
+        "Officer": "王朝舜",
+        "ZoneCode": "1002002062",
+        "ZoneName": "導明里"
+      },
+      {
+        "Governor": "黃榮茂",
+        "Officer": "蔡慶森",
+        "ZoneCode": "1002002063",
+        "ZoneName": "慶安里"
+      },
+      {
+        "Governor": "陳其生",
+        "Officer": "李柏誼",
+        "ZoneCode": "1002002064",
+        "ZoneName": "後驛里"
+      },
+      {
+        "Governor": "吳金和",
+        "Officer": "林振裕",
+        "ZoneCode": "1002002065",
+        "ZoneName": "福安里"
+      },
+      {
+        "Governor": "吳名城",
+        "Officer": "洪偉栓",
+        "ZoneCode": "1002002066",
+        "ZoneName": "獅子里"
+      },
+      {
+        "Governor": "蔡明光",
+        "Officer": "鐘文寬",
+        "ZoneCode": "1002002067",
+        "ZoneName": "紅瓦里"
+      },
+      {
+        "Governor": "李振煌",
+        "Officer": "鍾侑臻",
+        "ZoneCode": "1002002068",
+        "ZoneName": "保福里"
+      },
+      {
+        "Governor": "蕭蘇明珠",
+        "Officer": "施易呈",
+        "ZoneCode": "1002002069",
+        "ZoneName": "保生里"
+      },
+      {
+        "Governor": "吳永豐",
+        "Officer": "陳靖欽",
+        "ZoneCode": "1002002070",
+        "ZoneName": "北新里"
       }
     ]
-  }]
+  }
+]
