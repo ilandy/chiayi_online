@@ -1,53 +1,86 @@
+import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AddressService } from './address.service';
-import { Dist } from './report';
+import { ReportService } from './report.service';
+import { Dist, RecaptchaCode } from './interface/report';
+import { RoleClass } from './interface/role';
+import { age } from './interface/age';
+import { contact } from './interface/contact';
+import { Country, District, Zone } from './interface/sendAddress';
 
 
 @Component({
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.scss'],
-  providers: [AddressService]
+  providers: [ReportService]
 })
 export class ReportDetailComponent implements OnInit {
-  // formbuilder
+  // 角色相關的變數
+  roles: RoleClass[];
+  roleDef: string;
 
-  // formsetting
-
-
-
-  // test
-  roleDef: number;
+  // 年齡相關變數
+  ageRange: age[];
   ageDef: number;
-  distDef: string;
-  contactDef: number;
 
+  // 事件地點相關變數
+  eventDists: Dist[];
+  eventDistDef: string;
+  eventSelectedDist: any;
+  eventTownshipDef:string;
+  eventSlider:boolean;
 
-  //other setting
-  distSelected= {};
+  // 回覆方式
+  contacts: contact[];
+  contactDef: string;
+
+  ctcCountrys: Country[];
+  ctcCountrysDef: string;
+  ctcCountrysVal: string;
+  ctcCountrySlider: boolean;
+
+  ctcDists: District[];
+  ctcDistDef: string;
+  ctcDistVal: string;
+  ctcDistSlider: boolean;
+
+  ctcZones: Zone[];
+  ctcZoneDef: string;
+  ctcZoneVal: string;
+  ctcZoneSlider: boolean;
+
+  // 尚未分類
+
   error: any;
-  zoneValue:string = '全部';
-  selectSwitch:boolean = false;
-  dists: Dist[];
-  completeMessg: boolean = false;
+  completeMessg: boolean;
 
-  constructor(private titleService: Title, private addressService: AddressService) {
-    this.roleDef = 1;
+  constructor(private titleService: Title, private reportService: ReportService) {
+    this.roleDef = '1';
+
     this.ageDef = 1;
-    this.distDef= '1002001000';
-    this.contactDef = 1;
+
+    this.eventDistDef = '1002001000';
+    this.eventSelectedDist = {};
+    this.eventTownshipDef = '全部';
+    this.eventSlider = false;
+
+    this.contactDef = '1';
+    this.completeMessg = false;
   }
 
   ngOnInit() {
     document.body.scrollTop = 0;
     this.setTitle('案件陳情 - 嘉義市政府線上陳情服務平台');
     this.getDist();
+    this.getRole();
+    this.getAge();
+    this.getContact();
 
-    // this.distEast = this.dists[0];
-
-
+    this.getCtcCountry();
   }
+
+  //==== 表單以外的功能 ====//
    public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
@@ -55,105 +88,125 @@ export class ReportDetailComponent implements OnInit {
   shoeComplete () {
     return true;
   }
+  //==== 角色選擇功能 ====//
+  getRole() {
+    this.reportService
+        .getRole()
+        .subscribe(
+          role => {
+            this.roles = role;
+            // console.log(this.roles);
+          },
+          error => this.error = error);
+  }
 
+  //==== 年齡選擇功能 ====//
+  getAge() {
+    this.reportService
+        .getAge()
+        .subscribe(
+          age => {
+            this.ageRange = age;
+            console.log(this.ageRange);
+          },
+          error => this.error = error);
+  }
+
+  //==== 事件地點功能 ====//
+  // 訂閱 reportService getDist 取得遠端資源
   getDist() {
-    this.addressService
+    this.reportService
         .getDist()
         .subscribe(
           dist => {
-            this.dists = dist;
-            console.log(this.dists);
+            this.eventDists = dist;
+            // console.log(this.eventDists);
             this.getSelectDist(0);
           },
           error => this.error = error);
   }
+  // 取的被選取的里別
   getSelectZone(target:HTMLElement){
-    this.selectSwitch = false;
-    this.zoneValue = target.innerHTML;
+    this.eventSlider = false;
+    this.eventTownshipDef = target.innerText;
   }
+  // 取得選取區域並置換相關功能的內容
   getSelectDist(DistNo:number){
-    this.selectSwitch = false;
-    this.distDef = this.dists[DistNo]['DistrictId'];
-    this.distSelected = this.dists[DistNo];
-    this.zoneValue = this.dists[DistNo].Zones[0].ZoneName;
+    this.eventSlider = false;
+    this.eventDistDef = this.eventDists[DistNo]['DistrictId'];
+    this.eventSelectedDist = this.eventDists[DistNo];
+    this.eventTownshipDef = this.eventDists[DistNo].Zones[0].ZoneName;
   }
 
-  roles = [{
-      id:1,
-      name: "一般市民"
-    },{
-      id:2,
-      name: "議員"
-    },{
-      id:3,
-      name: "里幹事"
-    },{
-      id:4,
-      name: "里長"
-    },{
-      id:5,
-      name: "公務員"
-    },{
-      id:6,
-      name: "學生"
-    },{
-      id:7,
-      name: "學生"
-    }];
-    ageRange = [{
-      id: 1,
-      type:"19 歲以下"
-    },
-    {
-      id: 2,
-      type:"20 - 29 歲"
-    },
-    {
-      id: 3,
-      type:"30 - 39 歲"
-    },
-    {
-      id: 4,
-      type:"40 - 49 歲"
-    },
-    {
-      id: 5,
-      type:"50 - 59 歲"
-    },
-    {
-      id: 6,
-      type:"60 - 69 歲"
-    },
-    {
-      id: 7,
-      type:"70 - 79 歲"
-    },
-    {
-      id: 8,
-      type:"80 - 89 歲"
-    },
-    {
-      id: 9,
-      type:"90 - 99 歲"
-    },
-    {
-      id: 10,
-      type:"100 歲以上"
-    }]
-    contacts = [{
-      id: 1,
-      name: "E-Mail 聯繫",
-      options: "email"
-    },
-    {
-      id: 2,
-      name: "電話聯繫",
-      options: "phone"
-    },
-    {
-      id: 3,
-      name: "書面聯繫",
-      options: "address"
-    }];
+  //==== 事件地點功能 ====//
+  // 訂閱 reportService getDist 取得遠端資源
+  getContact() {
+    this.reportService
+        .getContact()
+        .subscribe(
+          contacts => {
+            this.contacts = contacts;
+          },
+          error => this.error = error);
+  }
+  //==== 書面寄送地址 ====//
+  // 訂閱 reportService getDist 取得遠端資源
+  getCtcCountry() {
+    this.reportService
+        .getCountory()
+        .subscribe(
+          countrys => {
+            this.ctcCountrys = countrys;
+            this.ctcCountrysVal = this.ctcCountrys[0].CountyName;
+            this.ctcCountrysDef = this.ctcCountrys[0].CountyCode;
+            this.getCtcDist();
+          },
+          error => this.error = error);
+  }
+  getSelectCountry(name:string,id:string){
+    this.ctcCountrySlider = false;
+    this.ctcCountrysVal = name;
+    this.ctcCountrysDef = id;
+    this.getCtcDist();
+  }
+
+  getCtcDist() {
+    this.reportService
+        .getDistrict(this.ctcCountrysDef)
+        .subscribe(
+          dists => {
+            this.ctcDists = dists;
+            this.ctcDistVal = this.ctcDists[0].DistrictName;
+            this.ctcDistDef = this.ctcDists[0].DistrictCode;
+            this.getCtcZone();
+          },
+          error => this.error = error);
+  }
+  getSelectCtcDist(name:string,id:string){
+    this.ctcDistSlider = false;
+    this.ctcDistVal = name;
+    this.ctcDistDef = id;
+    this.getCtcZone();
+  }
+  getCtcZone() {
+    this.reportService
+        .getZone(this.ctcDistDef)
+        .subscribe(
+          zone => {
+            this.ctcZones = zone;
+            this.ctcZoneVal = this.ctcZones[0].ZoneName;
+            this.ctcZoneDef = this.ctcZones[0].ZoneCode;
+          },
+          error => this.error = error);
+  }
+  getSelectCtcZone(name:string,id:string){
+    this.ctcZoneSlider = false;
+    this.ctcZoneVal = name;
+    this.ctcZoneDef = id;
+  }
+  
+  
+
+
 
 }

@@ -25,5 +25,6 @@ export class ScrollAnimate {
 }
 
 export class BaseAPIURL {
-  public readonly url = 'http://ndemo.tw-futaba.com.tw/ChiayiWAPI/api/';
+  public readonly remoteUrl = 'http://ndemo.tw-futaba.com.tw/ChiayiWAPI/api/';
+  public readonly localUrl = './assets/data/';
 }

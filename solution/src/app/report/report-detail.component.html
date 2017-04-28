@@ -37,7 +37,7 @@
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-3 col-sm-4" *ngFor="let role of roles;let i =index">
-                    <input [ngClass]="{'active':myForm.value.role == role.id}" [ngModel]="roleDef" name="role" type="radio" [value]="role.id" id="role{{i}}"> <label for="role{{i}}">{{role.name}}</label>
+                    <input [ngClass]="{'active':myForm.value.role == role.Id}" [ngModel]="roleDef" name="role" type="radio" [value]="role.Id" id="role{{i}}"> <label for="role{{i}}">{{role.Name}}</label>
                   </li>
                 </ul>
               </div>
@@ -52,7 +52,7 @@
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-4 col-sm-5" *ngFor="let age of ageRange; let i = index">
-                    <input [ngClass]="{'active':myForm.value.age == age.id}" [ngModel]="ageDef" name="age" type="radio" [value]="age.id" id="age{{i}}"> <label for="age{{i}}">{{age.type}}</label>
+                    <input [ngClass]="{'active':myForm.value.age == age.Id}" [ngModel]="ageDef" name="age" type="radio" [value]="age.Id" id="age{{i}}"> <label for="age{{i}}">{{age.Type}}</label>
                   </li>
                 </ul>
               </div>
@@ -68,8 +68,8 @@
               <div class="col-md-9">
                 <ul class="form-radio row pt-20">
                   <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
-                  <li class="col-md-3 col-sm-4" *ngFor="let dist of dists;let i = index" (click)="getSelectDist(i)">
-                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="distDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
+                  <li class="col-md-3 col-sm-4" *ngFor="let dist of eventDists;let i = index" (click)="getSelectDist(i)">
+                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="eventDistDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
                     <label for="dist{{dist.DistrictId}}" >{{dist.DistrictName}}</label>
                   </li>
                 </ul>
@@ -83,21 +83,24 @@
               <div class="col-md-2">
                 <h4 class="valid form-common">事件里別</h4>
               </div>
-              <div class="col-md-9">
+              <div class="col-md-3">
                 <div class="field">
-                  <div class="field-select" role="combobox" (click)="selectSwitch = !selectSwitch">
-                    <input class="field-entery" type="text" value="{{zoneValue}}" readonly>
+                  <div class="field-select" role="combobox" (click)="eventSlider = !eventSlider">
+                    <input class="field-entery" type="text" value="{{eventTownshipDef}}" readonly>
                   </div>
                 </div>
-                <div class="select" [ngClass]="{'active':selectSwitch}">
-                  <ul class="select-options">
-                    <li *ngFor="let zone of distSelected.Zones" [ngClass]="{'active': zoneValue === zone.ZoneName }" data-value="{{zone.ZoneCode}}" (click)="getSelectZone($event.target)">{{zone.ZoneName}}</li>
-                  </ul>
-                  <input type="hidden" [ngModel]="zoneValue" name="zone">
-                </div>
               </div>
+              <div class="col-md-6"></div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
+              </div>
+              <div class="col-md-9 col-md-offset-2">
+                 <div class="select" [ngClass]="{'active':eventSlider}">
+                  <ul class="select-options">
+                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': zoneValue === zone.ZoneName }" data-value="{{zone.ZoneCode}}" (click)="getSelectZone($event.target)">{{zone.ZoneName}}</li>
+                  </ul>
+                  <input type="hidden" [ngModel]="eventTownshipDef" name="zone">
+                </div>
               </div>
             </div>
 
@@ -132,14 +135,74 @@
               <div class="col-md-9">
                 <ul class="form-radio pt-20">
                   <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
-                    <input [ngClass]="{'active':myForm.value.contact == contact.id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.name}}</label>
+                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"NAm> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
                   </li>
                 </ul>
               </div>
+
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
               </div>
             </div>
+
+
+            <div class="row form-group" *ngIf="myForm.value.contact === '3'">
+              <div class="col-md-2">
+                <h4 class="valid form-common">寄送地址</h4>
+              </div>
+              <div class="col-md-3">
+                <div class="field">
+                  <div class="field-select" role="combobox" (click)="ctcCountrySlider = !ctcCountrySlider">
+                    <input class="field-entery" type="text" value="{{ctcCountrysVal}}" readonly>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="field">
+                  <div class="field-select" role="combobox" (click)="ctcDistSlider = !ctcDistSlider">
+                    <input class="field-entery" type="text" value="{{ctcDistVal}}" readonly>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="field">
+                  <div class="field-select" role="combobox" (click)="ctcZoneSlider = !ctcZoneSlider">
+                    <input class="field-entery" type="text" value="{{ctcZoneVal}}" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+              <div class="col-md-9 col-md-offset-2">
+                <div class="select" [ngClass]="{'active':ctcCountrySlider}">
+                  <ul class="select-options">
+                    <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountrysDef === country.CountyCode }" (click)="getSelectCountry(country.CountyName,country.CountyCode)">{{country.CountyName}}</li>
+                  </ul>
+                  <input type="hidden" [ngModel]="ctcCountrysDef" name="zone">
+                </div>
+                <div class="select" [ngClass]="{'active':ctcDistSlider}">
+                  <ul class="select-options">
+                    <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSelectCtcDist(dist.DistrictName,dist.DistrictCode)" >{{dist.DistrictName}}</li>
+                  </ul>
+                  <input type="hidden" [ngModel]="ctcDistDef" name="zone">
+                </div>
+                <div class="select" [ngClass]="{'active':ctcZoneSlider}">
+                  <ul class="select-options">
+                    <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSelectCtcZone(zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
+                  </ul>
+                  <input type="hidden" [ngModel]="ctcZoneDef" name="zone">
+                </div>
+              </div>
+
+              <div class="col-md-9 col-md-offset-2">
+                <input type="text" id="addr" required placeholder="請輸入地址">
+              </div>
+
+            </div>
+
 
             <div class="row form-group">
               <div class="col-md-2">

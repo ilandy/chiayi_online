@@ -1,9 +1,10 @@
-export class Dist {
+export interface Dist {
   DistrictId: string;
   DistrictName: string;
-  Zones: Zone[] = [];
+  Zones: Zone[];
 }
-export class Zone {
+
+export interface Zone {
   Governor: string;
   Officer: string;
   ZoneCode: string;

@@ -1,0 +1,17 @@
+[
+  {
+      "Id": "1",
+      "Name": "E-Mail 聯繫",
+      "Options": "email"
+  },
+  {
+      "Id": "2",
+      "Name": "電話聯繫",
+      "Options": "phone"
+  },
+  {
+      "Id": "3",
+      "Name": "書面聯繫",
+      "Options": "address"
+  }
+]
