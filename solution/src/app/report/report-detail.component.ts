@@ -29,6 +29,7 @@ export class ReportDetailComponent implements OnInit {
   eventDistDef: string;
   eventSelectedDist: any;
   eventTownshipDef:string;
+  eventTownshipVal:string;
   eventSlider:boolean;
 
   // 回覆方式
@@ -36,8 +37,8 @@ export class ReportDetailComponent implements OnInit {
   contactDef: string;
 
   ctcCountrys: Country[];
-  ctcCountrysDef: string;
-  ctcCountrysVal: string;
+  ctcCountryDef: string;
+  ctcCountryVal: string;
   ctcCountrySlider: boolean;
 
   ctcDists: District[];
@@ -50,7 +51,11 @@ export class ReportDetailComponent implements OnInit {
   ctcZoneVal: string;
   ctcZoneSlider: boolean;
 
+  // 檔案
+  files: any[];
+
   // 尚未分類
+
 
   error: any;
   completeMessg: boolean;
@@ -107,7 +112,6 @@ export class ReportDetailComponent implements OnInit {
         .subscribe(
           age => {
             this.ageRange = age;
-            console.log(this.ageRange);
           },
           error => this.error = error);
   }
@@ -126,16 +130,14 @@ export class ReportDetailComponent implements OnInit {
           error => this.error = error);
   }
   // 取的被選取的里別
-  getSelectZone(target:HTMLElement){
-    this.eventSlider = false;
-    this.eventTownshipDef = target.innerText;
-  }
+
   // 取得選取區域並置換相關功能的內容
   getSelectDist(DistNo:number){
-    this.eventSlider = false;
+    this.setSlideUp('0');
     this.eventDistDef = this.eventDists[DistNo]['DistrictId'];
     this.eventSelectedDist = this.eventDists[DistNo];
-    this.eventTownshipDef = this.eventDists[DistNo].Zones[0].ZoneName;
+    this.eventTownshipVal = this.eventDists[DistNo].Zones[0].ZoneName;
+    this.eventTownshipDef = this.eventDists[DistNo].Zones[0].ZoneCode;
   }
 
   //==== 事件地點功能 ====//
@@ -155,58 +157,70 @@ export class ReportDetailComponent implements OnInit {
     this.reportService
         .getCountory()
         .subscribe(
-          countrys => {
-            this.ctcCountrys = countrys;
-            this.ctcCountrysVal = this.ctcCountrys[0].CountyName;
-            this.ctcCountrysDef = this.ctcCountrys[0].CountyCode;
+          data => {
+
+            this.ctcCountrys = data;
+            this.ctcCountryVal = this.ctcCountrys[0].CountyName;
+            this.ctcCountryDef = this.ctcCountrys[0].CountyCode;
             this.getCtcDist();
           },
           error => this.error = error);
   }
-  getSelectCountry(name:string,id:string){
-    this.ctcCountrySlider = false;
-    this.ctcCountrysVal = name;
-    this.ctcCountrysDef = id;
-    this.getCtcDist();
-  }
 
   getCtcDist() {
     this.reportService
-        .getDistrict(this.ctcCountrysDef)
+        .getDistrict(this.ctcCountryDef)
         .subscribe(
-          dists => {
-            this.ctcDists = dists;
+          data => {
+            this.ctcDists = data;
             this.ctcDistVal = this.ctcDists[0].DistrictName;
             this.ctcDistDef = this.ctcDists[0].DistrictCode;
             this.getCtcZone();
           },
           error => this.error = error);
   }
-  getSelectCtcDist(name:string,id:string){
-    this.ctcDistSlider = false;
-    this.ctcDistVal = name;
-    this.ctcDistDef = id;
-    this.getCtcZone();
-  }
+
   getCtcZone() {
     this.reportService
         .getZone(this.ctcDistDef)
         .subscribe(
-          zone => {
-            this.ctcZones = zone;
+          data => {
+            this.ctcZones = data;
             this.ctcZoneVal = this.ctcZones[0].ZoneName;
             this.ctcZoneDef = this.ctcZones[0].ZoneCode;
           },
           error => this.error = error);
   }
-  getSelectCtcZone(name:string,id:string){
-    this.ctcZoneSlider = false;
-    this.ctcZoneVal = name;
-    this.ctcZoneDef = id;
+
+  getSliderItem(target:string, name:string, id:string){
+    let val = target + 'Val',
+        def = target + 'Def';
+    this.setSlideUp('0');
+    this[val] = name;
+    this[def] = id;
   }
-  
-  
+
+ setSlideUp(target:string){
+   this.eventSlider = false;
+   this.ctcCountrySlider = false;
+   this.ctcDistSlider = false;
+   this.ctcZoneSlider = false;
+  }
+  //==== 上傳檔案功能 ====//
+  //
+  triggerFileBtn (){
+    let fileInput: HTMLElement = document.getElementById('Files');
+    fileInput.click();
+    console.log(fileInput);
+  }
+
+  filesUpload(uploadInput:any){
+    this.files = uploadInput.files;
+    // debugger;
 
 
+    console.log(uploadInput.files);
+
+  }
 
 }

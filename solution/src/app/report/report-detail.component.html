@@ -85,8 +85,8 @@
               </div>
               <div class="col-md-3">
                 <div class="field">
-                  <div class="field-select" role="combobox" (click)="eventSlider = !eventSlider">
-                    <input class="field-entery" type="text" value="{{eventTownshipDef}}" readonly>
+                  <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
+                    <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
                   </div>
                 </div>
               </div>
@@ -97,7 +97,7 @@
               <div class="col-md-9 col-md-offset-2">
                  <div class="select" [ngClass]="{'active':eventSlider}">
                   <ul class="select-options">
-                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': zoneValue === zone.ZoneName }" data-value="{{zone.ZoneCode}}" (click)="getSelectZone($event.target)">{{zone.ZoneName}}</li>
+                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
                   </ul>
                   <input type="hidden" [ngModel]="eventTownshipDef" name="zone">
                 </div>
@@ -135,7 +135,7 @@
               <div class="col-md-9">
                 <ul class="form-radio pt-20">
                   <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
-                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"NAm> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
+                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
                   </li>
                 </ul>
               </div>
@@ -153,7 +153,7 @@
               <div class="col-md-3">
                 <div class="field">
                   <div class="field-select" role="combobox" (click)="ctcCountrySlider = !ctcCountrySlider">
-                    <input class="field-entery" type="text" value="{{ctcCountrysVal}}" readonly>
+                    <input class="field-entery" type="text" value="{{ctcCountryVal}}" readonly>
 
                   </div>
                 </div>
@@ -179,19 +179,19 @@
               <div class="col-md-9 col-md-offset-2">
                 <div class="select" [ngClass]="{'active':ctcCountrySlider}">
                   <ul class="select-options">
-                    <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountrysDef === country.CountyCode }" (click)="getSelectCountry(country.CountyName,country.CountyCode)">{{country.CountyName}}</li>
+                    <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountryDef === country.CountyCode }" (click)="getSliderItem('ctcCountry',country.CountyName,country.CountyCode);getCtcDist()">{{country.CountyName}}</li>
                   </ul>
-                  <input type="hidden" [ngModel]="ctcCountrysDef" name="zone">
+                  <input type="hidden" [ngModel]="ctcCountryDef" name="zone">
                 </div>
                 <div class="select" [ngClass]="{'active':ctcDistSlider}">
                   <ul class="select-options">
-                    <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSelectCtcDist(dist.DistrictName,dist.DistrictCode)" >{{dist.DistrictName}}</li>
+                    <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSliderItem('ctcDist',dist.DistrictName,dist.DistrictCode);getCtcZone()" >{{dist.DistrictName}}</li>
                   </ul>
                   <input type="hidden" [ngModel]="ctcDistDef" name="zone">
                 </div>
                 <div class="select" [ngClass]="{'active':ctcZoneSlider}">
                   <ul class="select-options">
-                    <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSelectCtcZone(zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
+                    <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSliderItem('ctcZone',zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
                   </ul>
                   <input type="hidden" [ngModel]="ctcZoneDef" name="zone">
                 </div>
@@ -247,12 +247,18 @@
                 <h4 class="form-title">附加檔案</h4>
               </div>
               <div class="col-md-9">
-                <div class="files">
-                <div class="file-upload fa">檔案上傳</div>
+                <div class="files" (click)="triggerFileBtn()">
+                  <div class="file-upload fa">檔案上傳</div>
                 </div>
-                <!--<input class="hidden" ngModel formControlName="filies" type="file">-->
+                <input class="hidden" id="Files" multiple type="file" (change)="filesUpload($event.target)">
               </div>
               <div class="col-md-1 hidden-xs">
+
+              </div>
+              <div class="col-md-10 col-md-offset-2">
+                <ul>
+                  <li class="file-tag clear-fix" *ngFor="let file of files"><span>{{file.name}}</span> <i class="fa fa-times"></i></li>
+                </ul>
 
               </div>
             </div>
