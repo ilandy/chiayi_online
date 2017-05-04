@@ -9,6 +9,7 @@ import { CaseType }       from '../shared/case';
 import { Dist, RecaptchaCode }     from './interface/report';
 import { RoleClass }      from './interface/role';
 import { age }      from './interface/age';
+import { sex } from './interface/sex';
 import { contact }      from './interface/contact';
 import { Country, District, Zone }      from './interface/sendAddress';
 
@@ -23,12 +24,14 @@ export class ReportService {
   countryUrl: string;
   distUrl: string;
   zoneUrl: string;
+  sexUrl: string;
 
   constructor(private http: Http, private baseURL: BaseAPIURL ) {
       this.reportTypesUrl = this.baseURL.remoteUrl + 'items/';
       this.addressUrl = this.baseURL.localUrl + 'data-zone.json';
       this.roleUrl = this.baseURL.localUrl + 'data-role.json';
       this.ageUrl = this.baseURL.localUrl + 'data-age.json';
+      this.sexUrl = this.baseURL.localUrl + 'data-sex.json';
       this.contactUrl = this.baseURL.localUrl + 'data-contact.json';
       this.countryUrl = this.baseURL.remoteUrl + 'addrcode/';
       this.distUrl = this.baseURL.remoteUrl + 'addrcode/2?p1=';
@@ -61,6 +64,12 @@ export class ReportService {
 
   getAge() : Observable<age[]> {
     return this.http.get(this.ageUrl)
+               .map((res: Response) => res.json())
+               .catch(this.handleError);
+  }
+
+  getSex() : Observable<sex[]> {
+    return this.http.get(this.sexUrl)
                .map((res: Response) => res.json())
                .catch(this.handleError);
   }

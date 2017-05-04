@@ -3,7 +3,6 @@
     <div class="rpdetail-header">
       <header class="line-box-title deco-triangle">
         <h1>陳情案件</h1>
-        <p>Petition Cases</p>
 
       </header>
       <form #myForm="ngForm">
@@ -29,6 +28,206 @@
         </div>
 
         <div class="rpdetail-fieldset pt-20">
+            <div class="row">
+              <div class="col-md-12" style="text-align: right">
+                <strong class="font-color-brown"><span class="font-bolder font-color-orange">紅色</span>為必填。</strong>
+              </div>
+              <br>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="name"><h4 class="form-title">姓名</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="name" required placeholder="請輸入您的大名">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="valid form-common">陳情案件所在地區</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio row pt-20">
+                  <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
+                  <li class="col-md-3 col-sm-4" *ngFor="let dist of eventDists;let i = index" (click)="getSelectDist(i)">
+                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="eventDistDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
+                    <label for="dist{{dist.DistrictId}}" >{{dist.DistrictName}}</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="valid form-common">陳情案件所在里別</h4>
+              </div>
+              <div class="col-md-3">
+                <div class="field">
+                  <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
+                    <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+              <div class="col-md-9 col-md-offset-2">
+                 <div class="select" [ngClass]="{'active':eventSlider}">
+                  <ul class="select-options">
+                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
+                  </ul>
+                  <input type="hidden" [ngModel]="eventTownshipDef" name="zone">
+                </div>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="addr"><h4 class="invalid">陳情案件所在地址</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="addr" required placeholder="請輸入地址">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+             <div class="row form-group">
+              <div class="col-md-2">
+                <label for="comment"><h4 class="form-title">陳情內容</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="comment" placeholder="請輸陳情內容">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="form-title">回覆方式</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio pt-20">
+                  <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
+                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+
+            <div class="row form-group" *ngIf="myForm.value.contact === '3'">
+              <div class="col-md-2">
+                <h4 class="valid form-common">陳情人回覆地址</h4>
+              </div>
+              <div class="col-md-9">
+                <div class="row">
+                  <div class="col-md-4">
+                  <div class="field">
+                    <div class="field-select" role="combobox" (click)="ctcCountrySlider = !ctcCountrySlider">
+                      <input class="field-entery" type="text" value="{{ctcCountryVal}}" readonly>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="field">
+                    <div class="field-select" role="combobox" (click)="ctcDistSlider = !ctcDistSlider">
+                      <input class="field-entery" type="text" value="{{ctcDistVal}}" readonly>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="field">
+                    <div class="field-select" role="combobox" (click)="ctcZoneSlider = !ctcZoneSlider">
+                      <input class="field-entery" type="text" value="{{ctcZoneVal}}" readonly>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="select" [ngClass]="{'active':ctcCountrySlider}">
+                    <ul class="select-options">
+                      <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountryDef === country.CountyCode }" (click)="getSliderItem('ctcCountry',country.CountyName,country.CountyCode);getCtcDist()">{{country.CountyName}}</li>
+                    </ul>
+                    <input type="hidden" [ngModel]="ctcCountryDef" name="zone">
+                  </div>
+                  <div class="select" [ngClass]="{'active':ctcDistSlider}">
+                    <ul class="select-options">
+                      <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSliderItem('ctcDist',dist.DistrictName,dist.DistrictCode);getCtcZone()" >{{dist.DistrictName}}</li>
+                    </ul>
+                    <input type="hidden" [ngModel]="ctcDistDef" name="zone">
+                  </div>
+                  <div class="select" [ngClass]="{'active':ctcZoneSlider}">
+                    <ul class="select-options">
+                      <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSliderItem('ctcZone',zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
+                    </ul>
+                    <input type="hidden" [ngModel]="ctcZoneDef" name="zone">
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" id="addr" required placeholder="請輸入地址">
+                </div>
+                </div>
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+
+            </div>
+
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="email"><h4 class="form-title">E-Mail</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="email" placeholder="Email">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="phone"><h4 class="form-title">電話</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="phone" placeholder="電話 Ex:052254321">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-md-2">
+                <label for="phone"><h4 class="form-title">行動電話</h4></label>
+              </div>
+              <div class="col-md-9">
+                <input type="text" id="phone" placeholder="行動電話 Ex: 0912345678">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
 
             <div class="row form-group">
               <div class="col-md-2">
@@ -63,179 +262,14 @@
 
             <div class="row form-group">
               <div class="col-md-2">
-                <h4 class="valid form-common">事件地區</h4>
+                <h4 class="my-0">性別</h4>
               </div>
               <div class="col-md-9">
-                <ul class="form-radio row pt-20">
-                  <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
-                  <li class="col-md-3 col-sm-4" *ngFor="let dist of eventDists;let i = index" (click)="getSelectDist(i)">
-                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="eventDistDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
-                    <label for="dist{{dist.DistrictId}}" >{{dist.DistrictName}}</label>
+                <ul class="form-radio row id-list">
+                  <li class="col-md-3 col-sm-4" *ngFor="let sex of sex;let i =index">
+                    <input [ngClass]="{'active':myForm.value.sex == sex.Id}" [ngModel]="sexDef" name="sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
                   </li>
                 </ul>
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <h4 class="valid form-common">事件里別</h4>
-              </div>
-              <div class="col-md-3">
-                <div class="field">
-                  <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
-                    <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6"></div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-              <div class="col-md-9 col-md-offset-2">
-                 <div class="select" [ngClass]="{'active':eventSlider}">
-                  <ul class="select-options">
-                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
-                  </ul>
-                  <input type="hidden" [ngModel]="eventTownshipDef" name="zone">
-                </div>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <label for="addr"><h4 class="invalid">事件地址</h4></label>
-              </div>
-              <div class="col-md-9">
-                <input type="text" id="addr" required placeholder="請輸入地址">
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <label for="name"><h4 class="form-title">姓名</h4></label>
-              </div>
-              <div class="col-md-9">
-                <input type="text" id="name" required placeholder="請輸入您的大名">
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <h4 class="form-title">聯絡方式</h4>
-              </div>
-              <div class="col-md-9">
-                <ul class="form-radio pt-20">
-                  <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
-                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-
-            <div class="row form-group" *ngIf="myForm.value.contact === '3'">
-              <div class="col-md-2">
-                <h4 class="valid form-common">寄送地址</h4>
-              </div>
-              <div class="col-md-3">
-                <div class="field">
-                  <div class="field-select" role="combobox" (click)="ctcCountrySlider = !ctcCountrySlider">
-                    <input class="field-entery" type="text" value="{{ctcCountryVal}}" readonly>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="field">
-                  <div class="field-select" role="combobox" (click)="ctcDistSlider = !ctcDistSlider">
-                    <input class="field-entery" type="text" value="{{ctcDistVal}}" readonly>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="field">
-                  <div class="field-select" role="combobox" (click)="ctcZoneSlider = !ctcZoneSlider">
-                    <input class="field-entery" type="text" value="{{ctcZoneVal}}" readonly>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-              <div class="col-md-9 col-md-offset-2">
-                <div class="select" [ngClass]="{'active':ctcCountrySlider}">
-                  <ul class="select-options">
-                    <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountryDef === country.CountyCode }" (click)="getSliderItem('ctcCountry',country.CountyName,country.CountyCode);getCtcDist()">{{country.CountyName}}</li>
-                  </ul>
-                  <input type="hidden" [ngModel]="ctcCountryDef" name="zone">
-                </div>
-                <div class="select" [ngClass]="{'active':ctcDistSlider}">
-                  <ul class="select-options">
-                    <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSliderItem('ctcDist',dist.DistrictName,dist.DistrictCode);getCtcZone()" >{{dist.DistrictName}}</li>
-                  </ul>
-                  <input type="hidden" [ngModel]="ctcDistDef" name="zone">
-                </div>
-                <div class="select" [ngClass]="{'active':ctcZoneSlider}">
-                  <ul class="select-options">
-                    <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSliderItem('ctcZone',zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
-                  </ul>
-                  <input type="hidden" [ngModel]="ctcZoneDef" name="zone">
-                </div>
-              </div>
-
-              <div class="col-md-9 col-md-offset-2">
-                <input type="text" id="addr" required placeholder="請輸入地址">
-              </div>
-
-            </div>
-
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <label for="email"><h4 class="form-title">E-Mail</h4></label>
-              </div>
-              <div class="col-md-9">
-                <input type="text" id="email" placeholder="請輸入聯繫用的 Email">
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <label for="phone"><h4 class="form-title">電話</h4></label>
-              </div>
-              <div class="col-md-9">
-                <input type="text" id="phone" placeholder="請輸入電話號碼">
-              </div>
-              <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
-              </div>
-            </div>
-
-
-
-            <div class="row form-group">
-              <div class="col-md-2">
-                <label for="comment"><h4 class="form-title">陳情內容</h4></label>
-              </div>
-              <div class="col-md-9">
-                <input type="text" id="comment" placeholder="請輸陳情內容">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -265,7 +299,7 @@
 
             <div class="row pt-20">
               <div class="col-md-7 pb-20">
-                <strong class="font-color-brown"><span class="font-bolder font-color-orange">橘色</span>為必填。</strong>
+
               </div>
               <div class="col-md-5 text-right">
                   <button class="btn btn-green" (click)="completeMessg = true">填寫完成</button>

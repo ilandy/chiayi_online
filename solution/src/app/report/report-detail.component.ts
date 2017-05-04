@@ -5,6 +5,7 @@ import { ReportService } from './report.service';
 import { Dist, RecaptchaCode } from './interface/report';
 import { RoleClass } from './interface/role';
 import { age } from './interface/age';
+import { sex } from './interface/sex';
 import { contact } from './interface/contact';
 import { Country, District, Zone } from './interface/sendAddress';
 
@@ -22,7 +23,11 @@ export class ReportDetailComponent implements OnInit {
 
   // 年齡相關變數
   ageRange: age[];
-  ageDef: number;
+  ageDef: string;
+
+  // 性別相關變數
+  sex: sex[];
+  sexDef: string;
 
   // 事件地點相關變數
   eventDists: Dist[];
@@ -63,7 +68,8 @@ export class ReportDetailComponent implements OnInit {
   constructor(private titleService: Title, private reportService: ReportService) {
     this.roleDef = '1';
 
-    this.ageDef = 1;
+    this.ageDef = '1';
+    this.sexDef = '1';
 
     this.eventDistDef = '1002001000';
     this.eventSelectedDist = {};
@@ -80,6 +86,7 @@ export class ReportDetailComponent implements OnInit {
     this.getDist();
     this.getRole();
     this.getAge();
+    this.getSex();
     this.getContact();
 
     this.getCtcCountry();
@@ -112,6 +119,16 @@ export class ReportDetailComponent implements OnInit {
         .subscribe(
           age => {
             this.ageRange = age;
+          },
+          error => this.error = error);
+  }
+  //==== 年齡選擇功能 ====//
+  getSex() {
+    this.reportService
+        .getSex()
+        .subscribe(
+          sex => {
+            this.sex = sex;
           },
           error => this.error = error);
   }
