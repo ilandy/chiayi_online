@@ -2,12 +2,15 @@ import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ReportService } from './report.service';
-import { Dist, RecaptchaCode } from './interface/report';
-import { RoleClass } from './interface/role';
-import { age } from './interface/age';
-import { sex } from './interface/sex';
-import { contact } from './interface/contact';
-import { Country, District, Zone } from './interface/sendAddress';
+import { Country, District, Zone, age, sex, contact, RoleClass, Dist, RecaptchaCode } from './interface';
+import {
+  checkFilesSize, 
+  checkTotalFilesSize, 
+  checkFileName, 
+  checkExtName, 
+  checkFilenameIsExist, 
+  joinUploadedFileName
+} from './modules'
 
 
 @Component({

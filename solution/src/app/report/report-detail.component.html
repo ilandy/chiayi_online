@@ -7,9 +7,7 @@
       </header>
       <form #myForm="ngForm">
         <div class="rpdetail-for">
-          <pre>
-        {{ myForm.value | json }}
-          </pre>
+          <pre>{{ myForm.value | json }}</pre>
           <div class="row">
             <div class="col-md-6">
               <div class="field">
@@ -40,7 +38,7 @@
                 <label for="name"><h4 class="form-title">姓名</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="name" required placeholder="請輸入您的大名">
+                <input ngModel name="Sugg_Name" type="text" id="name" required placeholder="請輸入您的大名">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -55,7 +53,7 @@
                 <ul class="form-radio row pt-20">
                   <li class="col-md-2 col-sm-2"><strong>嘉義市</strong></li>
                   <li class="col-md-3 col-sm-4" *ngFor="let dist of eventDists;let i = index" (click)="getSelectDist(i)">
-                    <input [ngClass]="{'active':myForm.value.dist == dist.DistrictId}" [ngModel]="eventDistDef" [value]="dist.DistrictId" name="dist" type="radio" id="dist{{dist.DistrictId}}" >
+                    <input [ngClass]="{'active':myForm.value.Subj_District == dist.DistrictId}" [ngModel]="eventDistDef" [value]="dist.DistrictId" name="Subj_District" type="radio" id="dist{{dist.DistrictId}}" >
                     <label for="dist{{dist.DistrictId}}" >{{dist.DistrictName}}</label>
                   </li>
                 </ul>
@@ -73,6 +71,7 @@
                 <div class="field">
                   <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
                     <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
+                    
                   </div>
                 </div>
               </div>
@@ -85,7 +84,7 @@
                   <ul class="select-options">
                     <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
                   </ul>
-                  <input type="hidden" [ngModel]="eventTownshipDef" name="zone">
+                  <input type="hidden" [ngModel]="eventTownshipDef" name="Subj_Zone">
                 </div>
               </div>
             </div>
@@ -95,7 +94,7 @@
                 <label for="addr"><h4 class="invalid">陳情案件所在地址</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="addr" required placeholder="請輸入地址">
+                <input ngModel name="Subj_Location" type="text" id="addr" required placeholder="請輸入地址">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -107,7 +106,7 @@
                 <label for="comment"><h4 class="form-title">陳情內容</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="comment" placeholder="請輸陳情內容">
+                <input ngModel name="Subj_Content" type="text" id="comment" placeholder="請輸陳情內容">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -121,7 +120,7 @@
               <div class="col-md-9">
                 <ul class="form-radio pt-20">
                   <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
-                    <input [ngClass]="{'active':myForm.value.contact == contact.Id}" [ngModel]="contactDef" name="contact" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_ReplyWay == contact.Id}" [ngModel]="contactDef" name="Sugg_ReplyWay" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
                   </li>
                 </ul>
               </div>
@@ -132,7 +131,7 @@
             </div>
 
 
-            <div class="row form-group" *ngIf="myForm.value.contact === '3'">
+            <div class="row form-group" *ngIf="myForm.value.Sugg_ReplyWay === '3'">
               <div class="col-md-2">
                 <h4 class="valid form-common">陳情人回覆地址</h4>
               </div>
@@ -166,24 +165,24 @@
                     <ul class="select-options">
                       <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountryDef === country.CountyCode }" (click)="getSliderItem('ctcCountry',country.CountyName,country.CountyCode);getCtcDist()">{{country.CountyName}}</li>
                     </ul>
-                    <input type="hidden" [ngModel]="ctcCountryDef" name="zone">
+                    <input type="hidden" [ngModel]="ctcCountryDef" name="Sugg_Addr1">
                   </div>
                   <div class="select" [ngClass]="{'active':ctcDistSlider}">
                     <ul class="select-options">
                       <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSliderItem('ctcDist',dist.DistrictName,dist.DistrictCode);getCtcZone()" >{{dist.DistrictName}}</li>
                     </ul>
-                    <input type="hidden" [ngModel]="ctcDistDef" name="zone">
+                    <input type="hidden" [ngModel]="ctcDistDef" name="Sugg_Addr2">
                   </div>
                   <div class="select" [ngClass]="{'active':ctcZoneSlider}">
                     <ul class="select-options">
                       <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSliderItem('ctcZone',zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
                     </ul>
-                    <input type="hidden" [ngModel]="ctcZoneDef" name="zone">
+                    <input type="hidden" [ngModel]="ctcZoneDef" name="Sugg_Addr3">
                   </div>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" id="addr" required placeholder="請輸入地址">
+                  <input ngModel name="Sugg_Addr4" type="text" id="addr" required placeholder="請輸入地址">
                 </div>
                 </div>
               </div>
@@ -199,7 +198,7 @@
                 <label for="email"><h4 class="form-title">E-Mail</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="email" placeholder="Email">
+                <input ngModel name="Sugg_Email" type="text" id="email" placeholder="Email">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -211,7 +210,7 @@
                 <label for="phone"><h4 class="form-title">電話</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="phone" placeholder="電話 Ex:052254321">
+                <input ngModel name="Sugg_Telno" type="text" id="phone" placeholder="電話 Ex:052254321">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -222,7 +221,7 @@
                 <label for="phone"><h4 class="form-title">行動電話</h4></label>
               </div>
               <div class="col-md-9">
-                <input type="text" id="phone" placeholder="行動電話 Ex: 0912345678">
+                <input ngModel name="Sugg_Mobile" type="text" id="phone" placeholder="行動電話 Ex: 0912345678">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -236,7 +235,7 @@
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-3 col-sm-4" *ngFor="let role of roles;let i =index">
-                    <input [ngClass]="{'active':myForm.value.role == role.Id}" [ngModel]="roleDef" name="role" type="radio" [value]="role.Id" id="role{{i}}"> <label for="role{{i}}">{{role.Name}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_TypeId == role.Id}" [ngModel]="roleDef" name="Sugg_TypeId" type="radio" [value]="role.Id" id="role{{i}}"> <label for="role{{i}}">{{role.Name}}</label>
                   </li>
                 </ul>
               </div>
@@ -251,7 +250,7 @@
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-4 col-sm-5" *ngFor="let age of ageRange; let i = index">
-                    <input [ngClass]="{'active':myForm.value.age == age.Id}" [ngModel]="ageDef" name="age" type="radio" [value]="age.Id" id="age{{i}}"> <label for="age{{i}}">{{age.Type}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_AgeRng == age.Id}" [ngModel]="ageDef" name="Sugg_AgeRng" type="radio" [value]="age.Id" id="age{{i}}"> <label for="age{{i}}">{{age.Type}}</label>
                   </li>
                 </ul>
               </div>
@@ -267,7 +266,7 @@
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-3 col-sm-4" *ngFor="let sex of sex;let i =index">
-                    <input [ngClass]="{'active':myForm.value.sex == sex.Id}" [ngModel]="sexDef" name="sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_Sex == sex.Id}" [ngModel]="sexDef" name="Sugg_Sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
                   </li>
                 </ul>
               </div>
