@@ -5,9 +5,9 @@
         <h1>陳情案件</h1>
 
       </header>
-      <form #myForm="ngForm">
+      <form #myForm="ngForm" (change)="formDataValidation(myForm.value)">
         <div class="rpdetail-for">
-          <pre>{{ myForm.value | json }}</pre>
+          <!--<pre>{{ myForm.value | json }}</pre>-->
           <div class="row">
             <div class="col-md-6">
               <div class="field">
@@ -38,7 +38,7 @@
                 <label for="name"><h4 class="form-title">姓名</h4></label>
               </div>
               <div class="col-md-9">
-                <input ngModel name="Sugg_Name" type="text" id="name" required placeholder="請輸入您的大名">
+                <input ngModel name="Sugg_Name" type="text" id="name" placeholder="請輸入您的大名">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -71,7 +71,7 @@
                 <div class="field">
                   <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
                     <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
-                    
+
                   </div>
                 </div>
               </div>
@@ -94,7 +94,7 @@
                 <label for="addr"><h4 class="invalid">陳情案件所在地址</h4></label>
               </div>
               <div class="col-md-9">
-                <input ngModel name="Subj_Location" type="text" id="addr" required placeholder="請輸入地址">
+                <input ngModel name="Subj_Location" type="text" id="addr" placeholder="請輸入地址">
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -107,6 +107,25 @@
               </div>
               <div class="col-md-9">
                 <input ngModel name="Subj_Content" type="text" id="comment" placeholder="請輸陳情內容">
+              </div>
+              <div class="col-md-1 hidden-xs">
+                <i class="fa fa-check-circle"></i>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-md-2">
+                <h4 class="my-0">是否有立即危險</h4>
+              </div>
+              <div class="col-md-9">
+                <ul class="form-radio row id-list">
+                  <li class="col-md-3 col-sm-4">
+                    <input [ngModel]="dangerDef" [ngClass]="{'active':myForm.value.Subj_IsinDanger =='N'}" name="Subj_IsinDanger" type="radio" value="N" id="danger01"> <label for="danger01">否</label>
+                  </li>
+                  <li class="col-md-3 col-sm-4">
+                    <input [ngModel]="dangerDef" [ngClass]="{'active':myForm.value.Subj_IsinDanger == 'Y'}" name="Subj_IsinDanger" type="radio" value="Y" id="danger02"> <label for="danger02">是</label>
+                  </li>
+                </ul>
               </div>
               <div class="col-md-1 hidden-xs">
                 <i class="fa fa-check-circle"></i>
@@ -182,7 +201,7 @@
                 </div>
 
                 <div class="col-md-12">
-                  <input ngModel name="Sugg_Addr4" type="text" id="addr" required placeholder="請輸入地址">
+                  <input ngModel name="Sugg_Addr4" type="text" id="addr" placeholder="請輸入地址">
                 </div>
                 </div>
               </div>
@@ -290,18 +309,25 @@
               </div>
               <div class="col-md-10 col-md-offset-2">
                 <ul>
-                  <li class="file-tag clear-fix" *ngFor="let file of files"><span>{{file.name}}</span> <i class="fa fa-times"></i></li>
+                  <li class="file-tag clear-fix" *ngFor="let file of uploadFiles"><span>{{file.name}}</span> </li>
                 </ul>
+                <input [ngModel]="filesCount" name="Subj_FileCount" type="hidden">
+                <input [ngModel]="filesName" name="Atth_FileNames" type="hidden">
+                <input [ngModel]="caseToken" name="Case_Token" type="hidden">
 
               </div>
             </div>
 
             <div class="row pt-20">
               <div class="col-md-7 pb-20">
+                <img src="{{recaptchaImg}}" alt="驗證碼" title="請輸入驗證碼">
 
+                <input ngModel name="Input_ValidationCode" type="text" placeholder="請輸入驗證碼">
+                <input [ngModel]="hashCode" name="Hash_Code" type="hidden">
+                <input [ngModel]="timeStamp" name="Time_Stamp" type="hidden">
               </div>
               <div class="col-md-5 text-right">
-                  <button class="btn btn-green" (click)="completeMessg = true">填寫完成</button>
+                  <button class="btn btn-green" (click)="submitData(myForm.value)">填寫完成</button>
               </div>
             </div>
 

@@ -1,25 +1,40 @@
+
 import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ReportService } from './report.service';
-import { Country, District, Zone, age, sex, contact, RoleClass, Dist, RecaptchaCode } from './interface';
+import { UploadService } from './upload.service';
+import { Subscription } from "rxjs";
+
+import { Dist, RecaptchaCode }     from './interface/report';
+import { ReportData } from './interface/reportData';
+import { RoleClass }      from './interface/role';
+import { age }      from './interface/age';
+import { sex } from './interface/sex';
+import { contact }      from './interface/contact';
+import { Country, District, Zone }      from './interface/sendAddress';
 import {
-  checkFilesSize, 
-  checkTotalFilesSize, 
-  checkFileName, 
-  checkExtName, 
-  checkFilenameIsExist, 
-  joinUploadedFileName
-} from './modules'
+  checkFilesSize,
+  checkTotalFilesSize,
+  checkFileName,
+  checkExtName,
+  checkFilenameIsExist,
+  joinUploadedFileName,
+  genCaseToken,
+  getFormData
+} from './modules/fileChecker'
 
 
 @Component({
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.scss'],
-  providers: [ReportService]
+  providers: [ReportService,UploadService]
 })
 export class ReportDetailComponent implements OnInit {
+  //CaseToken
+  caseToken: string;
+
   // 角色相關的變數
   roles: RoleClass[];
   roleDef: string;
@@ -60,15 +75,32 @@ export class ReportDetailComponent implements OnInit {
   ctcZoneSlider: boolean;
 
   // 檔案
-  files: any[];
+  uploadFiles= [];
+  filesCount: number;
+  filesName: string;
+
+  //  驗證碼
+  recaptcha: RecaptchaCode;
+  hashCode: string;
+  timeStamp: string;
+  recaptchaImg: string;
 
   // 尚未分類
+  formValidationComplate: boolean;
 
 
   error: any;
   completeMessg: boolean;
+  dangerDef: string;
 
-  constructor(private titleService: Title, private reportService: ReportService) {
+  constructor(
+    private titleService: Title,
+    private reportService: ReportService,
+    private uploadService: UploadService,
+  ) {
+    this.formValidationComplate = false;
+    this.caseToken = genCaseToken(12);
+
     this.roleDef = '1';
 
     this.ageDef = '1';
@@ -81,6 +113,10 @@ export class ReportDetailComponent implements OnInit {
 
     this.contactDef = '1';
     this.completeMessg = false;
+
+    this.filesCount = 0;
+    this.filesName = "";
+    this.dangerDef = "N";
   }
 
   ngOnInit() {
@@ -91,7 +127,7 @@ export class ReportDetailComponent implements OnInit {
     this.getAge();
     this.getSex();
     this.getContact();
-
+    this.getRecaptcha();
     this.getCtcCountry();
   }
 
@@ -103,6 +139,21 @@ export class ReportDetailComponent implements OnInit {
   shoeComplete () {
     return true;
   }
+
+  //==== 取得驗證碼 ====//
+  getRecaptcha() {
+    this.reportService
+        .getValidationCode()
+        .subscribe(
+          validation => {
+            this.recaptcha = validation;
+            this.hashCode = encodeURIComponent(validation.HashCode);
+            this.timeStamp = validation.TimeStamp;
+            this.recaptchaImg = 'data:image/gif;base64,'+ validation.ValidationCode;
+          },
+          error => this.error = error);
+  }
+
   //==== 角色選擇功能 ====//
   getRole() {
     this.reportService
@@ -228,19 +279,131 @@ export class ReportDetailComponent implements OnInit {
   }
   //==== 上傳檔案功能 ====//
   //
+
+  private subscribes: Subscription[] = [];
   triggerFileBtn (){
     let fileInput: HTMLElement = document.getElementById('Files');
     fileInput.click();
-    console.log(fileInput);
+    // console.log(fileInput);
+  }
+
+
+  private checkFiles(files: File[]): boolean {
+    let r0 = checkTotalFilesSize(files);
+    if (!r0)
+      return false;
+
+    for(let i=0; i<files.length; i++){
+      let f = files[i];
+      let r1 = checkFilesSize(f);
+      if (!r1)
+        return false;
+
+      let r2 = checkFileName(f);
+      if (!r2)
+        return false;
+
+      let r3 = checkExtName(f);
+      if (!r3)
+        return false;
+    }
+    return true;
   }
 
   filesUpload(uploadInput:any){
-    this.files = uploadInput.files;
+
+      // uploadInput.files.forEach(element => {
+      //   this.files.push(element.name);
+      // });
+
     // debugger;
 
+    if (uploadInput.files) {
+      //console.log(fi.files);
 
-    console.log(uploadInput.files);
+      let refiles = checkFilenameIsExist(uploadInput.files, this.uploadFiles);
 
+      if (!refiles || refiles.length <= 0)
+        return;
+
+      let check = this.checkFiles(refiles);
+      if (!check)
+        return;
+
+      for(let i=0; i < refiles.length; i++){
+        this.uploadFiles.push(refiles[i]);
+      }
+
+    }
+    this.filesCount = this.uploadFiles.length;
+    this.filesName = joinUploadedFileName(this.uploadFiles)
+  }
+  formDataValidation (formData: ReportData){
+    let validationMsg = {
+      needName :         '請輸入姓名',
+      needLocation :     '請輸入事件地址',
+      needContnt :       '請輸入陳情案件內容',
+      needEmail :        '請輸入Email',
+      needPhone :        '您選擇的回覆方式為「電話回覆」，電話或行動電話請擇一輸入',
+      needAddr :         '您選擇的回覆方式為「書面回覆」，請輸入書面寄送地址',
+      needRecaptcha :    '請輸入驗證碼',
+    };
+
+    //   姓名必填
+    if (!formData.Sugg_Name){
+      alert(validationMsg.needName);
+    }
+
+    //   案件地址必填
+    if (!formData.Subj_Location){
+      alert(validationMsg.needLocation);
+    }
+    //   陳請內容必填
+    if (!formData.Subj_Content){
+      alert(validationMsg.needContnt);
+    }
+    //   Email 必填 (格式為 Email)
+    if (!formData.Sugg_Email){
+      alert(validationMsg.needEmail);
+    }
+    //   回覆方式為 2 時 Mobile or Telno 則一必填 (格式為純數字)
+    if (formData.Sugg_ReplyWay === '2' && (!formData.Sugg_Mobile||!formData.Sugg_Telno)){
+      alert(validationMsg.needPhone);
+    }
+    //   回覆方式為 3 時 Addr1,2,4 必填
+    if (formData.Sugg_ReplyWay === '3' && (!formData.Sugg_Addr1||!formData.Sugg_Addr2||!formData.Sugg_Addr4)){
+
+      alert(validationMsg.needAddr);
+    }
+    //   驗證碼必填 (A-z0-9 Rxp)
+    if (formData.Input_ValidationCode){
+
+      alert(validationMsg.needRecaptcha);
+    }
+
+  }
+  // Post Formdata
+  submitData (formData: string){
+
+    let form = getFormData (formData);
+    this.uploadService
+        .postData(form)
+        .subscribe(
+          data => {
+            if(data){
+              this.completeMessg = !this.completeMessg;
+            } else {
+              alert(`資料上傳不成功。請檢查！`);
+            }
+
+          },err => {
+            console.log(err.status)
+            if(err.status === 400){
+              //dddd
+            } else {
+              console.log(err);
+            }
+        });
   }
 
 }

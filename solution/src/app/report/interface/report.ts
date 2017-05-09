@@ -11,8 +11,9 @@ export interface Zone {
   ZoneName: string;
 }
 
-export class RecaptchaCode {
+export interface RecaptchaCode {
     HashCode: string;
     TimeStamp: string;
     ValidationCode: string;
 }
+

@@ -117,3 +117,47 @@ export let joinUploadedFileName = (files: File[]): string => {
   //console.log(result);
   return result;
 }
+
+export let genCaseToken = (length: number): string => {
+  let text: string = ''; //final result
+  let possibilities = 'ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789';
+  for(let i = 0; i < length; i++ ){
+    text += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
+  }
+  return text;
+}
+
+export let getFormData = (formData: any): string => {
+    let result =
+      `Subj_Item=`+                '01'
+      + `&Subj_Subitem=`+          '01'
+      + `&Case_Token=`+            formData.Case_Token
+      + `&Sugg_Name=`+             formData.Sugg_Name
+      + `&Subj_Zone=`+             formData.Subj_Zone
+      + `&Subj_District=`+         formData.Subj_District
+      + `&Subj_Location=`+         formData.Subj_Location
+      + `&Subj_Content=`+          formData.Subj_Content
+      + `&Subj_IsinDanger=`+       formData.Subj_IsinDanger
+
+      + `&Subj_FileCount=`+        formData.Subj_FileCount
+      + `&Atth_FileNames=`+        formData.Atth_FileNames
+
+      + `&Sugg_ReplyWay=`+         formData.Sugg_ReplyWay
+      + `&Sugg_Email=`+            formData.Sugg_Email
+      + `&Sugg_Telno=`+            formData.Sugg_Telno
+      + `&Sugg_Mobile=`+           formData.Sugg_Mobile
+      + `&Sugg_Addr1=`+            (formData.Sugg_Addr1?formData.Sugg_Addr1:"")
+      + `&Sugg_Addr2=`+            (formData.Sugg_Addr2?formData.Sugg_Addr2:"")
+      + `&Sugg_Addr3=`+            (formData.Sugg_Addr3?formData.Sugg_Addr3:"")
+      + `&Sugg_Addr4=`+            (formData.Sugg_Addr4?formData.Sugg_Addr4:"")
+
+      + `&Sugg_TypeId=`+           formData.Sugg_TypeId
+      + `&Sugg_AgeRng=`+           formData.Sugg_AgeRng
+      + `&Sugg_Sex=`+              formData.Sugg_Sex
+
+      + `&Input_ValidationCode=`+  formData.Input_ValidationCode
+      + `&Hash_Code=`+             formData.Hash_Code
+      + `&Time_Stamp=`+            formData.Time_Stamp;
+
+    return result;
+}

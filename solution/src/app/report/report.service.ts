@@ -25,6 +25,7 @@ export class ReportService {
   distUrl: string;
   zoneUrl: string;
   sexUrl: string;
+  recaptchaUrl: string;
 
   constructor(private http: Http, private baseURL: BaseAPIURL ) {
       this.reportTypesUrl = this.baseURL.remoteUrl + 'items/';
@@ -36,6 +37,7 @@ export class ReportService {
       this.countryUrl = this.baseURL.remoteUrl + 'addrcode/';
       this.distUrl = this.baseURL.remoteUrl + 'addrcode/2?p1=';
       this.zoneUrl = this.baseURL.remoteUrl + 'addrcode/3?p1=';
+      this.recaptchaUrl = this.baseURL.remoteUrl + 'ValidationCode/';
    }
   // report componet
   getTypes() : Observable<CaseType[]> {
@@ -94,6 +96,11 @@ export class ReportService {
 
   getZone(id: string) : Observable<Zone[]> {
     return this.http.get(this.zoneUrl + id)
+               .map((res: Response) => res.json())
+               .catch(this.handleError);
+  }
+  getValidationCode() : Observable<RecaptchaCode> {
+    return this.http.get(this.recaptchaUrl)
                .map((res: Response) => res.json())
                .catch(this.handleError);
   }

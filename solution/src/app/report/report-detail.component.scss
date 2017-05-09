@@ -172,6 +172,7 @@
     max-width: 150px;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 
   }
   @include phone (){
@@ -192,7 +193,7 @@
 pre {
   position: fixed;
   z-index: 999;
-  background: rgba(255,255,255,.6);
+  background: rgba(255,255,255,1);
   left: 0;
   top: 0;
 }
