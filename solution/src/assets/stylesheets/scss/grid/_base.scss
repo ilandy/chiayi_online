@@ -124,6 +124,17 @@ a, a:hover, a:focus {
 .mt-20 {
     margin-top: 20px;
 }
+.width-60 {
+  width: 60%;
+  display: inline-block;
+  font-weight: bolder;
+}
+.width-40 {
+  width: 40%;
+  display: inline-block;
+  font-weight: bolder;
+
+}
 .line-break {
     display: block;
     @include phone{

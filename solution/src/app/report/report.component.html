@@ -44,25 +44,17 @@
       </ul>
       <h2 class="block-sprade bs-green font-bolder">緊急事件</h2>
       <p class="font-bolder mt-0">
-        犯罪事件請撥打 <mark class="mark font-lg">110</mark>
-        <span class="line-break-small-device"></span>
-        火警及救難事件 <mark class="mark font-lg">119</mark>
+        <span class="width-60">犯罪事件請撥打&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mark class="mark font-lg">110</mark></span><span class="line-break-small-device"></span><span class="width-40">火警及救難事件 <mark class="mark font-lg">119</mark></span>
+      </p>
+      <p class="font-bolder mt-0">
+        <span class="line-break-small-device"></span><span class="width-60">全國婦幼保護專線&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mark class="mark font-lg">113</mark></span><span class="line-break-small-device"></span><span class="width-40">反詐騙諮詢專線 <mark class="mark font-lg">165</mark></span>
+      </p>
+      <p class="font-bolder mt-0">
+        <span class="line-break-small-device"></span><span class="width-60">停電搶修暨客服專線 <mark class="mark font-lg">1911</mark></span><span class="line-break-small-device"></span><span class="width-40">生命線&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mark class="mark font-lg">1995</mark></span>
       </p>
       <p class="font-bolder mt-0">
         <span class="line-break-small-device"></span>
-        全國婦幼保護專線 <mark class="mark font-lg">113</mark>
-        <span class="line-break-small-device"></span>
-        反詐騙諮詢專線 <mark class="mark font-lg">165</mark>
-      </p>
-      <p class="font-bolder mt-0">
-        <span class="line-break-small-device"></span>
-        停電搶修暨客服專線 <mark class="mark font-lg">1911</mark>
-        <span class="line-break-small-device"></span>
-        生命線 <mark class="mark font-lg">1995</mark>
-      </p>
-      <p class="font-bolder mt-0">
-        <span class="line-break-small-device"></span>
-        全國消費者服務專線 <mark class="mark font-lg">1950</mark>
+        <span class="font-bolder">全國消費者服務專線 <mark class="mark font-lg">1950</mark></span>
       </p>
       <div class="hot-deco"><i class="fa fa-chevron-right"></i></div>
     </div>
@@ -70,19 +62,19 @@
 
       <ul class="hot-list">
         <li>
-          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
+          <a routerLink="/report/9/2"><img src="./assets/images/icons/icon-1.png" alt=""> <span>違規停車</span></a>
         </li>
         <li>
-          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-2.png" alt=""> <span>違規小廣告</span></a>
+          <a routerLink="/report/5/9"><img src="./assets/images/icons/icon-2.png" alt=""> <span>違規小廣告</span></a>
         </li>
         <li>
-          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-3.png" alt=""> <span>號誌故障</span></a>
+          <a routerLink="/report/7/1"><img src="./assets/images/icons/icon-3.png" alt=""> <span>號誌故障</span></a>
         </li>
         <li>
-          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-4.png" alt=""> <span>路燈不亮</span></a>
+          <a routerLink="/report/0/1"><img src="./assets/images/icons/icon-4.png" alt=""> <span>路燈不亮</span></a>
         </li>
         <li>
-          <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-5.png" alt=""> <span>溝蓋破損</span></a>
+          <a routerLink="/report/4/2"><img src="./assets/images/icons/icon-5.png" alt=""> <span>溝蓋破損</span></a>
         </li>
         <li>
           <a routerLink="/report/1/1"><img src="./assets/images/icons/icon-6.png" alt=""> <span>道路凹陷坑洞</span></a>
@@ -104,8 +96,8 @@
               <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
             </a>
             <ul class="more-subitems active" [ngClass]="{active:item.active}">
-              <li *ngFor="let subItems of item.Subitems">
-                <a routerLink="/report/1/1" >
+              <li *ngFor="let subItems of item.Subitems; let j = index">
+                <a [routerLink]="['/report/',i,j]" >
                   <i class="fa fa-angle-right"></i>&nbsp;&nbsp;<span>{{subItems.SubitemName}}</span>
                 </a>
               </li>
@@ -120,8 +112,8 @@
             <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
           </a>
           <ul class="more-subitems active" [ngClass]="{active:item.active}">
-            <li *ngFor="let subItems of item.Subitems">
-              <a routerLink="~/report/1/1" >
+            <li *ngFor="let subItems of item.Subitems; let j = index">
+              <a [routerLink]="['/report/',i,j]" >
                 <i class="fa fa-angle-right"></i>&nbsp;&nbsp;<span>{{subItems.SubitemName}}</span>
               </a>
             </li>

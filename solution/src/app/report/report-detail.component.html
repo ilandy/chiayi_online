@@ -5,20 +5,20 @@
         <h1>陳情案件</h1>
 
       </header>
-      <form #myForm="ngForm" (change)="formDataValidation(myForm.value)">
+      <form #myForm="ngForm">
         <div class="rpdetail-for">
           <!--<pre>{{ myForm.value | json }}</pre>-->
           <div class="row">
             <div class="col-md-6">
               <div class="field">
                 <label class="field-name">主項目</label>
-                <input class="field-entery" type="text" value="公園綠地行道樹維護" readonly >
+                <input [ngModel]="caseType" name="item" class="field-entery" type="text" value="公園綠地行道樹維護" readonly >
               </div>
             </div>
             <div class="col-md-6">
               <div class="field">
                 <label class="field-name">子項目</label>
-                <input class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
+                <input [ngModel]="subCaseType" name="<subitem></subitem>" class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
               </div>
             </div>
 
@@ -28,7 +28,7 @@
         <div class="rpdetail-fieldset pt-20">
             <div class="row">
               <div class="col-md-12" style="text-align: right">
-                <strong class="font-color-brown"><span class="font-bolder font-color-orange">紅色</span>為必填。</strong>
+                <strong class="font-color-brown"><span class="font-color-red">紅色</span>為必填。</strong>
               </div>
               <br>
             </div>
@@ -41,7 +41,7 @@
                 <input ngModel name="Sugg_Name" type="text" id="name" placeholder="請輸入您的大名">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
 
@@ -59,7 +59,7 @@
                 </ul>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
             </div>
 
@@ -77,7 +77,7 @@
               </div>
               <div class="col-md-6"></div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
               <div class="col-md-9 col-md-offset-2">
                  <div class="select" [ngClass]="{'active':eventSlider}">
@@ -97,7 +97,7 @@
                 <input ngModel name="Subj_Location" type="text" id="addr" placeholder="請輸入地址">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
 
@@ -109,12 +109,12 @@
                 <input ngModel name="Subj_Content" type="text" id="comment" placeholder="請輸陳情內容">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
             </div>
 
-            <div class="row form-group">
-              <div class="col-md-2">
+            <div class="row form-group" *ngIf="showDangerOption">
+              <div class="col-md-2 pb-20">
                 <h4 class="my-0">是否有立即危險</h4>
               </div>
               <div class="col-md-9">
@@ -128,7 +128,7 @@
                 </ul>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
             </div>
 
@@ -145,7 +145,7 @@
               </div>
 
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
 
@@ -206,7 +206,7 @@
                 </div>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
 
             </div>
@@ -220,7 +220,7 @@
                 <input ngModel name="Sugg_Email" type="text" id="email" placeholder="Email">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
 
@@ -232,7 +232,7 @@
                 <input ngModel name="Sugg_Telno" type="text" id="phone" placeholder="電話 Ex:052254321">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
             <div class="row form-group">
@@ -243,7 +243,7 @@
                 <input ngModel name="Sugg_Mobile" type="text" id="phone" placeholder="行動電話 Ex: 0912345678">
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <span class="font-color-red pt-20">＊</span>
               </div>
             </div>
 
@@ -259,7 +259,7 @@
                 </ul>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
             </div>
             <div class="row form-group">
@@ -274,7 +274,7 @@
                 </ul>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                <i class="fa "></i>
               </div>
             </div>
 
@@ -290,7 +290,7 @@
                 </ul>
               </div>
               <div class="col-md-1 hidden-xs">
-                <i class="fa fa-check-circle"></i>
+                  <i class="fa "></i>
               </div>
             </div>
 
@@ -305,7 +305,7 @@
                 <input class="hidden" id="Files" multiple type="file" (change)="filesUpload($event.target)">
               </div>
               <div class="col-md-1 hidden-xs">
-
+                  <i class="fa "></i>
               </div>
               <div class="col-md-10 col-md-offset-2">
                 <ul>
@@ -320,14 +320,23 @@
 
             <div class="row pt-20">
               <div class="col-md-7 pb-20">
-                <img src="{{recaptchaImg}}" alt="驗證碼" title="請輸入驗證碼">
-
-                <input ngModel name="Input_ValidationCode" type="text" placeholder="請輸入驗證碼">
+                <div class="row">
+                  <div class="col-xs-5">
+                    <img class="v-img" src="{{recaptchaImg}}" alt="驗證碼" title="請輸入驗證碼"><br />
+                    <div class="v-hit" (click)="getRecaptcha()">重新取得驗證碼？</div>
+                  </div>
+                  <div class="col-xs-7">
+                    <div class="field">
+                      <label class="field-name">驗證碼</label>
+                      <input ngModel name="Input_ValidationCode" class="field-entery" type="text" placeholder="請輸入驗證碼">
+                    </div>
+                  </div>
+                </div>
                 <input [ngModel]="hashCode" name="Hash_Code" type="hidden">
                 <input [ngModel]="timeStamp" name="Time_Stamp" type="hidden">
               </div>
               <div class="col-md-5 text-right">
-                  <button class="btn btn-green" (click)="submitData(myForm.value)">填寫完成</button>
+                  <button class="btn btn-green" (click)="submitData(myForm);">填寫完成</button>
               </div>
             </div>
 

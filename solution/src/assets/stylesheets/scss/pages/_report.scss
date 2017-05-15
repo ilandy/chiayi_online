@@ -5,7 +5,7 @@
 //* ==== section topic ==== *//
 
 .topic-outer {
-    
+
     width: 95%;
     @include pc {
         width: 970px;
@@ -17,7 +17,7 @@
 }
 
 .topic-inner {
-    padding: 3em 1.3em 2.5em 1.3em; 
+    padding: 3em 1.3em 2.5em 1.3em;
     @include pc {
         padding: 7.5em 3em 3em;
     }
@@ -36,7 +36,7 @@
         line-height: 1.8em;
         color: $dk-green;
         background: $bgC;
-        @include pad { 
+        @include pad {
             width: 26%;
             margin-left: 37%;
             left: 0;
@@ -47,7 +47,7 @@
             left: 0;
             background: #e3ecdb;
         }
-    
+
 }
 .topic-layout-left {
         @include pc {
@@ -72,16 +72,16 @@
         font-size: 1.15em;
         line-height: 1.8em;
     }
-    @include pad { 
+    @include pad {
         float: right;
         width: 55%;
         padding-left: 5%;
     }
-        
+
     .topic-info-top {
         padding-bottom: 28px
     }
-    
+
 }
 
 
@@ -93,8 +93,8 @@
     @include pc {
         margin: 40px 0 180px 0;
     }
-    
-    
+
+
     &:before {
         content: "";
         position: absolute;
@@ -110,7 +110,7 @@
             top: 50%;
             height: 80vh;
             transform: skewY(-15.5deg);
-            
+
         }
     }
     .hot-contain {
@@ -154,17 +154,17 @@
         li {
             position: relative;
             font-weight: 500;
-            
+
             &:before {
                 content: "-";
                 display: inline-block;
                 margin: auto .5em auto -1.2em;
 
             }
-        }       
+        }
     }
     .hot-layout-right {
-        
+
         width: 100%;
         background: $md-green;
         @include pc {
@@ -183,7 +183,7 @@
                 height: 100%;
                 width: 60px;
                 background: $md-green;
-                
+
             }
             &:after {
                 content: "";
@@ -193,13 +193,13 @@
                 bottom: 0;
                 width: 550px;
                 height: 100%;
-                box-shadow: 0 9px 12px rgba(0,0,0, .25); 
+                box-shadow: 0 9px 12px rgba(0,0,0, .25);
             }
         }
-        
 
-        
-    
+
+
+
     }
     .hot-list {
         padding: 40px 1em;
@@ -247,7 +247,7 @@
         height: 60px;
         width: 60px;
         padding-right: 16px;
-        border-radius: 50%; 
+        border-radius: 50%;
         color: white;
         text-align: right;
         line-height: 60px;
@@ -269,13 +269,13 @@
 .more {
     padding-top: 4em;
     .more-contain {
-        margin: 0 auto; 
+        margin: 0 auto;
         width: 90%;
         margin-bottom: 180px;
         @include pc {
             width: 970px;
         }
-        
+
 
     }
     .more-title {
@@ -284,7 +284,7 @@
         border-top: 5px solid $dk-green;
         font-size: 3em;
         font-weight: 400;
-        color: $dk-green; 
+        color: $dk-green;
     }
     .more-list {
         @include pc {
@@ -295,7 +295,7 @@
                 margin-right: 0;
             }
         }
-        
+
     }
     .more-item {
         display: inline-block;
@@ -303,7 +303,7 @@
         width: 100%;
         color: white;
         font-size: 1.125em;
-        
+
         &:nth-child(3n) {
             margin-right: 0;
         }
@@ -317,12 +317,24 @@
             background: #19A6A3;
             box-shadow: 0 3px 10px -8px $dk-green;
             transition: background .5s, box-shadow .5s;
+            & > span,
+            & > i {
+              display: inline-block;
+              vertical-align: top;
+            }
+            & > span:last-child {
+
+                width: 80%;
+            }
+            & > i {
+              margin-top: 15px;
+            }
             &.active {
                 background: #1FC9C5;
                 box-shadow: 0 8px 10px -5px $dk-green;
             }
         }
-        
+
         .more-subitems {
             display: none;
             width: 100%;
@@ -337,6 +349,13 @@
                 &:hover {
                     color: #ffe600;
                 }
+                & > i, & > span {
+                  display: inline-block;
+                  vertical-align: top;
+                }
+                & > span:last-child {
+                  width: 90%;
+                }
             }
             li {
                 padding: 10px 0;
@@ -345,6 +364,6 @@
                 display: block;
             }
         }
-        
+
     }
 }

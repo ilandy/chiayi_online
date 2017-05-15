@@ -1,11 +1,15 @@
 
+
 import { Response } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ReportService } from './report.service';
 import { UploadService } from './upload.service';
 import { Subscription } from "rxjs";
 
+
+import { CaseType, SubCaseType } from './../shared/case';
 import { Dist, RecaptchaCode }     from './interface/report';
 import { ReportData } from './interface/reportData';
 import { RoleClass }      from './interface/role';
@@ -20,10 +24,9 @@ import {
   checkExtName,
   checkFilenameIsExist,
   joinUploadedFileName,
-  genCaseToken,
-  getFormData
-} from './modules/fileChecker'
-
+  genCaseToken
+} from './modules/fileChecker';
+import { getFormData, formDataValidation } from './modules/Validation';
 
 @Component({
   selector: 'app-report-detail',
@@ -34,6 +37,11 @@ import {
 export class ReportDetailComponent implements OnInit {
   //CaseToken
   caseToken: string;
+  //案件類別
+  case: CaseType;
+  caseType: string;
+  subCaseType: string;
+  caseData: any = {};
 
   // 角色相關的變數
   roles: RoleClass[];
@@ -73,6 +81,8 @@ export class ReportDetailComponent implements OnInit {
   ctcZoneDef: string;
   ctcZoneVal: string;
   ctcZoneSlider: boolean;
+  //是否有立即危險
+  showDangerOption: boolean;
 
   // 檔案
   uploadFiles= [];
@@ -87,16 +97,20 @@ export class ReportDetailComponent implements OnInit {
 
   // 尚未分類
   formValidationComplate: boolean;
+  sub: any;
 
 
   error: any;
   completeMessg: boolean;
   dangerDef: string;
 
+
+
   constructor(
     private titleService: Title,
     private reportService: ReportService,
     private uploadService: UploadService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.formValidationComplate = false;
     this.caseToken = genCaseToken(12);
@@ -111,9 +125,10 @@ export class ReportDetailComponent implements OnInit {
     this.eventTownshipDef = '全部';
     this.eventSlider = false;
 
-    this.contactDef = '1';
+    this.contactDef = '2';
     this.completeMessg = false;
 
+    this.showDangerOption = false;
     this.filesCount = 0;
     this.filesName = "";
     this.dangerDef = "N";
@@ -129,6 +144,10 @@ export class ReportDetailComponent implements OnInit {
     this.getContact();
     this.getRecaptcha();
     this.getCtcCountry();
+
+    this.getCaseType()
+
+
   }
 
   //==== 表單以外的功能 ====//
@@ -140,6 +159,42 @@ export class ReportDetailComponent implements OnInit {
     return true;
   }
 
+  //==== 取得 Router ====//
+  getCaseType(){
+    this.sub = this.activatedRoute.params.subscribe(params => {
+        // console.log(params['id'],params['subId'])
+
+        if(params['id'] && params['subId']){
+          this.reportService
+            .getTypes()
+            .subscribe(
+              casetype => {
+                this.case = casetype[params['id']];
+                this.caseType = this.case.ItemName;
+                this.subCaseType = this.case.Subitems[params['subId']].SubitemName;
+                this.caseData = {
+                  Id: this.case.Item,
+                  SubId: this.case.Subitems[params['subId']].Subitem
+                }
+
+                //01/01, 01/02, 02/02 及 0802
+                switch (this.caseData.Id){
+                  case '01':
+                    this.showDangerOption = this.caseData.SubId == '02' || '01' ? true: false;
+                  break;
+                  case '02':
+                  case '08':
+                    this.showDangerOption = this.caseData.SubId == '02' ? true: false;
+                  break;
+                  default:
+                    this.showDangerOption = false;
+                  break;
+
+                }
+          });
+        }
+      });
+  }
   //==== 取得驗證碼 ====//
   getRecaptcha() {
     this.reportService
@@ -338,54 +393,11 @@ export class ReportDetailComponent implements OnInit {
     this.filesCount = this.uploadFiles.length;
     this.filesName = joinUploadedFileName(this.uploadFiles)
   }
-  formDataValidation (formData: ReportData){
-    let validationMsg = {
-      needName :         '請輸入姓名',
-      needLocation :     '請輸入事件地址',
-      needContnt :       '請輸入陳情案件內容',
-      needEmail :        '請輸入Email',
-      needPhone :        '您選擇的回覆方式為「電話回覆」，電話或行動電話請擇一輸入',
-      needAddr :         '您選擇的回覆方式為「書面回覆」，請輸入書面寄送地址',
-      needRecaptcha :    '請輸入驗證碼',
-    };
 
-    //   姓名必填
-    if (!formData.Sugg_Name){
-      alert(validationMsg.needName);
-    }
-
-    //   案件地址必填
-    if (!formData.Subj_Location){
-      alert(validationMsg.needLocation);
-    }
-    //   陳請內容必填
-    if (!formData.Subj_Content){
-      alert(validationMsg.needContnt);
-    }
-    //   Email 必填 (格式為 Email)
-    if (!formData.Sugg_Email){
-      alert(validationMsg.needEmail);
-    }
-    //   回覆方式為 2 時 Mobile or Telno 則一必填 (格式為純數字)
-    if (formData.Sugg_ReplyWay === '2' && (!formData.Sugg_Mobile||!formData.Sugg_Telno)){
-      alert(validationMsg.needPhone);
-    }
-    //   回覆方式為 3 時 Addr1,2,4 必填
-    if (formData.Sugg_ReplyWay === '3' && (!formData.Sugg_Addr1||!formData.Sugg_Addr2||!formData.Sugg_Addr4)){
-
-      alert(validationMsg.needAddr);
-    }
-    //   驗證碼必填 (A-z0-9 Rxp)
-    if (formData.Input_ValidationCode){
-
-      alert(validationMsg.needRecaptcha);
-    }
-
-  }
   // Post Formdata
-  submitData (formData: string){
-
-    let form = getFormData (formData);
+  submitData (formData: any){
+    console.log(this.caseData)
+    let form = getFormData (formData.value, this.caseData);
     this.uploadService
         .postData(form)
         .subscribe(
