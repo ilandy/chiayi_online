@@ -12,8 +12,8 @@ export class FaqService {
 
   constructor(private http: Http, private baseUrl:BaseAPIURL) {
     this.categoryUrl = this.baseUrl.remoteUrl + 'Category/';
-    // this.faqUrl = this.baseUrl.remoteUrl + 'FaqQry/';
-    this.faqUrl = this.baseUrl.localUrl + 'data-faq.json';
+    this.faqUrl = this.baseUrl.remoteUrl + 'FaqQry/';
+    // this.faqUrl = this.baseUrl.localUrl + 'data-faq.json';
   }
 
   getCategories() : Observable<Category[]> {

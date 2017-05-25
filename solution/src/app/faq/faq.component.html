@@ -40,24 +40,6 @@
           </div>
         </div>
 
-
-        <!--<ul class="page">
-            <li class="page-first" [ngClass]="{'page-alpha':page<=1}">
-              <a *ngIf="page>1" [routerLink]="['/faq', 1 ]">
-                <i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i>
-              </a>
-            </li>
-            <li class="page-prev" [ngClass]="{'page-alpha':page<=1}">
-              <a *ngIf="page>0" [routerLink]="['/faq', page - 1]">
-                <i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i>
-              </a>
-            </li>
-            <li><a [routerLink]="['/faq', page ]">{{ page }}</a></li>
-            <li class="page-next" [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', page + 1]"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></a></li>
-            <li class="page-final" [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', totalPage]"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></a></li>
-          </ul>-->
-
-
         <div class="row">
           <ul class="faq-paging">
             <li class="hidden-xs" [ngClass]="{'page-alpha':page<=1}"><a [routerLink]="['/faq', 1 ]"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></a></li>
