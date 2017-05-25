@@ -287,8 +287,8 @@ export class ReportDetailComponent implements OnInit {
           data => {
 
             this.ctcCountrys = data;
-            this.ctcCountryVal = this.ctcCountrys[0].CountyName;
-            this.ctcCountryDef = this.ctcCountrys[0].CountyCode;
+            this.ctcCountryVal = '嘉義市';
+            this.ctcCountryDef = '1002000000';
             this.getCtcDist();
           },
           error => this.error = error);
