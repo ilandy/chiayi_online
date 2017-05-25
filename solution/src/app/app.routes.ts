@@ -35,15 +35,11 @@ export const appRoutes: Routes = [
     component: ProcessComponent
   },
   {
+    path: 'faq/:page',
+    component: FaqComponent
+  },
+  {
     path: 'faq',
-    component: FaqComponent
-  },
-  {
-    path: 'faq/:page',
-    component: FaqComponent
-  },
-  {
-    path: 'faq/:page',
     component: FaqComponent
   },
   {

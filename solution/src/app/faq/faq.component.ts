@@ -24,8 +24,8 @@ export class FaqComponent implements OnInit {
   reply: Reply;
 
   page: number;
-  pageSize = 15;
-  totalPage = 0;
+  pageSize: number;
+  totalPage: number;
   sub: any;
 
   constructor(private titleService: Title, private faqService: FaqService, private activatedRoute: ActivatedRoute) {
@@ -34,6 +34,8 @@ export class FaqComponent implements OnInit {
       this.showDetail = false;
       this.keywords = '';
       this.kind = '';
+      this.pageSize = 15;
+      this.totalPage = 0;
 
   }
 
@@ -48,6 +50,7 @@ export class FaqComponent implements OnInit {
     this.selectSwitch = false;
     this.selectValue = tag.innerHTML;
     this.kind = kindNo;
+    this.getFaqList();
 
   }
 
@@ -91,11 +94,19 @@ export class FaqComponent implements OnInit {
     this.getFaqList();
 
     this.sub = this.activatedRoute.params.subscribe( params => {
-
-      if(params['page']) {
-          this.page = parseInt(params['page']);
           window.scrollTo(0, 0);
-        }
+          var queryPage = parseInt(params['page'])-1;
+
+          if (queryPage > this.totalPage){
+            this.page = this.totalPage;
+
+          } else if (queryPage < 1){
+            this.page = 1;
+
+          } else {
+            this.page = params['page']?queryPage:1;
+
+          }
       }
     );
   }
