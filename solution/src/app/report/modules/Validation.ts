@@ -82,7 +82,7 @@ export let getFormData = (formData: ReportData, caseData: any): string => {
       + `&Subj_District=`+         formData.Subj_District
       + `&Subj_Location=`+         formData.Subj_Location
       + `&Subj_Content=`+          formData.Subj_Content
-      + `&Subj_IsinDanger=`+       formData.Subj_IsinDanger
+      + `&Subj_IsinDanger=`+       (formData.Subj_IsinDanger?formData.Subj_IsinDanger:'N')
 
       + `&Subj_FileCount=`+        formData.Subj_FileCount
       + `&Atth_FileNames=`+        formData.Atth_FileNames

@@ -125,7 +125,7 @@ export class ReportDetailComponent implements OnInit {
     this.eventTownshipDef = '全部';
     this.eventSlider = false;
 
-    this.contactDef = '2';
+    this.contactDef = '1';
     this.completeMessg = false;
 
     this.showDangerOption = false;
@@ -191,7 +191,8 @@ export class ReportDetailComponent implements OnInit {
                   break;
 
                 }
-          });
+          },
+          error => this.error = error);
         }
       });
   }
