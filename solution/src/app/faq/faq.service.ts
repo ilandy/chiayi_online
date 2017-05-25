@@ -12,7 +12,8 @@ export class FaqService {
 
   constructor(private http: Http, private baseUrl:BaseAPIURL) {
     this.categoryUrl = this.baseUrl.remoteUrl + 'Category/';
-    this.faqUrl = this.baseUrl.remoteUrl + 'FaqQry/';
+    // this.faqUrl = this.baseUrl.remoteUrl + 'FaqQry/';
+    this.faqUrl = this.baseUrl.localUrl + 'data-faq.json';
   }
 
   getCategories() : Observable<Category[]> {
@@ -31,7 +32,7 @@ export class FaqService {
     var key = organNo + '-' + seqNo;
     var flag = sessionStorage.getItem(key) ? 'R' : 'N';
     sessionStorage.setItem(key, new Date().toString());
-    return this.http.get(this.faqUrl + organNo + '?seqNo=' + seqNo + '&updFlag=R')
+    return this.http.get(this.faqUrl + organNo + '?seqNo=' + seqNo + '&updFlag=' + flag)
                .map(this.extractData)
                .catch(this.handleError);
   }

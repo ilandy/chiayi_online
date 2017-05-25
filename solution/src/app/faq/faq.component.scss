@@ -2,16 +2,16 @@
 @import "../../assets/stylesheets/scss/grid/_grid.scss";
 .faq {
     .faq-list {
-        
+
     }
     .faq-item {
         padding-top: 1em;
         box-shadow: 0 .5px 0 $md-green;
-        
-        
+
+
         p,a {
             font-size: 1.125em;
-            font-weight: 500;            
+            font-weight: 500;
         }
         a {
             color: $dk-green;
@@ -32,12 +32,13 @@
         li {
             display: inline-block;
             padding: 0 .85em;
-            color: $dk-green;
-            cursor: pointer;
+            a {
+              color: $dk-green;
+            }
         }
         .fa {
             font-size: 1.5em;
-            margin-top: -10px; 
+            margin-top: -10px;
         }
         li:first-child {
             border-right: .5px solid $dk-green;
@@ -46,7 +47,7 @@
         li:nth-last-child(1) {
             border-left: .5px solid $dk-green;
             padding-left: 1em;
-            
+
         }
         .active {
             position: relative;
@@ -63,5 +64,9 @@
             }
 
         }
+    }
+    .page-alpha {
+      opacity: 0;
+      cursor: default;
     }
 }

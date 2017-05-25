@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="faq-list">
-        <div class="row faq-item" *ngFor="let faq of faqList">
+        <div class="row faq-item" *ngFor="let faq of faqList | slice: (page - 1) * pageSize: (page * pageSize - 1)">
           <div class="col-md-10">
             <small>問題內容</small>
             <p><a href="javascript:void(0)" href="javascript:void(0)" (click)="getReply(faq.OrganNo, faq.SeqNo)">{{faq.CaseContent}}</a></p>
@@ -39,17 +39,36 @@
             <p>{{faq.OrganName}}</p>
           </div>
         </div>
+
+
+        <!--<ul class="page">
+            <li class="page-first" [ngClass]="{'page-alpha':page<=1}">
+              <a *ngIf="page>1" [routerLink]="['/faq', 1 ]">
+                <i class="fa fa-angle-double-left fa-lg" aria-hidden="true" ></i>
+              </a>
+            </li>
+            <li class="page-prev" [ngClass]="{'page-alpha':page<=1}">
+              <a *ngIf="page>0" [routerLink]="['/faq', page - 1]">
+                <i class="fa fa-angle-left fa-lg" aria-hidden="true" ></i>
+              </a>
+            </li>
+            <li><a [routerLink]="['/faq', page ]">{{ page }}</a></li>
+            <li class="page-next" [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', page + 1]"><i class="fa fa-angle-right fa-lg" aria-hidden="true" ></i></a></li>
+            <li class="page-final" [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', totalPage]"><i class="fa fa-angle-double-right fa-lg" aria-hidden="true" ></i></a></li>
+          </ul>-->
+
+
         <div class="row">
           <ul class="faq-paging">
-            <li class="hidden-xs"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></li>
-            <li>2</li>
-            <li class="active">3</li>
-            <li>4</li>
-            <li class="hidden-xs"><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></li>
+            <li class="hidden-xs" [ngClass]="{'page-alpha':page<=1}"><a [routerLink]="['/faq', 1 ]"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></a></li>
+            <li [ngClass]="{'page-alpha':page<=1}"><a [routerLink]="['/faq', page-1 ]">{{page-1}}</a></li>
+            <li class="active">{{page}}</li>
+            <li [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', page+1 ]">{{page+1}}</a></li>
+            <li class="hidden-xs" [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', totalPage ]"><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></a></li>
           </ul>
           <ul class="faq-paging hidden-sm hidden-md hidden-lg mt-20">
-            <li ><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></li>
-            <li ><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></li>
+            <li [ngClass]="{'page-alpha':page<=1}"><a [routerLink]="['/faq', 1 ]"><i class="fa fa-angle-left"></i>&nbsp;&nbsp;&nbsp;<span>第一頁</span></a></li>
+            <li [ngClass]="{'page-alpha':page>=totalPage}"><a [routerLink]="['/faq', totalPage ]"><span>最後頁</span>&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right"></i></a></li>
           </ul>
         </div>
       </div>

@@ -43,8 +43,8 @@ export const appRoutes: Routes = [
     component: FaqComponent
   },
   {
-    path: 'faqDetail/:id',
-    component: FaqDetailComponent
+    path: 'faq/:page',
+    component: FaqComponent
   },
   {
     path: 'term/:lable',
