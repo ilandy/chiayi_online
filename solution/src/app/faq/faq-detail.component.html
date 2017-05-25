@@ -12,23 +12,24 @@
             </article>
             <div class="query-detail-item">
               <small>回覆單位</small>
-              <p>嘉義市政府資訊中心</p>
+              <p>{{reply.ReplyOrganName}}</p>
             </div>
-            <div class="query-detail-item">
-              <small>科室</small>
-              <p>系統發展科</p>
-            </div>
+
             <div class="query-detail-item">
               <small>修改日期</small>
-              <p>2017-02-18</p>
+              <p>{{reply.ReviseDate}}</p>
             </div>
             <div class="query-detail-item">
               <small>張貼日期</small>
-              <p>2017-02-18</p>
+              <p>{{reply.PostDate}}</p>
             </div>
             <div class="query-detail-item">
               <small>問題類別</small>
-              <p>社會</p>
+              <p>{{reply.IssueKind}}</p>
+            </div>
+            <div class="query-detail-item">
+              <small>人氣指數</small>
+              <p>{{reply.ViewCount}}</p>
             </div>
 
           </div>
@@ -36,13 +37,13 @@
             <article class="info">
               <h2 class="info-title">問題主旨</h2>
               <p class="info-content">
-                政府未能廣設卸貨停車區，造成不便？
+                {{reply.IssueContent}}
               </p>
             </article>
             <article class="info">
               <h2 class="info-title">問題答覆</h2>
-              <p class="info-content">
-                本處已於本市重要道路、商業區等地段設置「貨車裝卸貨專用區」，以提供小型貨車及小型客貨兩用車臨時卸貨使用，民眾亦可視需求向本處提出建議地點，本處將綜合考量現地條件檢討設置「貨車裝卸貨專用區」的可行性。
+              <p class="info-content word-preline">
+                {{reply.ReplyContent}}
               </p>
             </article>
             <br>

@@ -6,7 +6,6 @@ export class Reply {
   ReplyOrganName: string;
   ReviseDate: string;
   ViewCount: string;
-  Name: string;
 }
 
 export class Faq {
