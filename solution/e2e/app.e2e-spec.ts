@@ -1,14 +1,14 @@
-import { SolutionPage } from './app.po';
+import { Solustion1Page } from './app.po';
 
-describe('solution App', () => {
-  let page: SolutionPage;
+describe('solustion1 App', () => {
+  let page: Solustion1Page;
 
   beforeEach(() => {
-    page = new SolutionPage();
+    page = new Solustion1Page();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!!');
   });
 });

@@ -1,3 +1,6 @@
+@import "../../assets/stylesheets/scss/grid/_variable.scss";
+@import "../../assets/stylesheets/scss/grid/_grid.scss";
+
 .query-detail-item {
   margin-top: 1em;
   p {
@@ -8,4 +11,11 @@
 }
 .info-content {
   font-size: 1.25em;
+}
+
+.info {
+  border-bottom: 1px solid $dk-green;
+  &:nth-last-child(1) {
+    border-bottom: none;
+  }
 }

@@ -1,0 +1,34 @@
+[
+  {
+    "country_code": "01",
+    "country_name": "高雄",
+    "dists": [
+      {
+        "dist_code": "0101",
+        "dist_name": "楠梓區",
+        "townships": [
+          {
+            "township_code": "010101",
+            "township_name": "加昌里"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "country_code": "02",
+    "country_name": "台南",
+    "dists": [
+      {
+        "dist_code": "0201",
+        "dist_name": "永康區",
+        "townships": [
+          {
+            "township_code": "020101",
+            "township_name": "大仁里"
+          }
+        ]
+      }
+    ]
+  }
+]

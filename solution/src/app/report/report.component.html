@@ -90,10 +90,10 @@
     <h2 class="more-title">更多申報項目</h2>
     <div class="clear-fix">
       <ul class="more-list hidden-xs hidden-sm" *ngFor="let list of [0,1,2]" >
-        <template ngFor let-item [ngForOf]="caseTypes" let-i="index">
+        <ng-template ngFor let-item [ngForOf]="caseTypes" let-i="index">
           <li class="more-item" *ngIf="i%3 == list">
             <a href="javascript:void(0)" (click)="item.active=!item.active" [ngClass]="{active:item.active}">
-              <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
+              <span>{{item.item}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
             </a>
             <ul class="more-subitems active" [ngClass]="{active:item.active}">
               <li *ngFor="let subItems of item.Subitems; let j = index">
@@ -103,13 +103,13 @@
               </li>
             </ul>
           </li>
-        </template>
+        </ng-template>
       </ul>
     </div>
     <ul class="more-list visible-xs visible-sm">
         <li class="more-item" *ngFor="let item of caseTypes; let i = index">
           <a href="javascript:void(0)" (click)="item.active=!item.active" [ngClass]="{active:item.active}">
-            <span>{{i+1}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
+            <span>{{item.Item}}</span> <i class="fa fa-angle-double-right"></i> <span>{{item.ItemName}}</span>
           </a>
           <ul class="more-subitems active" [ngClass]="{active:item.active}">
             <li *ngFor="let subItems of item.Subitems; let j = index">
@@ -122,3 +122,6 @@
     </ul>
   </div>
 </section>
+<div class="fack-loading">
+  <div class="content"></div>
+</div>

@@ -1,0 +1,14 @@
+.line-box-tiny {
+  float: none;
+  margin: 0 auto 10em;
+  & > div {
+    padding-top: 1em;
+    padding-bottom: 5em;
+  }
+  .btn {
+    position: absolute;
+    bottom: -35px;
+    right: 15%;
+    width: 70%;
+  }
+}

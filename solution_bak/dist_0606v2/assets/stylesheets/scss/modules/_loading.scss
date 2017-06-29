@@ -1,0 +1,76 @@
+.pop {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    .pop-content {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        max-width: 320px;
+        transform: translate(-50%)
+    }
+    &.active {
+        display: block
+    }
+    &.pop-inner {
+        position: relative;
+        width: 100%;
+        height: 400px
+    }
+}
+
+@keyframes rotate {
+    0% {
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+.mk-spinner-doublecircle:after,
+.mk-spinner-doublecircle {
+    border: 3px solid;
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    left: 50%;
+    margin-left: -25px;
+    z-index: 1
+}
+.mk-spinner-doublecircle {
+    border-color: #80CBC4 rgba(255, 255, 255, 0.7) #80CBC4 rgba(255, 255, 255, 0.7);
+    background: transparent;
+    -moz-animation: rotate 2s linear infinite;
+    -webkit-animation: rotate 2s linear infinite;
+    animation: rotate 2s linear infinite
+}
+.mk-spinner-doublecircle:after {
+    border-color: transparent #345 transparent #345;
+    -moz-animation: rotate 6s linear infinite;
+    -webkit-animation: rotate 6s linear infinite;
+    animation: rotate 6s linear infinite
+}
+.loading-words {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 35px;
+    margin-left: -30px;
+    color: #345
+}

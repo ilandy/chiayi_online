@@ -1,0 +1,37 @@
+<section class="rpdetail main-wrap">
+  <div class="line-box line-box-tiny mx-auto" *ngIf="true">
+    <div>
+      <header class="line-box-title deco-triangle">
+        <h1>案件確認完成</h1>
+        <p>Success</p>
+      </header>
+      <article class="info">
+        <div class="info-content">
+          <h2 class="check-title navy">親愛的網友，您好！</h2>
+          <div *ngIf="!queryExist">
+            <h2>感謝您熱情使用，您輸入的網址不正確。</h2>
+          </div>
+          <div *ngIf="queryExist">
+            <div class="check-info navy" *ngIf="key === 'caseNo'">
+              <p>您已經確認過並且在辦理中<br>您的申報案號是</p>
+              <h1>{{val}}</h1>
+            </div>
+            <div class="check-info navy" *ngIf="key === 'firstConfirm'">
+              已經確認成功！<br>系統後續將自動寄出案件編號至您的申報所填寫的信箱並立即進行分案處理。
+            </div>
+            <div class="check-info navy" *ngIf="key === 'dateTime'">
+              <p>已經完成確認，第一次確認時間如下： </p>
+              <h2>{{getdate()}}</h2>
+            </div>
+            <div class="check-info navy" *ngIf="key === 'error'">
+              Sorry，確認案件失敗！<br>
+              {{val}}
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <a type="button" class="btn btn-green" routerLink="/">回到首頁</a>
+    </div>
+  </div>
+</section>

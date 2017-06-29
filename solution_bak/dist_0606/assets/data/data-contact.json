@@ -1,0 +1,12 @@
+[
+  {
+      "Id": "1",
+      "Name": "電話回覆",
+      "Options": "phone"
+  },
+  {
+      "Id": "2",
+      "Name": "書面回覆",
+      "Options": "address"
+  }
+]

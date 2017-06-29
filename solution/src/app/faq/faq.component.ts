@@ -15,8 +15,8 @@ export class FaqComponent implements OnInit {
 
   categories: Category[];
   error: any;
-  selectValue:string;
-  selectSwitch:boolean;
+  selectValue: string;
+  selectSwitch: boolean;
   showDetail: boolean;
   faqList: Faq[];
   keywords: string;
@@ -45,6 +45,11 @@ export class FaqComponent implements OnInit {
   }
 
 
+  getSelectText(target: HTMLSelectElement){
+    this.selectValue = target.options[target.selectedIndex].innerText;
+    this.kind = target.value;
+    this.getFaqList();
+  }
 
   getSelectItem (tag: HTMLElement, kindNo='') {
     this.selectSwitch = false;

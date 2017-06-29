@@ -16,10 +16,12 @@ import { FaqDetailComponent } from './faq/faq-detail.component';
 import { TermComponent } from './term/term.component';
 import { ProcessComponent } from './process/process.component';
 import { QueryDetailComponent } from './query/query-detail.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 
 @NgModule({
   declarations: [
+    AppComponent,
     AppComponent,
     ReportComponent,
     QueryComponent,
@@ -28,15 +30,15 @@ import { QueryDetailComponent } from './query/query-detail.component';
     ProcessComponent,
     ReportDetailComponent,
     QueryDetailComponent,
-    FaqDetailComponent
+    FaqDetailComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
-    // ReactiveFormsModule,
-
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     Title,

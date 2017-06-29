@@ -1,0 +1,83 @@
+.btn {
+    font-size: 1em;
+    @include phone (){
+      font-size: .85em;
+    }
+    border: none;
+    border: medium none;
+    border-spacing: 0;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    font-weight: normal;
+    background: none repeat scroll 0 0 transparent;
+    &:focus {
+        outline: none;
+    }
+
+    &.btn-green {
+        position: relative;
+        width: 100%;
+        padding: 7px 0;
+        font-size: 1.5em;
+        box-sizing: border-box;
+        border: $dk-green 4px solid;
+        letter-spacing: 2px;
+        background: $dk-green;
+        color: $white;
+        transition: background .5s ,border .5s;
+        @include pc {
+            padding: 10px 0;
+            font-size: 1.75em;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            bottom: -4px;
+            width: 0;
+            height: 0;
+            border-width: 55px 0 0 50px;
+            border-color: transparent transparent transparent $lt-green;
+            border-style: solid;
+            transition: opacify .3s, left .4s, bottom .4s
+        }
+        &:hover, &:focus {
+            background: $bgC;
+            color: $dk-green;
+            border: $dk-green 4px solid;
+            &:after {
+                opacity: .4;
+                left: -10px;
+                bottom: -10px;
+
+            }
+
+        }
+    }
+}
+@keyframes btn-leftToRight {
+    0% {
+        left: 50%;
+        opacity: 1;
+        color: $white;
+        }
+    33% {
+        left: 75%;
+        opacity: 0;
+        color: $white;
+    }
+    66% {
+        left: 25%;
+        opacity: 0;
+        color: $dk-green;
+
+    }
+    100% {
+        left: 50%;
+        opacity: 1;
+    }
+}
