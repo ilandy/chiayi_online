@@ -37,7 +37,7 @@
         <div class="row faq-item" *ngFor="let faq of faqList | slice: (page - 1) * pageSize: (page * pageSize - 1)">
           <div class="col-md-10">
             <small>問題內容</small>
-            <p><a href="javascript:void(0)" href="javascript:void(0)" (click)="getReply(faq.OrganNo, faq.SeqNo)">{{faq.CaseContent}}</a></p>
+            <p><a href="javascript:void(0)" href="javascript:void(0)" (click)="getReply(faq.OrganNo, faq.SeqNo)">{{faq.SerialNo + faq.CaseContent}}</a></p>
           </div>
           <div class="col-md-2">
             <small>業務單位</small>

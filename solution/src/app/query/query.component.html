@@ -13,22 +13,17 @@
           <label class="field-name">電子信箱</label>
           <input class="field-entery" type="text" placeholder="example@example.com" formControlName="Mail">
           <span class="field-message">{{check('Mail')}}</span>
-
         </div>
         <div class="field">
           <label class="field-name">陳情人</label>
           <input class="field-entery" type="text" placeholder="請輸入姓名" formControlName="Owner">
           <span class="field-message">{{check('Owner')}}</span>
-          <span class="field-message" *ngIf="queryErr">{{queryErr}}</span>
-
+          <span class="field-message" *ngIf="queryErr !== ''">{{queryErr}}</span>
         </div>
-
         <div class="row">
           <div class="col-xs-7 col-sm-5">
-            <img class="v-img" src="{{recaptchaImg}}" alt="驗證碼" title="請輸入驗證碼"><br />
+            <img class="v-img" *ngIf="recaptcha" src="{{recaptchaImg}}" alt="驗證碼" title="請輸入驗證碼"><br />
             <div class="v-hit" (click)="getRecaptcha()">重新取得驗證碼？</div>
-
-
           </div>
           <div class="col-xs-5 col-sm-7">
             <div class="field">
@@ -39,12 +34,6 @@
             </div>
           </div>
         </div>
-        <!--<div class="field">
-          <code>
-          <pre>{{queryForm.value | json}}<br>{{queryForm.status | json}}
-          </pre>
-          </code>
-        </div>-->
         <button type="button" class="btn btn-green" (click)="getDetail()">查詢陳情案件</button>
       </form>
     </div>

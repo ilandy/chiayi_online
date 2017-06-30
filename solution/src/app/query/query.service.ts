@@ -9,8 +9,10 @@ import { BaseAPIURL } from './../shared/global.service';
 export class QueryService {
 
   queryUrl: string;
+  replyFileUrl: string;
   constructor(private http: Http, private baseUrl: BaseAPIURL) {
     this.queryUrl = this.baseUrl.remoteUrl + 'case/';
+    this.replyFileUrl = this.baseUrl.remoteUrl + 'attachfile/';
   }
 
   getQuery(formData, Recapcha:RecaptchaCode) : Observable<any> {
@@ -24,14 +26,14 @@ export class QueryService {
                .catch(this.handleError);
   }
 
+
   private extractData(res: Response) {
     let body = res.json();
     return body || { };
   }
 
   private handleError (error: any) {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    let errMsg =  error.status;
     return Observable.throw(errMsg);
   }
 

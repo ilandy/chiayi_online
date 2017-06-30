@@ -74,7 +74,8 @@ export class FaqComponent implements OnInit {
           faqs => {
              this.faqList = faqs;
               this.totalPage = Math.floor(faqs.length / this.pageSize) + ((faqs.length % this.pageSize === 0) ? 0 : 1)
-          },
+              this.getPage();
+        },
           error => this.error = error);
   }
 
@@ -91,29 +92,32 @@ export class FaqComponent implements OnInit {
     this.reply = null;
   }
 
+  getPage (){
+    if (this.faqList) {
+      this.sub = this.activatedRoute.params.subscribe( params => {
+            window.scrollTo(0, 0);
+            var queryPage = parseInt(params['page']);
 
+            if (queryPage > this.totalPage){
+              this.page = this.totalPage;
+
+            } else if (queryPage < 1){
+              this.page = queryPage+1;
+
+            } else {
+              this.page = params['page']?queryPage:1;
+
+            }
+        });
+    }
+  }
   ngOnInit() {
     window.scrollTo(0, 0);
     this.setTitle('常見問題 FAQ - 嘉義市政府線上陳情服務平台');
     this.getCategories();
     this.getFaqList();
+    this.getPage();
 
-    this.sub = this.activatedRoute.params.subscribe( params => {
-          window.scrollTo(0, 0);
-          var queryPage = parseInt(params['page'])-1;
-
-          if (queryPage > this.totalPage){
-            this.page = this.totalPage;
-
-          } else if (queryPage < 1){
-            this.page = 1;
-
-          } else {
-            this.page = params['page']?queryPage:1;
-
-          }
-      }
-    );
   }
 
 }

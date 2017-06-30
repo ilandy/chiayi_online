@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Title }             from '@angular/platform-browser';
@@ -28,6 +27,8 @@ export class QueryComponent implements OnInit {
 
   errType: any;
 
+  pageTitle: string;
+
   //form set
   queryForm: FormGroup;
   constructor(
@@ -37,21 +38,27 @@ export class QueryComponent implements OnInit {
     private fb: FormBuilder) {
 
       this.createForm();
+      this.pageTitle = '案件查詢 - 嘉義市政府線上陳情服務平台';
       this.showLoading = false;
+      this.queryErr = '';
       this.errType =  {
-          notFound: '您查詢的內容不存在，請重新輸入',
+          notFound: '您輸入的資訊查詢不到相符案件',
+          requir: '以上欄位皆為必填',
           IdErr: '案件編號欄位為錯誤',
           IdEmpty: '案件編號欄位為必填',
           MailEmpty: 'email為必填',
           MailErr: '查詢email有誤，請重新輸入',
           OwnerEmpty: '陳情人為必填',
-          RecaptchaEmpty: '驗證碼為必填'
+          RecaptchaEmpty: '驗證碼為必填',
+          RecaptchaErr: '驗證碼為輸入錯誤',
+          serverErr: "伺服器目前維護中"
         };
   }
 
-  check (target) {
+  check (target:'Id') {
     let empty = target+'Empty';
     let err = target+'Err';
+    this.queryErr = '';
     if(this.queryForm.get(target).touched) {
       if(this.queryForm.get(target).value === '') {
           return this.errType[empty];
@@ -63,7 +70,7 @@ export class QueryComponent implements OnInit {
 
   ngOnInit() {
     document.body.scrollTop = 0;
-    this.setTitle('案件查詢 - 嘉義市政府線上陳情服務平台');
+    this.setTitle(this.pageTitle);
     this.getRecaptcha();
   }
 
@@ -104,8 +111,17 @@ export class QueryComponent implements OnInit {
               this.showDetail = true;
               this.showLoading = false;
           }, error => {
-             this.queryErr = "您輸入的資訊查詢不到相符案件";
+              this.showLoading = false;
+              if (error === 404) {
+                this.queryErr = this.errType.notFound;
+              } else if(error === 400) {
+                this.queryErr = this.errType.RecaptchaErr
+              } else {
+                this.queryErr = this.errType.serverErr;
+              }
           });
+    } else {
+         this.queryErr = this.errType.requir;
     }
   }
 }

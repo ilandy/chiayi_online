@@ -173,40 +173,6 @@
     background: rgba(#D2BC9B,.2);
   }
 }
-
-.file-tag {
-  display: inline-block;
-  margin: 0 1rem 1rem;
-  padding: .5rem .8rem;
-  border-left: $md-green 4px solid;
-  font-size: 1rem;
-  background: $white;
-  border-radius: 3px;
-  span {
-
-    display: block;
-    float: left;
-    max-width: 150px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-
-  }
-  @include phone (){
-      display: block;
-      margin-left: 0;
-      margin-right: 0;
-  }
-
-  i {
-    float: right;
-    padding-left: 1rem;
-    line-height: inherit;
-    color: $md-green;
-    cursor: pointer;
-
-  }
-}
 pre {
   position: fixed;
   z-index: 999;

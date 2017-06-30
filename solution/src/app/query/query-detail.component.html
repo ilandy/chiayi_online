@@ -41,9 +41,9 @@
                 </div>
                 <div class="col-md-3 query-detail-item">
                   <small>辦理序號</small>
-                  <p>{{q.seq_no}}{{q.seq_no}}</p>
+                  <p>{{q.seq_no}}-{{q.s_no}}</p>
                 </div>
-                <div class="col-md-12 query-detail-item" *ngIf="q.FinishDate!== 'N/A'&& q.FinishDate">
+                <div class="col-md-12 query-detail-item" *ngIf="q.FinishDate!== 'N/A' && q.FinishDate">
                   <small>回覆日期</small>
                   <p>{{q.FinishDate}}</p>
                 </div>
@@ -53,6 +53,12 @@
 
                 {{q.Reply}}
               </p>
+              <div *ngIf="Atth_FileNames">
+                <h2 class="info-title">附件</h2>
+                <p>
+                  <a class="file-tag clear-fix" [href]="getLinks(files,q)" *ngFor="let files of q.Atth_FileNames">{{files.FileName}}</a>
+                </p>
+              </div>
             </article>
 
 
