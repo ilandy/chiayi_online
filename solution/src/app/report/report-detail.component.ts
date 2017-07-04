@@ -1,5 +1,3 @@
-
-
 import { Response } from '@angular/http';
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -101,6 +99,7 @@ export class ReportDetailComponent implements OnInit {
 
 
   error: any;
+  sendErr: any;
   completeMessg: boolean;
   dangerDef: string;
   validForm: any;
@@ -406,7 +405,7 @@ export class ReportDetailComponent implements OnInit {
 
   // Post Formdata
   submitData (formData: any){
-    let form = getFormData (formData.value, this.caseData);
+    let form = getFormData (formData.value, this.caseData, this.recaptcha);
 
 
     // console.log(!this.validForm);
@@ -422,15 +421,15 @@ export class ReportDetailComponent implements OnInit {
                 this.completeMessg = !this.completeMessg;
                 this.showLoading = false;
               }
-            },err => {
-              // console.log(err.status)
+            }, err => {
               this.showLoading = false;
               if(err.status === 400){
-                //dddd
+                this.sendErr = '驗證碼填寫錯誤！';
+                document.getElementById('validationCode').focus();
+
+
               } else {
-
-                console.log(err);
-
+                // console.log(err);
               }
           });
 

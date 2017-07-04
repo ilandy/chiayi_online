@@ -336,7 +336,16 @@
 
         <div class="form-validation-msg" [ngClass]="{'invalid':validForm, 'valid':!validForm}" *ngIf="myForm.touched && validForm" (click)="goInvalidField()">
           <span *ngIf="!validForm">資料驗證完成！</span>
-          <span *ngIf="validForm">資料尚未填寫完成！<wbr/><em class="">{{validForm.msg}}</em></span>
+          <span *ngIf="validForm">
+            資料尚未填寫完成！<wbr/>
+            <em class="">{{validForm.msg}}</em>
+          </span>
+        </div>
+        <div class="form-validation-msg" [ngClass]="{'invalid': sendErr}" *ngIf="sendErr" (click)="goInvalidField()">
+          <span *ngIf="validForm">
+            資料尚未填寫完成！<wbr/>
+            <em class="">{{sendErr}}</em>
+          </span>
         </div>
       </form>
     </div>

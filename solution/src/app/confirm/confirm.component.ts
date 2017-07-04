@@ -14,10 +14,23 @@ export class ConfirmComponent implements OnInit {
   sub: any;
   timeFormate: string;
 
+  titleSet:any;
+  titleOutput: any;
+
   constructor(private activatedRoute: ActivatedRoute) {
       // console.log(activatedRoute.queryParams['']);
       this.queryExist = true;
-      this.timeFormate = 'YYYY MM DD hh:mm:ss'
+      this.timeFormate = 'YYYY MM DD hh:mm:ss';
+      this.titleSet = {
+        ok: {
+          title: '案件確認完成',
+          subTitle: 'Success'
+        },
+        err: {
+          title: '案件資訊錯誤',
+          subTitle: 'Confirm Error'
+        }
+      }
   }
 
   getdate(){
@@ -33,6 +46,9 @@ export class ConfirmComponent implements OnInit {
   }
   ngOnInit() {
     this.sub = this.activatedRoute.queryParams.subscribe(params => {
+
+        this.titleOutput = this.titleSet['ok'];
+
         if (params['FirstConfirm']!==undefined) {
             this.key = 'firstConfirm';
             this.val = params['FirstConfirm'];
@@ -45,8 +61,11 @@ export class ConfirmComponent implements OnInit {
         } else if (params['Error']!==undefined){
             this.key = 'error';
             this.val = params['Error'];
+            this.titleOutput = this.titleSet['err'];
         } else {
           this.queryExist = false;
+          this.titleOutput = this.titleSet['err'];
+
         }
       });
   }

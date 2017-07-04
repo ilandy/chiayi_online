@@ -1,3 +1,4 @@
+import { RecaptchaCode } from './../interface/report';
 import { ReportData } from './../interface/reportData';
 
 
@@ -118,7 +119,7 @@ export let formDataValidation = (formData: ReportData):any => {
 
 
 
-export let getFormData = (formData: ReportData, caseData: any): string => {
+export let getFormData = (formData: ReportData, caseData: any, recaptcha: RecaptchaCode): string => {
     let result =
       `Subj_Item=`+                caseData.Id
       + `&Subj_Subitem=`+          caseData.SubId
@@ -148,8 +149,8 @@ export let getFormData = (formData: ReportData, caseData: any): string => {
       + `&Sugg_Sex=`+              formData.Sugg_Sex
 
       + `&Input_ValidationCode=`+  formData.Input_ValidationCode
-      + `&Hash_Code=`+             encodeURIComponent(formData.Hash_Code)
-      + `&Time_Stamp=`+            formData.Time_Stamp;
+      + `&Hash_Code=`+             encodeURIComponent(recaptcha.HashCode)
+      + `&Time_Stamp=`+            recaptcha.TimeStamp;
 
     return result;
 }
