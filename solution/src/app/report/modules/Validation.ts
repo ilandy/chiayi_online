@@ -18,6 +18,7 @@ const validationMsg = {
                         }
                       },
       needAddr:      '您選擇的回覆方式為「書面回覆」，請輸入書面寄送地址',
+      needSex: '請選擇性別',
       needRecaptcha: '請輸入驗證碼',
       done:          ''
     };
@@ -92,16 +93,21 @@ export let formDataValidation = (formData: ReportData):any => {
               msg: validationMsg.needPhone.empty
             }
       }
-
     }
-
-
 
     //   回覆方式為 2 時 Addr1,2,4 必填
     if (formData.Sugg_ReplyWay === '2' && !formData.Sugg_Addr4){
       return {
               field: 'addr4',
               msg: validationMsg.needAddr
+            }
+    }
+
+    //   驗證碼必填
+    if (!formData.Sugg_Sex){
+       return {
+              field: 'sex1',
+              msg: validationMsg.needSex
             }
     }
 

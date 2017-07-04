@@ -27,14 +27,14 @@
         <div class="rpdetail-fieldset pt-20">
             <div class="row">
               <div class="col-md-12" style="text-align: right">
-                <strong class="font-color-brown"><span class="font-color-red">紅色</span>為必填。</strong>
+                <strong class="font-color-brown"><span class="font-color-red">紅色＊</span>為必填。</strong>
               </div>
               <br>
             </div>
 
             <div class="row form-group">
               <div class="col-md-3">
-                <label for="name"><h4 class="form-title"><span class="font-color-red">*</span>姓名</h4></label>
+                <label for="name"><h4 class="form-title valid"><span class="font-color-red">*</span>姓名</h4></label>
               </div>
               <!-- 驗證姓名 -->
               <div class="col-md-9">
@@ -86,7 +86,7 @@
 
             <div class="row form-group">
               <div class="col-md-3">
-                <label for="addr"><h4 class="invalid"><span class="font-color-red">*</span>陳情案件所在<span class="break-pc"></span>地址</h4></label>
+                <label for="addr"><h4 class="valid"><span class="font-color-red">*</span>陳情案件所在<span class="break-pc"></span>地址</h4></label>
               </div>
               <div class="col-md-9">
                 <!-- 驗證案發地址 -->
@@ -96,7 +96,7 @@
 
             <div class="row form-group">
               <div class="col-md-3">
-                <label for="gps1"><h4 class="invalid">陳情案件GPS<span class="break-pc"></span>定位</h4></label>
+                <label for="gps1"><h4>陳情案件GPS<span class="break-pc"></span>定位</h4></label>
               </div>
               <div class="col-md-9">
                 <!-- 驗證案發GPS -->
@@ -108,7 +108,7 @@
 
              <div class="row form-group">
               <div class="col-md-3">
-                <label for="comment"><h4 class="form-title"><span class="font-color-red">*</span>案件內容</h4></label>
+                <label for="comment"><h4 class="form-title valid"><span class="font-color-red">*</span>案件內容</h4></label>
               </div>
               <div class="col-md-9">
                 <!-- 驗證案發內容 -->
@@ -132,22 +132,28 @@
                 </ul>
               </div>
             </div>
+            <div class="row form-group">
+              <div class="col-md-3">
+                <label for="email"><h4 class="form-title valid"><span class="font-color-red">*</span>E-Mail</h4></label>
+              </div>
+              <div class="col-md-9">
+                <!-- 驗證回覆 Email -->
+                <input #suggEmail="ngModel" ngModel name="Sugg_Email" type="text" id="email" placeholder="Email" required>
+              </div>
+            </div>
 
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="form-title">回覆方式</h4>
+                <h4 class="form-title valid">其他回覆方式</h4>
               </div>
               <div class="col-md-9">
                 <ul class="form-radio pt-20">
                   <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
-                    <input [ngClass]="{'active':myForm.value.Sugg_ReplyWay == contact.Id}" [ngModel]="contactDef" name="Sugg_ReplyWay" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_ReplyWay == contact.Id}" ngModel name="Sugg_ReplyWay" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
                   </li>
                 </ul>
               </div>
-
             </div>
-
-
             <div class="row form-group" *ngIf="myForm.value.Sugg_ReplyWay === '2'">
               <div class="col-md-3">
                 <h4 class="valid form-common">陳情人回覆<span class="break-pc"></span>地址</h4>
@@ -215,21 +221,9 @@
               </div>
 
             </div>
-
-
-            <div class="row form-group">
+            <div class="row form-group" *ngIf="myForm.value.Sugg_ReplyWay === '1'">
               <div class="col-md-3">
-                <label for="email"><h4 class="form-title"><span class="font-color-red">*</span>E-Mail</h4></label>
-              </div>
-              <div class="col-md-9">
-                <!-- 驗證回覆 Email -->
-                <input #suggEmail="ngModel" ngModel name="Sugg_Email" type="text" id="email" placeholder="Email" required>
-              </div>
-            </div>
-
-            <div class="row form-group">
-              <div class="col-md-3">
-                <label for="phone1" id="phone"><h4 class="form-title"><span class="font-color-red">*</span>聯絡方式</h4></label>
+                <label for="phone1" id="phone"><h4 class="form-title">聯絡方式</h4></label>
               </div>
               <div class="col-md-9">
 
@@ -242,7 +236,7 @@
 
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="my-0">身份</h4>
+                <h4 class="my-0 valid">身份</h4>
               </div>
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
@@ -254,7 +248,7 @@
             </div>
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="my-0">年齡區間</h4>
+                <h4 class="my-0 valid">年齡區間</h4>
               </div>
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
@@ -267,12 +261,12 @@
 
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="my-0">性別</h4>
+                <h4 class="my-0 valid">性別</h4>
               </div>
               <div class="col-md-9">
                 <ul class="form-radio row id-list">
                   <li class="col-md-3 col-sm-4" *ngFor="let sex of sex;let i =index">
-                    <input [ngClass]="{'active':myForm.value.Sugg_Sex == sex.Id}" [ngModel]="sexDef" name="Sugg_Sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_Sex == sex.Id}" ngModel name="Sugg_Sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
                   </li>
                 </ul>
               </div>
@@ -301,7 +295,6 @@
                 <input [ngModel]="filesCount" name="Subj_FileCount" type="hidden">
                 <input [ngModel]="filesName" name="Atth_FileNames" type="hidden">
                 <input [ngModel]="caseToken" name="Case_Token" type="hidden">
-
               </div>
             </div>
 
@@ -327,9 +320,6 @@
                   <button type="button" class="btn btn-green" (click)="submitData(myForm);">填寫完成</button>
               </div>
             </div>
-
-
-
         </div>
 
         <div class="form-validation-msg" [ngClass]="{'invalid':validForm, 'valid':!validForm}" *ngIf="myForm.touched && validForm" (click)="goInvalidField()">

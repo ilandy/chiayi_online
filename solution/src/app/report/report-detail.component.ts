@@ -118,14 +118,12 @@ export class ReportDetailComponent implements OnInit {
     this.roleDef = '1';
 
     this.ageDef = '1';
-    this.sexDef = '1';
 
     this.eventDistDef = '1002001000';
     this.eventSelectedDist = {};
     this.eventTownshipDef = '全部';
     this.eventSlider = false;
 
-    this.contactDef = '1';
     this.completeMessg = false;
 
     this.showDangerOption = false;
@@ -146,7 +144,6 @@ export class ReportDetailComponent implements OnInit {
     this.getRecaptcha();
     this.getCtcCountry();
     this.getCaseType();
-
   }
 
 

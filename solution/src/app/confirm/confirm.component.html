@@ -7,13 +7,14 @@
       </header>
       <article class="info">
         <div class="info-content">
-          <h2 class="check-title navy">親愛的網友，您好！</h2>
+          <h2 class="check-title navy">親愛的市民，您好！</h2>
           <div *ngIf="!queryExist">
             <h2>感謝您熱情使用，您輸入的網址不正確。</h2>
           </div>
           <div *ngIf="queryExist">
             <div class="check-info navy" *ngIf="key === 'caseNo'">
-              <p>您已經確認過並且在辦理中<br>您的申報案號是</p>
+              <p>您的陳情案件已確認並交由承辦單位辦理中。<br>您的陳情案件編號
+              </p>
               <h1>{{val}}</h1>
             </div>
             <div class="check-info navy" *ngIf="key === 'firstConfirm'">
