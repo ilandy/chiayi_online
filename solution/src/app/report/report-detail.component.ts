@@ -146,7 +146,6 @@ export class ReportDetailComponent implements OnInit {
     this.getRecaptcha();
     this.getCtcCountry();
     this.getCaseType();
-    document.getElementById("name").focus();
 
   }
 
