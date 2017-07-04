@@ -81,8 +81,6 @@
                   </ul>
                   <input type="hidden" [ngModel]="eventTownshipDef" name="Subj_Zone">
                 </div>
-
-
               </div>
             </div>
 
@@ -342,7 +340,7 @@
           </span>
         </div>
         <div class="form-validation-msg" [ngClass]="{'invalid': sendErr}" *ngIf="sendErr" (click)="goInvalidField()">
-          <span *ngIf="validForm">
+          <span>
             資料尚未填寫完成！<wbr/>
             <em class="">{{sendErr}}</em>
           </span>

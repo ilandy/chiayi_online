@@ -145,7 +145,8 @@ export class ReportDetailComponent implements OnInit {
     this.getContact();
     this.getRecaptcha();
     this.getCtcCountry();
-    this.getCaseType()
+    this.getCaseType();
+    document.getElementById("name").focus();
 
   }
 
@@ -426,7 +427,7 @@ export class ReportDetailComponent implements OnInit {
               if(err.status === 400){
                 this.sendErr = '驗證碼填寫錯誤！';
                 document.getElementById('validationCode').focus();
-
+                // alert(this.sendErr)
 
               } else {
                 // console.log(err);
