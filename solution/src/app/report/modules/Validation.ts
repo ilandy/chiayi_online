@@ -141,7 +141,7 @@ export let getFormData = (formData: ReportData, caseData: any, recaptcha: Recapt
       + `&Subj_FileCount=`+        formData.Subj_FileCount
       + `&Atth_FileNames=`+        formData.Atth_FileNames
 
-      + `&Sugg_ReplyWay=`+         formData.Sugg_ReplyWay
+      + `&Sugg_ReplyWay=`+         (formData.Sugg_ReplyWay?formData.Sugg_ReplyWay:"0")
       + `&Sugg_Email=`+            formData.Sugg_Email
       + `&Sugg_Telno=`+            formData.Sugg_Telno
       + `&Sugg_Mobile=`+           formData.Sugg_Mobile
