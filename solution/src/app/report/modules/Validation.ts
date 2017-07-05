@@ -136,15 +136,15 @@ export let getFormData = (formData: ReportData, caseData: any, recaptcha: Recapt
       + `&Subj_Location=`+         formData.Subj_Location
       + `&Subj_GPS=`+              (formData.Subj_GPS?formData.Subj_GPS:"")
       + `&Subj_Content=`+          formData.Subj_Content
-      + `&Subj_IsinDanger=`+       (formData.Subj_IsinDanger?formData.Subj_IsinDanger:'N')
+      + `&Subj_IsinDanger=`+       (formData.Subj_IsinDanger?formData.Subj_IsinDanger:"N")
 
       + `&Subj_FileCount=`+        formData.Subj_FileCount
       + `&Atth_FileNames=`+        formData.Atth_FileNames
 
       + `&Sugg_ReplyWay=`+         (formData.Sugg_ReplyWay?formData.Sugg_ReplyWay:"0")
       + `&Sugg_Email=`+            formData.Sugg_Email
-      + `&Sugg_Telno=`+            formData.Sugg_Telno
-      + `&Sugg_Mobile=`+           formData.Sugg_Mobile
+      + `&Sugg_Telno=`+            (formData.Sugg_Telno?formData.Sugg_Telno:"")
+      + `&Sugg_Mobile=`+           (formData.Sugg_Mobile?formData.Sugg_Mobile:"")
       + `&Sugg_Addr1=`+            (formData.Sugg_Addr1?formData.Sugg_Addr1:"")
       + `&Sugg_Addr2=`+            (formData.Sugg_Addr2?formData.Sugg_Addr2:"")
       + `&Sugg_Addr3=`+            (formData.Sugg_Addr3?formData.Sugg_Addr3:"")
