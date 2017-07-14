@@ -18,7 +18,8 @@ const validationMsg = {
                         }
                       },
       needAddr:      '您選擇的回覆方式為「書面回覆」，請輸入書面寄送地址',
-      needSex: '請選擇性別',
+      needSex:       '請選擇性別',
+      needAge:       '請選擇年齡',
       needRecaptcha: '請輸入驗證碼',
       done:          ''
     };
@@ -103,13 +104,21 @@ export let formDataValidation = (formData: ReportData):any => {
             }
     }
 
-    //   驗證碼必填
-    if (!formData.Sugg_Sex){
+    //   年齡必填
+    if (!formData.Sugg_AgeRng){
        return {
-              field: 'sex1',
-              msg: validationMsg.needSex
+              field: 'age0',
+              msg: validationMsg.needAge
             }
     }
+
+    //   性別必填
+    // if (!formData.Sugg_Sex){
+    //    return {
+    //           field: 'sex0',
+    //           msg: validationMsg.needSex
+    //         }
+    // }
 
     //   驗證碼必填 (A-z0-9 Rxp)
     if (!formData.Input_ValidationCode){
@@ -122,8 +131,6 @@ export let formDataValidation = (formData: ReportData):any => {
     //  驗證全過
     return validationMsg.done;
   }
-
-
 
 export let getFormData = (formData: ReportData, caseData: any, recaptcha: RecaptchaCode): string => {
     let result =

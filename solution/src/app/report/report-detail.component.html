@@ -3,9 +3,9 @@
     <div class="rpdetail-header">
       <header class="line-box-title deco-triangle">
         <h1>陳情案件</h1>
-
       </header>
-      <form #myForm="ngForm" (change)="getBaseRequired(myForm)" >
+
+      <form #myForm="ngForm" (change)="clearRequire()">
         <div class="rpdetail-for">
           <div class="row">
             <div class="col-md-6">
@@ -20,7 +20,6 @@
                 <input [ngModel]="subCaseType" name="subitem" class="field-entery" type="text" value="公園、綠地、安全島髒亂" readonly >
               </div>
             </div>
-
           </div>
         </div>
 
@@ -64,12 +63,10 @@
               <div class="col-md-3">
                 <div class="field">
                   <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
-
                     <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
                     <select [(ngModel)]="eventTownshipDef" class="mb-select hidden-md hidden-lg" name="Subj_Zone" id="" (change)="getSelectText('eventTownshipVal',$event.target)">
                       <option *ngFor="let zone of eventSelectedDist.Zones" value="{{zone.ZoneCode}}">{{zone.ZoneName}}</option>
                     </select>
-
                   </div>
                 </div>
               </div>
@@ -83,7 +80,6 @@
                 </div>
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <label for="addr"><h4 class="valid"><span class="font-color-red">*</span>陳情案件所在<span class="break-pc"></span>地址</h4></label>
@@ -93,7 +89,6 @@
                 <input #subLocation="ngModel" ngModel name="Subj_Location" type="text" id="addr" placeholder="請輸入地址" required>
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <label for="gps1"><h4>陳情案件GPS<span class="break-pc"></span>定位</h4></label>
@@ -104,8 +99,6 @@
                 <input #subLocation="ngModel" ngModel name="Subj_GPS" type="text" id="gps2" placeholder="經度 120.4524993" required>
               </div>
             </div>
-
-
              <div class="row form-group">
               <div class="col-md-3">
                 <label for="comment"><h4 class="form-title valid"><span class="font-color-red">*</span>案件內容</h4></label>
@@ -113,10 +106,8 @@
               <div class="col-md-9">
                 <!-- 驗證案發內容 -->
                 <textarea #subContent="ngModel" ngModel name="Subj_Content" id="comment" placeholder="請輸案件內容" required></textarea>
-
               </div>
             </div>
-
             <div class="row form-group" *ngIf="showDangerOption">
               <div class="col-md-3 pb-20">
                 <h4 class="my-0">是否有立即危險</h4>
@@ -134,20 +125,26 @@
             </div>
             <div class="row form-group">
               <div class="col-md-3">
-                <label for="email"><h4 class="form-title valid"><span class="font-color-red">*</span>E-Mail</h4></label>
+                <label for="email">
+                  <h4 class="form-title valid"><span class="font-color-red">*</span>E-Mail</h4>
+                  <div class="font-color-orange mb-10" style="font-size: 1.25rem">預設回覆方式</div>
+                </label>
+
               </div>
               <div class="col-md-9">
                 <!-- 驗證回覆 Email -->
                 <input #suggEmail="ngModel" ngModel name="Sugg_Email" type="text" id="email" placeholder="Email" required>
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <h4 class="form-title valid">其他回覆方式</h4>
               </div>
               <div class="col-md-9">
                 <ul class="form-radio pt-20">
+                  <li class="col-md-4">
+                    <input [ngClass]="{'active':myForm.value.Sugg_ReplyWay == 0 }" ngModel name="Sugg_ReplyWay" type="radio" value="0" id="contact"> <label class="checked" for="contact">不用</label>
+                  </li>
                   <li class="col-md-4" *ngFor="let contact of contacts; let i = index">
                     <input [ngClass]="{'active':myForm.value.Sugg_ReplyWay == contact.Id}" ngModel name="Sugg_ReplyWay" type="radio" [value]="contact.Id" id="contact{{i}}"> <label class="checked" for="contact{{i}}">{{contact.Name}}</label>
                   </li>
@@ -196,44 +193,37 @@
                       <li *ngFor="let country of ctcCountrys" [ngClass]="{'active': ctcCountryDef === country.CountyCode }" (click)="getSliderItem('ctcCountry',country.CountyName,country.CountyCode);getCtcDist()">{{country.CountyName}}</li>
                     </ul>
                     <input type="hidden" [ngModel]="ctcCountryDef" name="Sugg_Addr1">
-
                   </div>
                   <div class="select" [ngClass]="{'active':ctcDistSlider}">
                     <ul class="select-options hidden-xs hidden-sm">
                       <li *ngFor="let dist of ctcDists" [ngClass]="{'active': ctcDistDef === dist.DistrictCode }" (click)="getSliderItem('ctcDist',dist.DistrictName,dist.DistrictCode);getCtcZone()" >{{dist.DistrictName}}</li>
                     </ul>
                     <input type="hidden" [ngModel]="ctcDistDef" name="Sugg_Addr2">
-
                   </div>
                   <div class="select" [ngClass]="{'active':ctcZoneSlider}">
                     <ul class="select-options hidden-xs hidden-sm">
                       <li *ngFor="let zone of ctcZones" [ngClass]="{'active': ctcZoneVal === zone.ZoneName }" (click)="getSliderItem('ctcZone',zone.ZoneName,zone.ZoneCode)" >{{zone.ZoneName}}</li>
                     </ul>
                     <input type="hidden" [ngModel]="ctcZoneDef" name="Sugg_Addr3">
-
                   </div>
                 </div>
-
                 <div class="col-md-12">
                   <input ngModel name="Sugg_Addr4" type="text" id="addr4" placeholder="請輸入地址">
                 </div>
                 </div>
               </div>
-
             </div>
             <div class="row form-group" *ngIf="myForm.value.Sugg_ReplyWay === '1'">
               <div class="col-md-3">
                 <label for="phone1" id="phone"><h4 class="form-title">聯絡方式</h4></label>
               </div>
               <div class="col-md-9">
-
                 <input class="hidden-xs hidden-sm" ngModel name="Sugg_Telno" type="text" id="phone1" pattern="[0-9]\*" placeholder="電話 Ex:052254321">
                 <input class="hidden-xs hidden-sm" ngModel name="Sugg_Mobile" type="text" id="mobile1" pattern="[0-9]\*" placeholder="行動電話 Ex: 0912345678">
                 <input class="hidden-md hidden-lg" ngModel name="Sugg_Telno" type="tel" id="phone2" pattern="[0-9]\*" placeholder="電話 Ex:052254321">
                 <input class="hidden-md hidden-lg" ngModel name="Sugg_Mobile" type="tel" id="mobile2" pattern="[0-9]\*" placeholder="行動電話 Ex: 0912345678">
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <h4 class="my-0 valid">身份</h4>
@@ -248,40 +238,42 @@
             </div>
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="my-0 valid">年齡區間</h4>
+                <h4 class="my-0 valid"><span class="font-color-red">*</span>年齡區間</h4>
               </div>
               <div class="col-md-9">
+                <a href="javascript:void(0)" id="age">
                 <ul class="form-radio row id-list">
                   <li class="col-md-4 col-sm-5" *ngFor="let age of ageRange; let i = index">
-                    <input [ngClass]="{'active':myForm.value.Sugg_AgeRng == age.Id}" [ngModel]="ageDef" name="Sugg_AgeRng" type="radio" [value]="age.Id" id="age{{i}}"> <label for="age{{i}}">{{age.Type}}</label>
+                    <input [ngClass]="{'active':myForm.value.Sugg_AgeRng == age.Id}" ngModel name="Sugg_AgeRng" type="radio" [value]="age.Id" id="age{{i}}"> <label for="age{{i}}">{{age.Type}}</label>
                   </li>
                 </ul>
+                </a>
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <h4 class="my-0 valid">性別</h4>
               </div>
               <div class="col-md-9">
-                <ul class="form-radio row id-list">
-                  <li class="col-md-3 col-sm-4" *ngFor="let sex of sex;let i =index">
-                    <input [ngClass]="{'active':myForm.value.Sugg_Sex == sex.Id}" ngModel name="Sugg_Sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
-                  </li>
-                </ul>
+                <a href="javascript:void(0)" id="sex">
+                  <ul class="form-radio row id-list">
+                    <li class="col-md-3 col-sm-4" *ngFor="let sex of sex;let i =index">
+                      <input [ngClass]="{'active':myForm.value.Sugg_Sex == sex.Id}" ngModel name="Sugg_Sex" type="radio" [value]="sex.Id" id="sex{{i}}"> <label for="sex{{i}}">{{sex.Type}}</label>
+                    </li>
+                  </ul>
+                </a>
               </div>
               <div class="col-md-1 hidden-xs">
-                  <i class="fa "></i>
+                  <i class="fa"></i>
               </div>
             </div>
-
             <div class="row form-group">
               <div class="col-md-3">
                 <h4 class="form-title">附加檔案</h4>
               </div>
               <div class="col-md-9">
-                <div class="files" (click)="triggerFileBtn()">
-                  <div class="file-upload fa">檔案上傳</div>
+                <div class="files">
+                  <div class="file-upload fa" (click)="triggerFileBtn()">檔案上傳</div>
                 </div>
                 <input class="hidden" id="Files" multiple type="file" (change)="filesUpload($event.target)">
               </div>
@@ -297,7 +289,6 @@
                 <input [ngModel]="caseToken" name="Case_Token" type="hidden">
               </div>
             </div>
-
             <div class="row pt-20">
               <div class="col-md-7 pb-20">
                 <div class="row">
@@ -321,7 +312,6 @@
               </div>
             </div>
         </div>
-
         <div class="form-validation-msg" [ngClass]="{'invalid':validForm, 'valid':!validForm}" *ngIf="myForm.touched && validForm" (click)="goInvalidField()">
           <span *ngIf="!validForm">資料驗證完成！</span>
           <span *ngIf="validForm">
@@ -338,7 +328,6 @@
       </form>
     </div>
   </div>
-
   <div class="line-box line-box-tiny mx-auto" *ngIf="completeMessg === true">
     <div>
       <header class="line-box-title deco-triangle">
@@ -347,7 +336,7 @@
       </header>
       <article class="info">
         <p class="info-content">
-          我們已收到您對本府的反映案件，為確認您的信箱未遭冒用，我們即將寄出確認信至您所填寫的：kkk@kkk.com 信箱， 請您於收到該確認信後，點選「確認信件」連結，以便完成您的案件反映流程，我們在收到您的確認後，將由系統自動寄出案件編號至您的信箱並立即進行分案處理。 謝謝您！
+          我們已收到您對本府的反映案件，為確認您的信箱未遭冒用，我們即將寄出確認信至您所填寫的： {{ contactEmail }} 信箱， 請您於收到該確認信後，點選「確認信件」連結，以便完成您的案件反映流程，我們在收到您的確認後，將由系統自動寄出案件編號至您的信箱並立即進行分案處理。 謝謝您！
         </p>
       </article>
 

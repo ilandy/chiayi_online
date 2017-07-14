@@ -104,6 +104,7 @@ export class ReportDetailComponent implements OnInit {
   dangerDef: string;
   validForm: any;
   showLoading: boolean;
+  contactEmail: string;
 
 
   constructor(
@@ -116,8 +117,6 @@ export class ReportDetailComponent implements OnInit {
     this.caseToken = genCaseToken(12);
 
     this.roleDef = '1';
-
-    this.ageDef = '1';
 
     this.eventDistDef = '1002001000';
     this.eventSelectedDist = {};
@@ -149,7 +148,11 @@ export class ReportDetailComponent implements OnInit {
 
   getBaseRequired (formData:any){
     this.validForm = formDataValidation(formData.value);
-    // console.log(this.validForm)
+    this.goInvalidField();
+  }
+
+  clearRequire (){
+    this.validForm = false;
   }
 
   //==== 表單以外的功能 ====//
@@ -368,8 +371,12 @@ export class ReportDetailComponent implements OnInit {
     return true;
   }
   goInvalidField() {
-    let target = this.validForm.field;
-    document.getElementById(target).focus();
+    let target = this.validForm.field,
+        elem = document.getElementById(target);
+    if(elem) {
+        elem.focus();
+    }
+
   }
   filesUpload(uploadInput:any){
     if (uploadInput.files) {
@@ -417,6 +424,7 @@ export class ReportDetailComponent implements OnInit {
                 window.scrollTo(0, 0);
                 this.completeMessg = !this.completeMessg;
                 this.showLoading = false;
+                this.contactEmail = formData.value.Sugg_Email;
               }
             }, err => {
               this.showLoading = false;

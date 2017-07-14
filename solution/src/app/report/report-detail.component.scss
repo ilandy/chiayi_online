@@ -209,6 +209,12 @@ pre {
 .btn.btn-green {
   margin-top: 20px;
 }
+#age, #sex {
+  color: #000;
+  &:focus {
+    outline: none;
+  }
+}
 .form-validation-msg {
   position: fixed;
   top: 0;
