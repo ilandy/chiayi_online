@@ -5,6 +5,7 @@ import { ReportData } from './../interface/reportData';
 const validationMsg = {
       needName:      '請輸入姓名',
       needLocation:  '請輸入事件地址',
+      needDist:      '由於您的身份，請選擇事件發生的里別',
       needContnt:    '請輸入陳情案件內容',
       needEmail:     {
                         empty:  '請輸入 Email',
@@ -103,7 +104,15 @@ export let formDataValidation = (formData: ReportData):any => {
               msg: validationMsg.needAddr
             }
     }
-
+    //   角色驗證
+    if(formData.Sugg_TypeId === "3" || formData.Sugg_TypeId === "5"){
+      if(formData.Subj_Zone==='0'){
+        return {
+                field: 'location',
+                msg: validationMsg.needDist
+        }
+      }
+    }
     //   年齡必填
     if (!formData.Sugg_AgeRng){
        return {

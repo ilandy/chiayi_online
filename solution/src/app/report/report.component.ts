@@ -17,9 +17,40 @@ export class ReportComponent implements OnInit {
   selectedSubCaseType: SubCaseType;
   screenSize: number;
   handler: any;
+  favoriteList: any;
 
   constructor(private titleService: Title, private reportService: ReportService, private scrollAnimate: ScrollAnimate) {
-
+    this.favoriteList = [{
+      item: 9,
+      subitem: 2,
+      title: "違規停車",
+      itemPic: "icon-1.png"
+    },{
+      item: 5,
+      subitem: 8,
+      title: "違規小廣告",
+      itemPic: "icon-2.png"
+    },{
+      item: 7,
+      subitem: 1,
+      title: "號誌故障",
+      itemPic: "icon-3.png"
+    },{
+      item: 0,
+      subitem: 1,
+      title: "路燈不亮",
+      itemPic: "icon-4.png"
+    },{
+      item: 4,
+      subitem: 2,
+      title: "溝蓋破損",
+      itemPic: "icon-5.png"
+    },{
+      item: 1,
+      subitem: 1,
+      title: "道路凹陷坑洞",
+      itemPic: "icon-6.png"
+    }]
     // console.log(this.screenSize)
    }
 

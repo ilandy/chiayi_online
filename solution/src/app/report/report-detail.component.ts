@@ -120,7 +120,7 @@ export class ReportDetailComponent implements OnInit {
 
     this.eventDistDef = '1002001000';
     this.eventSelectedDist = {};
-    this.eventTownshipDef = '全部';
+    this.eventTownshipDef = '';
     this.eventSlider = false;
 
     this.completeMessg = false;
@@ -255,6 +255,8 @@ export class ReportDetailComponent implements OnInit {
             this.eventDists = dist;
             // console.log(this.eventDists);
             this.getSelectDist(0);
+            this.eventTownshipVal = "全部";
+            this.eventTownshipDef = "0";
           },
           error => this.error = error);
   }
@@ -429,9 +431,9 @@ export class ReportDetailComponent implements OnInit {
             }, err => {
               this.showLoading = false;
               if(err.status === 400){
-                this.sendErr = '驗證碼填寫錯誤！';
-                document.getElementById('validationCode').focus();
-                // alert(this.sendErr)
+                this.sendErr = err.json();
+
+                // console.log(err.json())
 
               } else {
                 // console.log(err);

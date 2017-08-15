@@ -58,13 +58,14 @@
 
             <div class="row form-group">
               <div class="col-md-3">
-                <h4 class="valid form-common"><span class="font-color-red">*</span>陳情案件所在<span class="break-pc"></span>里別</h4>
+                <h4 class="valid form-common">陳情案件所在<span class="break-pc"></span>里別</h4>
               </div>
               <div class="col-md-3">
                 <div class="field">
                   <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
                     <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
-                    <select [(ngModel)]="eventTownshipDef" class="mb-select hidden-md hidden-lg" name="Subj_Zone" id="" (change)="getSelectText('eventTownshipVal',$event.target)">
+                    <select [(ngModel)]="eventTownshipDef" class="mb-select hidden-md hidden-lg" name="Subj_Zone" id="location" (change)="getSelectText('eventTownshipVal',$event.target)">
+                      <option value="0">里別</option>
                       <option *ngFor="let zone of eventSelectedDist.Zones" value="{{zone.ZoneCode}}">{{zone.ZoneName}}</option>
                     </select>
                   </div>
@@ -74,7 +75,7 @@
               <div class="col-md-9 col-md-offset-2">
                  <div class="select" [ngClass]="{'active':eventSlider}">
                   <ul class="select-options hidden-sm hidden-xs">
-                    <li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
+                    <li [ngClass]="{'active': eventTownshipDef === '0' }" (click)="getSliderItem('eventTownship','里別','0');">里別</li><li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
                   </ul>
                   <input type="hidden" [ngModel]="eventTownshipDef" name="Subj_Zone">
                 </div>

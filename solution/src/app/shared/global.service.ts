@@ -25,6 +25,6 @@ export class ScrollAnimate {
 }
 
 export class BaseAPIURL {
-  public readonly remoteUrl = 'http://CYWebAPI.chiayi.gov.tw/API/'; //'http://ndemo.tw-futaba.com.tw/ChiayiWAPI/api/'
+  public readonly remoteUrl = 'https://CYWebAPI.chiayi.gov.tw/API/'; //'http://ndemo.tw-futaba.com.tw/ChiayiWAPI/api/'
   public readonly localUrl  = './assets/data/';
 }
