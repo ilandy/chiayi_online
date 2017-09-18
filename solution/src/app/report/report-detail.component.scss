@@ -172,6 +172,14 @@
     border-radius: inherit;
     background: rgba(#D2BC9B,.2);
   }
+  &.btn-uploading {
+    padding-left: 0;
+    background: $md-green;
+
+    &:before {
+      content: "";
+    }
+  }
 }
 pre {
   position: fixed;
@@ -263,4 +271,7 @@ pre {
   @include pc {
     display: block;
   }
+}
+.loading-words {
+  margin-left: -40px;
 }

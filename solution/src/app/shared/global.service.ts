@@ -10,9 +10,6 @@ export class ScrollAnimate {
     var scrollNow = document.body,
         targetPosition = target.offsetTop+space;
 
-
-    console.log(scrollNow.scrollTop, targetPosition);
-
     if(scrollNow.scrollTop < targetPosition) {
         scrollNow.scrollTop+= this.speed;
         this.handler = window.requestAnimationFrame(()=>{

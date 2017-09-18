@@ -65,7 +65,7 @@
                   <div class="field-select" role="combobox" (click)="eventSlider=!eventSlider">
                     <input class="field-entery" type="text" value="{{eventTownshipVal}}" readonly>
                     <select [(ngModel)]="eventTownshipDef" class="mb-select hidden-md hidden-lg" name="Subj_Zone" id="location" (change)="getSelectText('eventTownshipVal',$event.target)">
-                      <option value="0">里別</option>
+                      <option value="">里別</option>
                       <option *ngFor="let zone of eventSelectedDist.Zones" value="{{zone.ZoneCode}}">{{zone.ZoneName}}</option>
                     </select>
                   </div>
@@ -75,7 +75,7 @@
               <div class="col-md-9 col-md-offset-2">
                  <div class="select" [ngClass]="{'active':eventSlider}">
                   <ul class="select-options hidden-sm hidden-xs">
-                    <li [ngClass]="{'active': eventTownshipDef === '0' }" (click)="getSliderItem('eventTownship','里別','0');">里別</li><li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
+                    <li [ngClass]="{'active': eventTownshipDef === '' }" (click)="getSliderItem('eventTownship','里別','0');">里別</li><li *ngFor="let zone of eventSelectedDist.Zones" [ngClass]="{'active': eventTownshipDef === zone.ZoneCode }" (click)="getSliderItem('eventTownship',zone.ZoneName,zone.ZoneCode);">{{zone.ZoneName}}</li>
                   </ul>
                   <input type="hidden" [ngModel]="eventTownshipDef" name="Subj_Zone">
                 </div>
@@ -106,7 +106,7 @@
               </div>
               <div class="col-md-9">
                 <!-- 驗證案發內容 -->
-                <textarea #subContent="ngModel" ngModel name="Subj_Content" id="comment" placeholder="請輸案件內容" required></textarea>
+                <textarea rows="4" #subContent="ngModel" ngModel name="Subj_Content" id="comment" placeholder="請輸案件內容" required></textarea>
               </div>
             </div>
             <div class="row form-group" *ngIf="showDangerOption">
@@ -137,7 +137,7 @@
                 <input #suggEmail="ngModel" ngModel name="Sugg_Email" type="text" id="email" placeholder="Email" required>
               </div>
             </div>
-            <div class="row form-group">
+            <div *ngIf="false" class="row form-group">
               <div class="col-md-3">
                 <h4 class="form-title valid">其他回覆方式</h4>
               </div>
@@ -274,14 +274,15 @@
               </div>
               <div class="col-md-9">
                 <div class="files">
-                  <div class="file-upload fa" (click)="triggerFileBtn()">檔案上傳</div>
+                  <div class="file-upload fa" (click)="triggerFileBtn()" *ngIf="!uploadComplate">檔案上傳</div>
+                  <div class="file-upload btn-uploading" *ngIf="uploadComplate"><i class="fa fa-fw fa-circle-o-notch fa-spin"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;檔案傳送中</div>
                 </div>
                 <input class="hidden" id="Files" multiple type="file" (change)="filesUpload($event.target)">
               </div>
               <div class="col-md-1 hidden-xs">
                   <i class="fa "></i>
               </div>
-              <div class="col-md-10 col-md-offset-2">
+              <div class="col-md-9 col-md-offset-3">
                 <ul>
                   <li class="file-tag clear-fix" *ngFor="let file of uploadFiles"><span>{{file.name}}</span> </li>
                 </ul>
@@ -348,7 +349,7 @@
 <div class="pop" [ngClass]="{'active':showLoading}" >
   <div class="pop-content">
     <div class="mk-spinner-doublecircle"></div>
-    <span class="loading-words">Sending ...</span>
+    <span class="loading-words">資料處理中</span>
   </div>
 </div>
 <div class="fack-loading">

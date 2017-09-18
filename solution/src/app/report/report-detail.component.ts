@@ -105,6 +105,7 @@ export class ReportDetailComponent implements OnInit {
   validForm: any;
   showLoading: boolean;
   contactEmail: string;
+  uploadComplate: boolean;
 
 
   constructor(
@@ -130,6 +131,7 @@ export class ReportDetailComponent implements OnInit {
     this.filesName = "";
     this.dangerDef = "N";
     this.showLoading= false;
+
   }
 
   ngOnInit() {
@@ -164,7 +166,6 @@ export class ReportDetailComponent implements OnInit {
   //==== 取得 Router ====//
   getCaseType(){
     this.sub = this.activatedRoute.params.subscribe(params => {
-        // console.log(params['id'],params['subId'])
 
         if(params['id'] && params['subId']){
           this.reportService
@@ -256,7 +257,7 @@ export class ReportDetailComponent implements OnInit {
             // console.log(this.eventDists);
             this.getSelectDist(0);
             this.eventTownshipVal = "全部";
-            this.eventTownshipDef = "0";
+            this.eventTownshipDef = "";
           },
           error => this.error = error);
   }
@@ -347,7 +348,6 @@ export class ReportDetailComponent implements OnInit {
   triggerFileBtn (){
     let fileInput: HTMLElement = document.getElementById('Files');
     fileInput.click();
-    // console.log(fileInput);
   }
 
 
@@ -381,45 +381,51 @@ export class ReportDetailComponent implements OnInit {
 
   }
   filesUpload(uploadInput:any){
+
     if (uploadInput.files) {
-      //console.log(fi.files)
+      this.uploadComplate = true;
       let refiles = checkFilenameIsExist(uploadInput.files, this.uploadFiles);
+      let check = this.checkFiles(refiles);
+
       if (!refiles || refiles.length <= 0)
         return;
-      let check = this.checkFiles(refiles);
       if (!check)
         return;
+
       for(let i=0; i < refiles.length; i++){
         this.uploadFiles.push(refiles[i]);
       }
-      console.log(refiles)
+
       this.subscribes.push(
-        this.uploadService.sendFileRequest(this.caseToken, refiles).subscribe(
-          resp => {
-            console.log(resp);
-          }
+        this.uploadService
+            .sendFileRequest(this.caseToken, refiles)
+            .delay(1000)
+            .subscribe(
+              resp => {
+                // console.log(resp);
+
+                this.uploadComplate = false;
+                this.filesCount = this.uploadFiles.length;
+                this.filesName = joinUploadedFileName(this.uploadFiles)
+
+              }
         )
       );
     }
-    this.filesCount = this.uploadFiles.length;
-    this.filesName = joinUploadedFileName(this.uploadFiles)
-
-    console.log( this.filesCount, this.filesName)
-
 
   }
 
   // Post Formdata
   submitData (formData: any){
-    let form = getFormData (formData.value, this.caseData, this.recaptcha);
-
-
-    // console.log(!this.validForm);
+    this.getBaseRequired(formData)
 
     if (this.validForm === '') {
       this.showLoading = true;
+
+      let form = getFormData (formData.value, this.caseData, this.recaptcha);
       this.uploadService
           .postData(form)
+          .delay(3000)
           .subscribe(
             data => {
               if(data){
@@ -432,18 +438,11 @@ export class ReportDetailComponent implements OnInit {
               this.showLoading = false;
               if(err.status === 400){
                 this.sendErr = err.json();
-
-                // console.log(err.json())
-
-              } else {
-                // console.log(err);
               }
           });
 
     } else {
       this.getBaseRequired(formData)
-      console.log(this.validForm)
     }
   }
-
 }
