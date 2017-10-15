@@ -19,7 +19,7 @@ export class QueryService {
     let Id = formData.Id.split('-');
 
     let querys =  Id[0] + "?p1="  + Id[1] + "&p2=" + Id[2] + "&p3=" + Id[3]
-                  + "&p4=" + formData.Owner + "&p5=" + formData.Mail
+                  + "&p4=" + encodeURIComponent(formData.Owner) + "&p5=" + formData.Mail
                   + "&p6=" + Recapcha.TimeStamp + formData.Recaptcha + encodeURIComponent(Recapcha.HashCode);
     return this.http.get(this.queryUrl+querys)
                .map(this.extractData)
